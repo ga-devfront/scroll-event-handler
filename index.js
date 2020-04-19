@@ -31,7 +31,10 @@ export default (settings) => {
     }
 
     let currentNavigator = null;
-    let scrollCount = 0;
+    let scrollCount = {
+        desktop: 0,
+        mobile: 0
+    };
 
     if (navigators.chrome.regex.test(userAgent) && !navigators.opera.regex.test(userAgent) && !navigators.edge.regex.test(userAgent)) {
         currentNavigator = navigators.chrome;
@@ -68,8 +71,13 @@ export default (settings) => {
             element.preventDefault();
             element.stopPropagation();
             const calcForOneScroll = element.deltaY / currentNavigator.deltaY;
-            scrollCount += calcForOneScroll;
-            console.log(scrollCount);
+            if (settings.resetOnSwitch) {
+                if (Math.sign(calcForOneScroll) !== Math.sign(scrollCount.desktop)) {
+                    scrollCount.desktop = 0;
+                }
+            }
+            scrollCount.desktop += calcForOneScroll;
+            console.log(scrollCount.desktop);
         });
     }
 

@@ -1,0 +1,30 @@
+{
+  "name": "scroll-listener",
+  "version": "1.0.0",
+  "description": "a complet scrolling event listener on all device.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ga-devfront/scroll-listener.git"
+  },
+  "keywords": [
+    "scroll",
+    "js",
+    "javascript",
+    "listener",
+    "event",
+    "eventlistener",
+    "mobile",
+    "desktop",
+    "device"
+  ],
+  "author": "Guyomar Alexis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ga-devfront/scroll-listener/issues"
+  },
+  "homepage": "https://github.com/ga-devfront/scroll-listener#readme"
+}

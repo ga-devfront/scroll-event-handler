@@ -71,7 +71,7 @@ export default function ScrollListener(settings) {
                 deltaY: 100
             },
             mobile: {
-                name: 'saferi mini',
+                name: 'opera mini',
                 regex: /Mobile/,
                 deltaY: 100
             },
@@ -90,8 +90,8 @@ export default function ScrollListener(settings) {
         },
         samsungInternet: {
             mobile: {
-                name: 'firefox mobile',
-                regex: /Mobile/,
+                name: 'samsung internet',
+                regex: /SamsungBrowser[\/\s](\d+\.\d+)/,
                 deltaY: 100
             },
         }
@@ -102,6 +102,8 @@ export default function ScrollListener(settings) {
         scroll: 0,
         touch: 0
     };
+
+    // desktop navigators tests
 
     if (navigators.chrome.desktop.regex.test(userAgent) && !navigators.opera.desktop.regex.test(userAgent) && !navigators.edge.desktop.regex.test(userAgent) && !navigators.chrome.mobile.regex.test(userAgent)) {
         this.currentNavigator = navigators.chrome.desktop;
@@ -131,6 +133,28 @@ export default function ScrollListener(settings) {
         this.currentNavigator = navigators.safari.desktop;
     }
 
+    // mobile navigators tests
+
+    if (navigators.chrome.desktop.regex.test(userAgent) && !navigators.opera.desktop.regex.test(userAgent) && navigators.chrome.mobile.regex.test(userAgent)) {
+        this.currentNavigator = navigators.chrome.mobile;
+    }
+
+    if (navigators.firefox.desktop.regex.test(userAgent) && navigators.firefox.mobile.regex.test(userAgent)) {
+        this.currentNavigator = navigators.firefox.mobile;
+    }
+
+    if (navigators.opera.desktop.regex.test(userAgent) && navigators.opera.mobile.regex.test(userAgent)) {
+        this.currentNavigator = navigators.opera.mobile;
+    }
+
+    if (navigators.safari.desktop.regex.test(userAgent) && !navigators.chrome.desktop.regex.test(userAgent) && navigators.safari.mobile.regex.test(userAgent)) {
+        this.currentNavigator = navigators.safari.mobile;
+    }
+
+    if (navigators.samsungInternet.mobile.regex.test(userAgent)) {
+        this.currentNavigator = navigators.samsungInternet.mobile;
+    }
+
     // console.log test
     if (this.currentNavigator !== null) {
         console.log(this.currentNavigator);
@@ -140,6 +164,14 @@ export default function ScrollListener(settings) {
         console.log('sorry but scroll listener do not run on this navigator');
         return
     }
+
+    //test for see result on mobile
+
+    const uaDOM = document.querySelector('#userAgent');
+    uaDOM.textContent = userAgent;
+    const navDOM = document.querySelector('#browser');
+    navDOM.textContent = this.currentNavigator.name;
+    const navDOM = document.querySelector('#deltaY');
 
     if (this.currentNavigator.name === 'chrome' || 'edge' || 'edge chromium' || 'firefox' || 'ie' || 'opera' || 'safari') {
         this.eventListener = (event) => {
@@ -165,6 +197,9 @@ export default function ScrollListener(settings) {
         };
 
         this.container.addEventListener('wheel', this.eventListener);
+    }
+
+    if (this.currentNavigator.name === 'chrome mobile' || 'firefox mobile' || 'opera mini' || 'safari mobile' || 'samsung internet') {
     }
 
     this.removeScrollListener = () => {

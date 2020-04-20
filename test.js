@@ -1,6 +1,6 @@
 import ScrollListener from './index.js';
 
-let yolo = new ScrollListener({
+new ScrollListener({
     container: '#scrollIn',
     cancelOnDirectionChange: true,
     trigger: {

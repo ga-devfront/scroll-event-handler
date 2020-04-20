@@ -1,4 +1,5 @@
-export default function ScrollListener(settings) {
+const scrollListener = {
+    ScrollListener(settings) {
         this.container = settings.container ? document.querySelector(settings.container) : window;
         if (this.container === null) {
             throw Error('your container is not available');
@@ -106,6 +107,18 @@ export default function ScrollListener(settings) {
 
             this.container.addEventListener('wheel', this.eventListener);
         }
-        
+
+        this.removeScrollListener = () => {
+            this.container.removeEventListener('wheel', this.eventListener)
+        }
+
         return this;
-    };
+    },
+    RemoveScrollListeners(events) {
+        events.forEach(event => event.removeScrollListener());
+    }
+}
+
+export default scrollListener;
+
+export const {ScrollListener, RemoveScrollListeners} = scrollListener;

@@ -171,11 +171,10 @@ export default function ScrollListener(settings) {
     uaDOM.textContent = userAgent;
     const navDOM = document.querySelector('#browser');
     navDOM.textContent = this.currentNavigator.name;
-    const navDOM = document.querySelector('#deltaY');
+    const deltaDOM = document.querySelector('#deltaY');
 
     if (this.currentNavigator.name === 'chrome' || 'edge' || 'edge chromium' || 'firefox' || 'ie' || 'opera' || 'safari') {
         this.eventListener = (event) => {
-            console.log(event);
             event.preventDefault();
             event.stopPropagation();
             const calcForOneScroll = event.deltaY / this.currentNavigator.deltaY;
@@ -200,6 +199,43 @@ export default function ScrollListener(settings) {
     }
 
     if (this.currentNavigator.name === 'chrome mobile' || 'firefox mobile' || 'opera mini' || 'safari mobile' || 'samsung internet') {
+        this.allowScroll = false;
+
+        this.handleStar = (event) => {
+            this.touchStart = event.touches[0].screenY;
+            this.allowScroll = true;
+        }
+
+        this.handleMove = (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this.trigger.touch = this.touchStart - event.touches[0].screenY;
+
+            if (!this.allowScroll) return;
+
+            if (settings.trigger.touch.next <= this.trigger.touch) {
+                this.callback.next(true);
+                this.trigger.touch = 0;
+                this.allowScroll = false;
+            }
+
+            if (settings.trigger.touch.prev <= Math.abs(this.trigger.touch) && this.trigger.touch < 0) {
+                this.callback.prev(true);
+                this.trigger.touch = 0;
+                this.allowScroll = false;
+            }
+        }
+
+        this.handleEnd = () => {
+            this.allowScroll = false;
+            this.trigger.touch = 0;
+        }
+
+
+        this.container.addEventListener('touchstart', this.handleStar);
+        this.container.addEventListener('touchmove', this.handleMove);
+        this.container.addEventListener('touchend', this.handleEnd);
+
     }
 
     this.removeScrollListener = () => {

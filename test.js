@@ -9,8 +9,8 @@ new ScrollListener({
             prev: 20,
         },
         touch: {
-            next: 20,
-            prev: 20,
+            next: 200,
+            prev: 200,
         }
     },
     callback: {

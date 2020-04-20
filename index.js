@@ -1,5 +1,4 @@
-const scrollListener = {
-    ScrollListener(settings) {
+export default function ScrollListener(settings) {
         this.container = settings.container ? document.querySelector(settings.container) : window;
         if (this.container === null) {
             throw Error('your container is not available');
@@ -87,7 +86,7 @@ const scrollListener = {
             this.currentNavigator = navigators.opera;
         }
 
-        if (navigators.safari.regex.test(userAgent)) {
+        if (navigators.safari.regex.test(userAgent) && !navigators.edgeChromium.regex.test(userAgent) && !navigators.chrome.regex.test(userAgent)) {
             this.currentNavigator = navigators.safari;
         }
 
@@ -131,12 +130,4 @@ const scrollListener = {
         }
 
         return this;
-    },
-    RemoveScrollListeners(events) {
-        events.forEach(event => event.removeScrollListener());
     }
-}
-
-export default scrollListener;
-
-export const {ScrollListener, RemoveScrollListeners} = scrollListener;

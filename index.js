@@ -30,6 +30,11 @@ const scrollListener = {
                 regex: /Edge[\/\s](\d+\.\d+)/,
                 deltaY: 145.0500030517578
             },
+            edgeChromium : {
+                name: 'edge chromium',
+                regex: /Edg[\/\s](\d+\.\d+)/,
+                deltaY: 100
+            },
             firefox: {
                 name: 'firefox',
                 regex: /Firefox[\/\s](\d+\.\d+)/,
@@ -44,6 +49,11 @@ const scrollListener = {
                 name: 'opera',
                 regex: /OPR[\/\s](\d+\.\d+)/,
                 deltaY: 100
+            },
+            safari: {
+                name: 'safari',
+                regex: /AppleWebKit[\/\s](\d+)/,
+                deltaY: 0,
             },
         }
 
@@ -61,6 +71,10 @@ const scrollListener = {
             this.currentNavigator = navigators.edge;
         }
 
+        if (navigators.edgeChromium.regex.test(userAgent)) {
+            this.currentNavigator = navigators.edgeChromium;
+        }
+
         if (navigators.firefox.regex.test(userAgent)) {
             this.currentNavigator = navigators.firefox;
         }
@@ -73,6 +87,10 @@ const scrollListener = {
             this.currentNavigator = navigators.opera;
         }
 
+        if (navigators.safari.regex.test(userAgent)) {
+            this.currentNavigator = navigators.safari;
+        }
+
         // console.log test
         if (this.currentNavigator !== null) {
             console.log(this.currentNavigator);
@@ -83,7 +101,7 @@ const scrollListener = {
             return
         }
 
-        if (this.currentNavigator.name === 'chrome' || 'edge' || 'firefox' || 'ie' || 'opera') {
+        if (this.currentNavigator.name === 'chrome' || 'edge' || 'edge chromium' || 'firefox' || 'ie' || 'opera' || 'safari') {
             this.eventListener = (event) => {
                 event.preventDefault();
                 event.stopPropagation();

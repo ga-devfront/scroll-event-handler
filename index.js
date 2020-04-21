@@ -8,11 +8,15 @@ export default function ScrollListener(settings) {
         this.callback = {
             nextY: (settings.callback.nextY) ? settings.callback.nextY : () => {},
             prevY: (settings.callback.prevY) ? settings.callback.prevY : () => {},
+            nextX: (settings.callback.nextX) ? settings.callback.nextX : () => {},
+            prevX: (settings.callback.prevX) ? settings.callback.prevX : () => {},
         }
     } else if (typeof settings.callback === 'function') {
         this.callback = {
             nextY: settings.callback,
             prevY: settings.callback,
+            nextX: settings.callback,
+            prevX: settings.callback,
         }
     }
 
@@ -24,17 +28,23 @@ export default function ScrollListener(settings) {
             this.triggerSettings.scroll = {
                 nextY: (settings.trigger.scroll.nextY) ? settings.trigger.scroll.nextY : 5,
                 prevY: (settings.trigger.scroll.prevY) ? settings.trigger.scroll.prevY : 5,
+                nextX: (settings.trigger.scroll.nextX) ? settings.trigger.scroll.nextX : 5,
+                prevX: (settings.trigger.scroll.prevX) ? settings.trigger.scroll.prevX : 5,
             }
         } else if (typeof settings.trigger.scroll === 'number') {
             this.triggerSettings.scroll = {
                 nextY: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
                 prevY: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
+                nextX: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
+                prevX: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
             }
         }
     } else {
         this.triggerSettings.scroll = {
             nextY: 5,
             prevY: 5,
+            nextX: 5,
+            prevX: 5,
         }
     }
 
@@ -43,19 +53,32 @@ export default function ScrollListener(settings) {
             this.triggerSettings.touch = {
                 nextY: (settings.trigger.touch.nextY) ? settings.trigger.touch.nextY : 200,
                 prevY: (settings.trigger.touch.prevY) ? settings.trigger.touch.prevY : 200,
+                nextX: (settings.trigger.touch.nextX) ? settings.trigger.touch.nextX : 200,
+                prevX: (settings.trigger.touch.prevX) ? settings.trigger.touch.prevX : 200,
             }
         } else if (typeof settings.trigger.touch === 'number') {
             this.triggerSettings.touch = {
                 nextY: (settings.trigger.touch) ? settings.trigger.touch : 200,
                 prevY: (settings.trigger.touch) ? settings.trigger.touch : 200,
+                nextX: (settings.trigger.touch) ? settings.trigger.touch : 200,
+                prevX: (settings.trigger.touch) ? settings.trigger.touch : 200,
             }
         }
     } else {
         this.triggerSettings.touch = {
             nextY: 200,
             prevY: 200,
+            nextX: 200,
+            prevX: 200,
         }
     }
+
+    this.trigger = {
+        scrollY: 0,
+        scrollX: 0,
+        touchY: 0,
+        touchX: 0,
+    };
 
     const userAgent = window.navigator.userAgent;
 
@@ -134,12 +157,6 @@ export default function ScrollListener(settings) {
     }
 
     this.currentNavigator = null;
-    this.trigger = {
-        scrollY: 0,
-        scrollX: 0,
-        touchY: 0,
-        touchX: 0,
-    };
 
     // desktop navigators tests
 

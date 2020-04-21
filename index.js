@@ -256,5 +256,27 @@ export default function ScrollListener(settings) {
         this.container.removeEventListener('wheel', this.eventListener)
     }
 
+    this.changeTrigger = (settings) => {
+        if (typeof settings !== 'object') return
+        
+        if (typeof settings.scroll === 'object') {
+            this.triggerSettings.scroll.next = (settings.scroll.next) ? settings.scroll.next : this.triggerSettings.scroll.next;
+            this.triggerSettings.scroll.prev = (settings.scroll.prev) ? settings.scroll.prev : this.triggerSettings.scroll.prev;
+        }
+        if (typeof settings.scroll === 'number') {
+            this.triggerSettings.scroll.next = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.next;
+            this.triggerSettings.scroll.prev = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.prev;
+        }
+
+        if (typeof settings.touch === 'object') {
+            this.triggerSettings.touch.next = (settings.touch.next) ? settings.touch.next : this.triggerSettings.touch.next;
+            this.triggerSettings.touch.prev = (settings.touch.prev) ? settings.touch.prev : this.triggerSettings.touch.prev;
+        }
+        if (typeof settings.touch === 'number') {
+            this.triggerSettings.touch.next = (settings.touch) ? settings.touch : this.triggerSettings.touch.next;
+            this.triggerSettings.touch.prev = (settings.touch) ? settings.touch : this.triggerSettings.touch.prev;
+        }
+    }
+
     return this;
 }

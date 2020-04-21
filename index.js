@@ -19,28 +19,41 @@ export default function ScrollListener(settings) {
     this.cancelOnDirectionChange = (settings.cancelOnDirectionChange) ? settings.cancelOnDirectionChange : true;
 
     this.triggerSettings = {};
-
-    if (typeof settings.trigger.scroll === 'object') {
-        this.triggerSettings.scroll = {
-            next: (settings.trigger.scroll.next) ? settings.trigger.scroll.next : 5,
-            prev: (settings.trigger.scroll.prev) ? settings.trigger.scroll.prev : 5,
+    if (typeof settings.trigger.scroll !== 'undefined') {
+        if (typeof settings.trigger.scroll === 'object') {
+            this.triggerSettings.scroll = {
+                next: (settings.trigger.scroll.next) ? settings.trigger.scroll.next : 5,
+                prev: (settings.trigger.scroll.prev) ? settings.trigger.scroll.prev : 5,
+            }
+        } else if (typeof settings.trigger.scroll === 'number') {
+            this.triggerSettings.scroll = {
+                next: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
+                prev: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
+            }
         }
-    } else if (typeof settings.trigger.scroll === 'number') {
+    } else {
         this.triggerSettings.scroll = {
-            next: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
-            prev: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
+            next: 5,
+            prev: 5,
         }
     }
 
-    if (typeof settings.trigger.touch === 'object') {
-        this.triggerSettings.touch = {
-            next: (settings.trigger.touch.next) ? settings.trigger.touch.next : 200,
-            prev: (settings.trigger.touch.prev) ? settings.trigger.touch.prev : 200,
+    if (typeof settings.trigger.touch !== 'undefined') {
+        if (typeof settings.trigger.touch === 'object') {
+            this.triggerSettings.touch = {
+                next: (settings.trigger.touch.next) ? settings.trigger.touch.next : 200,
+                prev: (settings.trigger.touch.prev) ? settings.trigger.touch.prev : 200,
+            }
+        } else if (typeof settings.trigger.touch === 'number') {
+            this.triggerSettings.touch = {
+                next: (settings.trigger.touch) ? settings.trigger.touch : 200,
+                prev: (settings.trigger.touch) ? settings.trigger.touch : 200,
+            }
         }
-    } else if (typeof settings.trigger.touch === 'number') {
+    } else {
         this.triggerSettings.touch = {
-            next: (settings.trigger.touch) ? settings.trigger.touch : 200,
-            prev: (settings.trigger.touch) ? settings.trigger.touch : 200,
+            next: 200,
+            prev: 200,
         }
     }
 

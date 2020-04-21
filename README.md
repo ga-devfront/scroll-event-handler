@@ -6,7 +6,7 @@ Scroll listener is a npm package for listen scroll (desktop) or touch (mobile) e
 - Firefox desktop / mobile
 - Opera desktop/ mobile
 - Safari desktop / mobile
-- SamsungInternet
+- Samsung Internet
 
 ## Badges
 

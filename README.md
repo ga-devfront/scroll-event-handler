@@ -20,20 +20,20 @@ Scroll listener is a npm package for listen scroll (desktop) or touch (mobile) e
 
 ## Installation
 It can be installed from npm.
-```
+```bash
 $ npm install
 ```
 
 ## Usage
 ### Create a new scroll listener
 We can create a new scroll listener without option :
-```
+```javascript
 import ScrollListener from 'scrollListener';
 
 let newScrollListener = new ScrollListener();
 ```
 or with options :
-```
+```javascript
 import ScrollListener from 'scrollListener';
 
 let newScrollListener = new ScrollListener({
@@ -70,7 +70,7 @@ We can change `trigger` & `cancelOnDirectionChange` options with these methods.
 #### Change triggers
 We can use this method to change the option triggers in two different ways.
 By passing it an object which contains the detailed information of the change.
-```
+```javascript
 newScrollListener.changeTrigger({
     scroll: {
         nextY: 20,
@@ -87,7 +87,7 @@ newScrollListener.changeTrigger({
 })
 ```
 Or by simply passing it a number which will be defined for all the options.
-```
+```javascript
 newScrollListener.changeTrigger({
     scroll: 10,
     touch: 100,
@@ -96,12 +96,12 @@ newScrollListener.changeTrigger({
 
 #### Switch cancelOnDirectionChange
 If you want to switch the `concelOnDirectionChange` you just need to call this method.
-```
+```javascript
 newScrollListener.switchcancelOnDirectionChange();
 ```
 
 ## Options
-- `container` : 
+- `container` :
 - `cancelOnDirectionChange` :
 - `trigger` :
   - `scroll` :

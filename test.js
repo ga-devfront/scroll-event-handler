@@ -5,17 +5,17 @@ let yolo = new ScrollListener({
     cancelOnDirectionChange: true,
     trigger: {
         scroll: {
-            next: 5,
-            prev: 5,
+            nextY: 5,
+            prevY: 5,
         },
         touch: {
-            next: 200,
-            prev: 200,
+            nextY: 200,
+            prevY: 200,
         }
     },
     callback: {
-        next() {console.log('next')},
-        prev() {console.log('prev')},
+        nextY() {console.log('next')},
+        prevY() {console.log('prev')},
     },
 })
 //window.setTimeout(yolo.removeScrollListener, 2000);

@@ -6,13 +6,13 @@ export default function ScrollListener(settings) {
 
     if (typeof settings.callback === 'object') {
         this.callback = {
-            next: (settings.callback.next) ? settings.callback.next : () => {},
-            prev: (settings.callback.prev) ? settings.callback.prev : () => {},
+            nextY: (settings.callback.nextY) ? settings.callback.nextY : () => {},
+            prevY: (settings.callback.prevY) ? settings.callback.prevY : () => {},
         }
     } else if (typeof settings.callback === 'function') {
         this.callback = {
-            next: settings.callback,
-            prev: settings.callback,
+            nextY: settings.callback,
+            prevY: settings.callback,
         }
     }
 
@@ -22,43 +22,43 @@ export default function ScrollListener(settings) {
     if (typeof settings.trigger.scroll !== 'undefined') {
         if (typeof settings.trigger.scroll === 'object') {
             this.triggerSettings.scroll = {
-                next: (settings.trigger.scroll.next) ? settings.trigger.scroll.next : 5,
-                prev: (settings.trigger.scroll.prev) ? settings.trigger.scroll.prev : 5,
+                nextY: (settings.trigger.scroll.nextY) ? settings.trigger.scroll.nextY : 5,
+                prevY: (settings.trigger.scroll.prevY) ? settings.trigger.scroll.prevY : 5,
             }
         } else if (typeof settings.trigger.scroll === 'number') {
             this.triggerSettings.scroll = {
-                next: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
-                prev: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
+                nextY: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
+                prevY: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
             }
         }
     } else {
         this.triggerSettings.scroll = {
-            next: 5,
-            prev: 5,
+            nextY: 5,
+            prevY: 5,
         }
     }
 
     if (typeof settings.trigger.touch !== 'undefined') {
         if (typeof settings.trigger.touch === 'object') {
             this.triggerSettings.touch = {
-                next: (settings.trigger.touch.next) ? settings.trigger.touch.next : 200,
-                prev: (settings.trigger.touch.prev) ? settings.trigger.touch.prev : 200,
+                nextY: (settings.trigger.touch.nextY) ? settings.trigger.touch.nextY : 200,
+                prevY: (settings.trigger.touch.prevY) ? settings.trigger.touch.prevY : 200,
             }
         } else if (typeof settings.trigger.touch === 'number') {
             this.triggerSettings.touch = {
-                next: (settings.trigger.touch) ? settings.trigger.touch : 200,
-                prev: (settings.trigger.touch) ? settings.trigger.touch : 200,
+                nextY: (settings.trigger.touch) ? settings.trigger.touch : 200,
+                prevY: (settings.trigger.touch) ? settings.trigger.touch : 200,
             }
         }
     } else {
         this.triggerSettings.touch = {
-            next: 200,
-            prev: 200,
+            nextY: 200,
+            prevY: 200,
         }
     }
 
     const userAgent = window.navigator.userAgent;
-    console.log(userAgent);
+
     const navigators = {
         chrome: {
             desktop: {
@@ -135,8 +135,10 @@ export default function ScrollListener(settings) {
 
     this.currentNavigator = null;
     this.trigger = {
-        scroll: 0,
-        touch: 0
+        scrollY: 0,
+        scrollX: 0,
+        touchY: 0,
+        touchX: 0,
     };
 
     // desktop navigators tests
@@ -192,17 +194,8 @@ export default function ScrollListener(settings) {
     }
 
     if (this.currentNavigator === null) {
-        console.log('sorry but scroll listener do not run on this navigator');
-        return
+        throw Error('sorry but scroll listener do not run on this navigator');
     }
-
-    //test for see result on mobile
-
-    const uaDOM = document.querySelector('#userAgent');
-    uaDOM.textContent = userAgent;
-    const navDOM = document.querySelector('#browser');
-    navDOM.textContent = this.currentNavigator.name;
-    const deltaDOM = document.querySelector('#deltaY');
 
     if (this.currentNavigator.name === 'chrome' || 'edge' || 'edge chromium' || 'firefox' || 'ie' || 'opera' || 'safari') {
         this.eventListener = (event) => {
@@ -211,18 +204,28 @@ export default function ScrollListener(settings) {
             const calcForOneScroll = event.deltaY / this.currentNavigator.deltaY;
 
             if (this.cancelOnDirectionChange) {
-                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scroll)) {
-                    this.trigger.scroll = 0;
+                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scrollY)) {
+                    this.trigger.scrollY = 0;
+                }
+                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scrollX)) {
+                    this.trigger.scrollX = 0;
                 }
             }
-            this.trigger.scroll += calcForOneScroll;
-            if (this.triggerSettings.scroll.next === this.trigger.scroll) {
-                this.callback.next(true);
-                this.trigger.scroll = 0;
+
+            if (event.shiftKey === false) {
+                this.trigger.scrollY += calcForOneScroll;
             }
-            if (this.triggerSettings.scroll.prev === Math.abs(this.trigger.scroll) && this.trigger.scroll < 0) {
-                this.callback.prev(false);
-                this.trigger.scroll = 0;
+            if (event.shiftKey === true) {
+                this.trigger.scrollX += calcForOneScroll;
+            }
+
+            if (this.triggerSettings.scroll.nextY === this.trigger.scrollY) {
+                this.callback.nextY(true);
+                this.trigger.scrollY = 0;
+            }
+            if (this.triggerSettings.scroll.prevY === Math.abs(this.trigger.scrollY) && this.trigger.scrollY < 0) {
+                this.callback.prevY(false);
+                this.trigger.scrollY = 0;
             }
         };
 
@@ -233,33 +236,33 @@ export default function ScrollListener(settings) {
         this.allowScroll = false;
 
         this.handleStar = (event) => {
-            this.touchStart = event.touches[0].screenY;
+            this.touchStartY = event.touches[0].screenY;
             this.allowScroll = true;
         }
 
         this.handleMove = (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.trigger.touch = this.touchStart - event.touches[0].screenY;
+            this.trigger.touchY = this.touchStartY - event.touches[0].screenY;
 
             if (!this.allowScroll) return;
 
-            if (this.triggerSettings.touch.next <= this.trigger.touch) {
-                this.callback.next(true);
-                this.trigger.touch = 0;
+            if (this.triggerSettings.touch.nextY <= this.trigger.touchY) {
+                this.callback.nextY(true);
+                this.trigger.touchY = 0;
                 this.allowScroll = false;
             }
 
-            if (this.triggerSettings.touch.prev <= Math.abs(this.trigger.touch) && this.trigger.touch < 0) {
-                this.callback.prev(true);
-                this.trigger.touch = 0;
+            if (this.triggerSettings.touch.prevY <= Math.abs(this.trigger.touchY) && this.trigger.touchY < 0) {
+                this.callback.prevY(true);
+                this.trigger.touchY = 0;
                 this.allowScroll = false;
             }
         }
 
         this.handleEnd = () => {
             this.allowScroll = false;
-            this.trigger.touch = 0;
+            this.trigger.touchY = 0;
         }
 
 
@@ -277,21 +280,21 @@ export default function ScrollListener(settings) {
         if (typeof settings !== 'object') return
 
         if (typeof settings.scroll === 'object') {
-            this.triggerSettings.scroll.next = (settings.scroll.next) ? settings.scroll.next : this.triggerSettings.scroll.next;
-            this.triggerSettings.scroll.prev = (settings.scroll.prev) ? settings.scroll.prev : this.triggerSettings.scroll.prev;
+            this.triggerSettings.scroll.nextY = (settings.scroll.nextY) ? settings.scroll.nextY : this.triggerSettings.scroll.nextY;
+            this.triggerSettings.scroll.prevY = (settings.scroll.prevY) ? settings.scroll.prevY : this.triggerSettings.scroll.prevY;
         }
         if (typeof settings.scroll === 'number') {
-            this.triggerSettings.scroll.next = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.next;
-            this.triggerSettings.scroll.prev = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.prev;
+            this.triggerSettings.scroll.nextY = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.nextY;
+            this.triggerSettings.scroll.prevY = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.prevY;
         }
 
         if (typeof settings.touch === 'object') {
-            this.triggerSettings.touch.next = (settings.touch.next) ? settings.touch.next : this.triggerSettings.touch.next;
-            this.triggerSettings.touch.prev = (settings.touch.prev) ? settings.touch.prev : this.triggerSettings.touch.prev;
+            this.triggerSettings.touch.nextY = (settings.touch.nextY) ? settings.touch.nextY : this.triggerSettings.touch.nextY;
+            this.triggerSettings.touch.prevY = (settings.touch.prevY) ? settings.touch.prevY : this.triggerSettings.touch.prevY;
         }
         if (typeof settings.touch === 'number') {
-            this.triggerSettings.touch.next = (settings.touch) ? settings.touch : this.triggerSettings.touch.next;
-            this.triggerSettings.touch.prev = (settings.touch) ? settings.touch : this.triggerSettings.touch.prev;
+            this.triggerSettings.touch.nextY = (settings.touch) ? settings.touch : this.triggerSettings.touch.nextY;
+            this.triggerSettings.touch.prevY = (settings.touch) ? settings.touch : this.triggerSettings.touch.prevY;
         }
     }
 

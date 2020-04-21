@@ -14,8 +14,10 @@ let yolo = new ScrollListener({
         }
     },
     callback: {
-        nextY() {console.log('next')},
-        prevY() {console.log('prev')},
+        nextY() {console.log('nextY')},
+        prevY() {console.log('prevY')},
+        nextX() {console.log('nextX')},
+        prevX() {console.log('prevX')},
     },
 })
 //window.setTimeout(yolo.removeScrollListener, 2000);

@@ -244,6 +244,15 @@ export default function ScrollListener(settings) {
                 this.callback.prevY(false);
                 this.trigger.scrollY = 0;
             }
+
+            if (this.triggerSettings.scroll.nextX === this.trigger.scrollX) {
+                this.callback.nextX(true);
+                this.trigger.scrollX = 0;
+            }
+            if (this.triggerSettings.scroll.prevX === Math.abs(this.trigger.scrollX) && this.trigger.scrollX < 0) {
+                this.callback.prevX(false);
+                this.trigger.scrollX = 0;
+            }
         };
 
         this.container.addEventListener('wheel', this.eventListener);
@@ -254,15 +263,17 @@ export default function ScrollListener(settings) {
 
         this.handleStar = (event) => {
             this.touchStartY = event.touches[0].screenY;
+            this.touchStartX = event.touches[0].screenX;
             this.allowScroll = true;
         }
 
         this.handleMove = (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.trigger.touchY = this.touchStartY - event.touches[0].screenY;
-
             if (!this.allowScroll) return;
+
+            this.trigger.touchY = this.touchStartY - event.touches[0].screenY;
+            this.trigger.touchX = this.touchStartX - event.touches[0].screenX;
 
             if (this.triggerSettings.touch.nextY <= this.trigger.touchY) {
                 this.callback.nextY(true);
@@ -275,11 +286,24 @@ export default function ScrollListener(settings) {
                 this.trigger.touchY = 0;
                 this.allowScroll = false;
             }
+
+            if (this.triggerSettings.touch.nextX <= this.trigger.touchX) {
+                this.callback.nextX(true);
+                this.trigger.touchX = 0;
+                this.allowScroll = false;
+            }
+
+            if (this.triggerSettings.touch.prevX <= Math.abs(this.trigger.touchX) && this.trigger.touchX < 0) {
+                this.callback.prevX(true);
+                this.trigger.touchX = 0;
+                this.allowScroll = false;
+            }
         }
 
         this.handleEnd = () => {
             this.allowScroll = false;
             this.trigger.touchY = 0;
+            this.trigger.touchX = 0;
         }
 
 

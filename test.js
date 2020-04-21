@@ -5,8 +5,8 @@ new ScrollListener({
     cancelOnDirectionChange: true,
     trigger: {
         scroll: {
-            next: 20,
-            prev: 20,
+            next: 5,
+            prev: 5,
         },
         touch: {
             next: 200,

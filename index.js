@@ -16,6 +16,30 @@ export default function ScrollListener(settings) {
         }
     }
 
+    if (typeof settings.trigger.scroll === 'object') {
+        this.triggerSettings.scroll = {
+            next: (settings.trigger.scroll.next) ? settings.trigger.scroll.next : 5,
+            prev: (settings.trigger.scroll.prev) ? settings.trigger.scroll.prev : 5,
+        }
+    } else if (typeof settings.trigger.scroll === 'number') {
+        this.triggerSettings.scroll = {
+            next: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
+            prev: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
+        }
+    }
+
+    if (typeof settings.trigger.touch === 'object') {
+        this.triggerSettings.touch = {
+            next: (settings.trigger.touch.next) ? settings.trigger.touch.next : 200,
+            prev: (settings.trigger.touch.prev) ? settings.trigger.touch.prev : 200,
+        }
+    } else if (typeof settings.trigger.touch === 'number') {
+        this.triggerSettings.touch = {
+            next: (settings.trigger.touch) ? settings.trigger.touch : 200,
+            prev: (settings.trigger.touch) ? settings.trigger.touch : 200,
+        }
+    }
+
     const userAgent = window.navigator.userAgent;
     console.log(userAgent);
     const navigators = {
@@ -28,7 +52,6 @@ export default function ScrollListener(settings) {
             mobile: {
                 name: 'chrome mobile',
                 regex: /Mobile/,
-                deltaY: 100
             },
         },
         edge: {
@@ -54,7 +77,6 @@ export default function ScrollListener(settings) {
             mobile: {
                 name: 'firefox mobile',
                 regex: /Mobile/,
-                deltaY: 100
             },
         },
         ie: {
@@ -73,7 +95,6 @@ export default function ScrollListener(settings) {
             mobile: {
                 name: 'opera mini',
                 regex: /Mobile/,
-                deltaY: 100
             },
         },
         safari: {
@@ -85,14 +106,12 @@ export default function ScrollListener(settings) {
             mobile: {
                 name: 'safari mobile',
                 regex: /Mobile/,
-                deltaY: 100
             },
         },
         samsungInternet: {
             mobile: {
                 name: 'samsung internet',
                 regex: /SamsungBrowser[\/\s](\d+\.\d+)/,
-                deltaY: 100
             },
         }
     }
@@ -155,11 +174,6 @@ export default function ScrollListener(settings) {
         this.currentNavigator = navigators.samsungInternet.mobile;
     }
 
-    // console.log test
-    if (this.currentNavigator !== null) {
-        console.log(this.currentNavigator);
-    }
-
     if (this.currentNavigator === null) {
         console.log('sorry but scroll listener do not run on this navigator');
         return
@@ -185,11 +199,11 @@ export default function ScrollListener(settings) {
                 }
             }
             this.trigger.scroll += calcForOneScroll;
-            if (settings.trigger.scroll.next === this.trigger.scroll) {
+            if (this.triggerSettings.scroll.next === this.trigger.scroll) {
                 this.callback.next(true);
                 this.trigger.scroll = 0;
             }
-            if (settings.trigger.scroll.prev === Math.abs(this.trigger.scroll)) {
+            if (this.triggerSettings.scroll.prev === Math.abs(this.trigger.scroll)) {
                 this.callback.prev(false);
                 this.trigger.scroll = 0;
             }
@@ -213,13 +227,13 @@ export default function ScrollListener(settings) {
 
             if (!this.allowScroll) return;
 
-            if (settings.trigger.touch.next <= this.trigger.touch) {
+            if (this.triggerSettings.touch.next <= this.trigger.touch) {
                 this.callback.next(true);
                 this.trigger.touch = 0;
                 this.allowScroll = false;
             }
 
-            if (settings.trigger.touch.prev <= Math.abs(this.trigger.touch) && this.trigger.touch < 0) {
+            if (this.triggerSettings.touch.prev <= Math.abs(this.trigger.touch) && this.trigger.touch < 0) {
                 this.callback.prev(true);
                 this.trigger.touch = 0;
                 this.allowScroll = false;

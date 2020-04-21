@@ -16,6 +16,10 @@ export default function ScrollListener(settings) {
         }
     }
 
+    this.cancelOnDirectionChange = (settings.cancelOnDirectionChange) ? settings.cancelOnDirectionChange : true;
+
+    this.triggerSettings = {};
+
     if (typeof settings.trigger.scroll === 'object') {
         this.triggerSettings.scroll = {
             next: (settings.trigger.scroll.next) ? settings.trigger.scroll.next : 5,
@@ -193,7 +197,7 @@ export default function ScrollListener(settings) {
             event.stopPropagation();
             const calcForOneScroll = event.deltaY / this.currentNavigator.deltaY;
 
-            if (settings.cancelOnDirectionChange) {
+            if (this.cancelOnDirectionChange) {
                 if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scroll)) {
                     this.trigger.scroll = 0;
                 }
@@ -203,7 +207,7 @@ export default function ScrollListener(settings) {
                 this.callback.next(true);
                 this.trigger.scroll = 0;
             }
-            if (this.triggerSettings.scroll.prev === Math.abs(this.trigger.scroll)) {
+            if (this.triggerSettings.scroll.prev === Math.abs(this.trigger.scroll) && this.trigger.scroll < 0) {
                 this.callback.prev(false);
                 this.trigger.scroll = 0;
             }
@@ -258,7 +262,7 @@ export default function ScrollListener(settings) {
 
     this.changeTrigger = (settings) => {
         if (typeof settings !== 'object') return
-        
+
         if (typeof settings.scroll === 'object') {
             this.triggerSettings.scroll.next = (settings.scroll.next) ? settings.scroll.next : this.triggerSettings.scroll.next;
             this.triggerSettings.scroll.prev = (settings.scroll.prev) ? settings.scroll.prev : this.triggerSettings.scroll.prev;
@@ -276,6 +280,10 @@ export default function ScrollListener(settings) {
             this.triggerSettings.touch.next = (settings.touch) ? settings.touch : this.triggerSettings.touch.next;
             this.triggerSettings.touch.prev = (settings.touch) ? settings.touch : this.triggerSettings.touch.prev;
         }
+    }
+
+    this.switchcancelOnDirectionChange = () => {
+        this.cancelOnDirectionChange = !this.cancelOnDirectionChange;
     }
 
     return this;

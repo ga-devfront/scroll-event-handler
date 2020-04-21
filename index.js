@@ -1,5 +1,5 @@
 export default function ScrollListener(settings) {
-    this.container = settings.container ? document.querySelector(settings.container) : window;
+    this.container = settings.container ? document.querySelector(settings.container) : document.querySelector('main');
     if (this.container === null) {
         throw Error('your container is not available');
     }

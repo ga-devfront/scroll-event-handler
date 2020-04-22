@@ -221,10 +221,14 @@ export default function ScrollListener(settings) {
     }
 
     this.trigger = {
-        scrollY: 0,
-        scrollX: 0,
-        touchY: 0,
-        touchX: 0,
+        scroll: {
+            x: 0,
+            y: 0,
+        },
+        touch: {
+            x: 0,
+            y: 0,
+        },
     };
 
     // check if the browser is used on desktop
@@ -239,51 +243,51 @@ export default function ScrollListener(settings) {
 
             // resets the data to 0 when the user changes direction. If the option is activated.
             if (this.cancelOnDirectionChange) {
-                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scrollY)) {
-                    this.trigger.scrollY = 0;
+                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scroll.y)) {
+                    this.trigger.scroll.y = 0;
                 }
-                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scrollX)) {
-                    this.trigger.scrollX = 0;
+                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scroll.x)) {
+                    this.trigger.scroll.x = 0;
                 }
             }
 
             // check if we are scrolling vertically or horizontally
             if (event.shiftKey === false) {
-                this.trigger.scrollY += calcForOneScroll;
+                this.trigger.scroll.y += calcForOneScroll;
             }
             if (event.shiftKey === true) {
-                this.trigger.scrollX += calcForOneScroll;
+                this.trigger.scroll.x += calcForOneScroll;
             }
 
-            // test when the nextY trigger is reached.
-            if (this.triggerSettings.scroll.nextY !== 0) {
-                if (this.triggerSettings.scroll.nextY === this.trigger.scrollY) {
-                    this.callback.nextY(true);
-                    this.trigger.scrollY = 0;
+            // test when the y next trigger is reached.
+            if (this.scrollSettings.y.next.value !== 0) {
+                if (this.scrollSettings.y.next.value === this.trigger.scroll.y) {
+                    this.scrollSettings.y.next.callback();
+                    this.trigger.scroll.y = 0;
                 }
             }
 
-            // test when the prevY trigger is reached.
-            if (this.triggerSettings.scroll.prevY !== 0) {
-                if (this.triggerSettings.scroll.prevY === Math.abs(this.trigger.scrollY) && this.trigger.scrollY < 0) {
-                    this.callback.prevY(false);
-                    this.trigger.scrollY = 0;
+            // test when the y prev trigger is reached.
+            if (this.scrollSettings.y.prev.value !== 0) {
+                if (this.scrollSettings.y.prev.value === Math.abs(this.trigger.scroll.y) && this.trigger.scroll.y < 0) {
+                    this.scrollSettings.y.prev.callback();
+                    this.trigger.scroll.y = 0;
                 }
             }
 
             // test when the nextX trigger is reached.
-            if (this.triggerSettings.scroll.nextX !== 0) {
-                if (this.triggerSettings.scroll.nextX === this.trigger.scrollX) {
-                    this.callback.nextX(true);
-                    this.trigger.scrollX = 0;
+            if (this.scrollSettings.x.next.value !== 0) {
+                if (this.scrollSettings.x.next.value === this.trigger.scroll.x) {
+                    this.scrollSettings.x.next.callback();
+                    this.trigger.scroll.x = 0;
                 }
             }
 
             // test when the prevX trigger is reached.
-            if (this.triggerSettings.scroll.prevX !== 0) {
-                if (this.triggerSettings.scroll.prevX === Math.abs(this.trigger.scrollX) && this.trigger.scrollX < 0) {
-                    this.callback.prevX(false);
-                    this.trigger.scrollX = 0;
+            if (this.scrollSettings.x.prev.value !== 0) {
+                if (this.scrollSettings.x.prev.value === Math.abs(this.trigger.scroll.x) && this.trigger.scroll.x < 0) {
+                    this.scrollSettings.x.prev.callback();
+                    this.trigger.scroll.x = 0;
                 }
             }
         };

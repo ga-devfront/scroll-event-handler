@@ -236,22 +236,31 @@ export default function ScrollListener(settings) {
                 this.trigger.scrollX += calcForOneScroll;
             }
 
-            if (this.triggerSettings.scroll.nextY === this.trigger.scrollY) {
-                this.callback.nextY(true);
-                this.trigger.scrollY = 0;
+            if (this.triggerSettings.scroll.nextY !== 0) {
+                if (this.triggerSettings.scroll.nextY === this.trigger.scrollY) {
+                    this.callback.nextY(true);
+                    this.trigger.scrollY = 0;
+                }
             }
-            if (this.triggerSettings.scroll.prevY === Math.abs(this.trigger.scrollY) && this.trigger.scrollY < 0) {
-                this.callback.prevY(false);
-                this.trigger.scrollY = 0;
+            if (this.triggerSettings.scroll.prevY !== 0) {
+                if (this.triggerSettings.scroll.prevY === Math.abs(this.trigger.scrollY) && this.trigger.scrollY < 0) {
+                    this.callback.prevY(false);
+                    this.trigger.scrollY = 0;
+                }
             }
 
-            if (this.triggerSettings.scroll.nextX === this.trigger.scrollX) {
-                this.callback.nextX(true);
-                this.trigger.scrollX = 0;
+            if (this.triggerSettings.scroll.nextX !== 0) {
+                if (this.triggerSettings.scroll.nextX === this.trigger.scrollX) {
+                    this.callback.nextX(true);
+                    this.trigger.scrollX = 0;
+                }
             }
-            if (this.triggerSettings.scroll.prevX === Math.abs(this.trigger.scrollX) && this.trigger.scrollX < 0) {
-                this.callback.prevX(false);
-                this.trigger.scrollX = 0;
+
+            if (this.triggerSettings.scroll.prevX !== 0) {
+                if (this.triggerSettings.scroll.prevX === Math.abs(this.trigger.scrollX) && this.trigger.scrollX < 0) {
+                    this.callback.prevX(false);
+                    this.trigger.scrollX = 0;
+                }
             }
         };
 
@@ -275,28 +284,36 @@ export default function ScrollListener(settings) {
             this.trigger.touchY = this.touchStartY - event.touches[0].screenY;
             this.trigger.touchX = this.touchStartX - event.touches[0].screenX;
 
-            if (this.triggerSettings.touch.nextY <= this.trigger.touchY) {
-                this.callback.nextY(true);
-                this.trigger.touchY = 0;
-                this.allowScroll = false;
+            if (this.triggerSettings.touch.nextY !== 0) {
+                if (this.triggerSettings.touch.nextY <= this.trigger.touchY) {
+                    this.callback.nextY(true);
+                    this.trigger.touchY = 0;
+                    this.allowScroll = false;
+                }
             }
 
-            if (this.triggerSettings.touch.prevY <= Math.abs(this.trigger.touchY) && this.trigger.touchY < 0) {
-                this.callback.prevY(true);
-                this.trigger.touchY = 0;
-                this.allowScroll = false;
+            if (this.triggerSettings.touch.prevY !== 0) {
+                if (this.triggerSettings.touch.prevY <= Math.abs(this.trigger.touchY) && this.trigger.touchY < 0) {
+                    this.callback.prevY(true);
+                    this.trigger.touchY = 0;
+                    this.allowScroll = false;
+                }
             }
 
-            if (this.triggerSettings.touch.nextX <= this.trigger.touchX) {
-                this.callback.nextX(true);
-                this.trigger.touchX = 0;
-                this.allowScroll = false;
+            if (this.triggerSettings.touch.nextX !== 0) {
+                if (this.triggerSettings.touch.nextX <= this.trigger.touchX) {
+                    this.callback.nextX(true);
+                    this.trigger.touchX = 0;
+                    this.allowScroll = false;
+                }
             }
 
-            if (this.triggerSettings.touch.prevX <= Math.abs(this.trigger.touchX) && this.trigger.touchX < 0) {
-                this.callback.prevX(true);
-                this.trigger.touchX = 0;
-                this.allowScroll = false;
+            if (this.triggerSettings.touch.prevX !== 0) {
+                if (this.triggerSettings.touch.prevX <= Math.abs(this.trigger.touchX) && this.trigger.touchX < 0) {
+                    this.callback.prevX(true);
+                    this.trigger.touchX = 0;
+                    this.allowScroll = false;
+                }
             }
         }
 

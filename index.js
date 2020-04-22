@@ -378,38 +378,44 @@ export default function ScrollListener(settings) {
         this.container.removeEventListener('wheel', this.eventListener)
     }
 
-    // method to change trigger, the settings options are the same as our main function
-    this.changeTrigger = (settings) => {
-        if (typeof settings !== 'object') return
-
-        if (typeof settings.scroll === 'object') {
-            this.triggerSettings.scroll.nextY = (settings.scroll.nextY) ? settings.scroll.nextY : this.triggerSettings.scroll.nextY;
-            this.triggerSettings.scroll.prevY = (settings.scroll.prevY) ? settings.scroll.prevY : this.triggerSettings.scroll.prevY;
-            this.triggerSettings.scroll.nextX = (settings.scroll.nextX) ? settings.scroll.nextX : this.triggerSettings.scroll.nextX;
-            this.triggerSettings.scroll.prevX = (settings.scroll.prevX) ? settings.scroll.prevX : this.triggerSettings.scroll.prevX;
-        }
-        if (typeof settings.scroll === 'number') {
-            this.triggerSettings.scroll.nextY = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.nextY;
-            this.triggerSettings.scroll.prevY = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.prevY;
-            this.triggerSettings.scroll.nextX = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.nextX;
-            this.triggerSettings.scroll.prevX = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.prevX;
-        }
-
-        if (typeof settings.touch === 'object') {
-            this.triggerSettings.touch.nextY = (settings.touch.nextY) ? settings.touch.nextY : this.triggerSettings.touch.nextY;
-            this.triggerSettings.touch.prevY = (settings.touch.prevY) ? settings.touch.prevY : this.triggerSettings.touch.prevY;
-            this.triggerSettings.touch.nextX = (settings.touch.nextX) ? settings.touch.nextX : this.triggerSettings.touch.nextX;
-            this.triggerSettings.touch.prevX = (settings.touch.prevX) ? settings.touch.prevX : this.triggerSettings.touch.prevX;
-        }
-        if (typeof settings.touch === 'number') {
-            this.triggerSettings.touch.nextX = (settings.touch) ? settings.touch : this.triggerSettings.touch.nextX;
-            this.triggerSettings.touch.prevX = (settings.touch) ? settings.touch : this.triggerSettings.touch.prevX;
-        }
-    }
-
     // method to switch cancelOnDirectionChange
     this.switchcancelOnDirectionChange = () => {
         this.cancelOnDirectionChange = !this.cancelOnDirectionChange;
+    }
+
+    // method to change trigger, the settings options are the same as our main function
+    this.changeTrigger = (newTrigger) => {
+        if (typeof newTrigger !== 'object') return
+
+        if (typeof newTrigger.scroll === 'object') {
+            this.scrollSettings.y.next.value = (newTrigger.scroll.y.next) ? newTrigger.scroll.y.next : this.scrollSettings.y.next.value;
+            this.scrollSettings.y.prev.value = (newTrigger.scroll.y.prev) ? newTrigger.scroll.y.prev : this.scrollSettings.y.prev.value;
+            this.scrollSettings.x.next.value = (newTrigger.scroll.x.next) ? newTrigger.scroll.x.next : this.scrollSettings.x.next.value;
+            this.scrollSettings.x.prev.value = (newTrigger.scroll.x.prev) ? newTrigger.scroll.x.prev : this.scrollSettings.x.prev.value;
+        }
+        if (typeof newTrigger.scroll.x === 'number') {
+            this.scrollSettings.x.next.value = (newTrigger.scroll.x) ? newTrigger.scroll.x : this.scrollSettings.x.next.value;
+            this.scrollSettings.x.prev.value = (newTrigger.scroll.x) ? newTrigger.scroll.x : this.scrollSettings.x.prev.value;
+        }
+        if (typeof newTrigger.scroll.y === 'number') {
+            this.scrollSettings.y.next.value = (newTrigger.scroll.y) ? newTrigger.scroll.y : this.scrollSettings.y.next.value;
+            this.scrollSettings.y.prev.value = (newTrigger.scroll.y) ? newTrigger.scroll.y : this.scrollSettings.y.prev.value;
+        }
+
+        if (typeof newTrigger.touch === 'object') {
+            this.touchSettings.y.next.value = (newTrigger.touch.y.next) ? newTrigger.touch.y.next : this.touchSettings.y.next.value;
+            this.touchSettings.y.prev.value = (newTrigger.touch.y.prev) ? newTrigger.touch.y.prev : this.touchSettings.y.prev.value;
+            this.touchSettings.x.next.value = (newTrigger.touch.x.next) ? newTrigger.touch.x.next : this.touchSettings.x.next.value;
+            this.touchSettings.x.prev.value = (newTrigger.touch.x.prev) ? newTrigger.touch.x.prev : this.touchSettings.x.prev.value;
+        }
+        if (typeof newTrigger.touch.x === 'number') {
+            this.touchSettings.x.next.value = (newTrigger.touch.x) ? newTrigger.touch.x : this.touchSettings.x.next.value;
+            this.touchSettings.x.prev.value = (newTrigger.touch.x) ? newTrigger.touch.x : this.touchSettings.x.prev.value;
+        }
+        if (typeof newTrigger.touch.y === 'number') {
+            this.touchSettings.y.next.value = (newTrigger.touch.y) ? newTrigger.touch.y : this.touchSettings.y.next.value;
+            this.touchSettings.y.prev.value = (newTrigger.touch.y) ? newTrigger.touch.y : this.touchSettings.y.prev.value;
+        }
     }
 
     return this;

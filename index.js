@@ -45,21 +45,21 @@ export default function ScrollListener(settings) {
         edge: {
             desktop: {
                 name: 'edge',
-                regex: /Edge[\/\s](\d+\.\d+)/,
+                regex: /Edge[/\s](\d+\.\d+)/,
                 deltaY: 145.0500030517578
             },
         },
         edgeChromium: {
             desktop: {
                 name: 'edge chromium',
-                regex: /Edg[\/\s](\d+\.\d+)/,
+                regex: /Edg[/\s](\d+\.\d+)/,
                 deltaY: 100
             },
         },
         firefox: {
             desktop: {
                 name: 'firefox',
-                regex: /Firefox[\/\s](\d+\.\d+)/,
+                regex: /Firefox[/\s](\d+\.\d+)/,
                 deltaY: 3
             },
             mobile: {
@@ -77,7 +77,7 @@ export default function ScrollListener(settings) {
         opera: {
             desktop: {
                 name: 'opera',
-                regex: /OPR[\/\s](\d+\.\d+)/,
+                regex: /OPR[/\s](\d+\.\d+)/,
                 deltaY: 100
             },
             mobile: {
@@ -88,7 +88,7 @@ export default function ScrollListener(settings) {
         safari: {
             desktop: {
                 name: 'safari',
-                regex: /AppleWebKit[\/\s](\d+)/,
+                regex: /AppleWebKit[/\s](\d+)/,
                 deltaY: 10,
             },
             mobile: {
@@ -99,7 +99,7 @@ export default function ScrollListener(settings) {
         samsungInternet: {
             mobile: {
                 name: 'samsung internet',
-                regex: /SamsungBrowser[\/\s](\d+\.\d+)/,
+                regex: /SamsungBrowser[/\s](\d+\.\d+)/,
             },
         }
     }
@@ -252,6 +252,7 @@ export default function ScrollListener(settings) {
     };
 
     // check if the browser is used on desktop
+    // eslint-disable-next-line no-constant-condition
     if (this.currentNavigator.name === 'chrome' || 'edge' || 'edge chromium' || 'firefox' || 'ie' || 'opera' || 'safari') {
         // created our function to call when the eventListener snaps
         this.eventListener = (event) => {
@@ -316,6 +317,7 @@ export default function ScrollListener(settings) {
     }
 
     // check if the browser is used on mobile
+    // eslint-disable-next-line no-constant-condition
     if (this.currentNavigator.name === 'chrome mobile' || 'firefox mobile' || 'opera mini' || 'safari mobile' || 'samsung internet') {
         // defined if scrolling should continue to be calculated
         this.allowScroll = false;

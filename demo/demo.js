@@ -1,4 +1,4 @@
-import ScrollListener from './index.js';
+import ScrollListener from '../index.js';
 
 let yolo = new ScrollListener({
     container: '#scrollIn',

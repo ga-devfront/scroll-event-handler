@@ -319,41 +319,41 @@ export default function ScrollListener(settings) {
             if (!this.allowScroll) return;
 
             // calculates the distance from the starting point to the current location
-            this.trigger.touchY = this.touchStartY - event.touches[0].screenY;
-            this.trigger.touchX = this.touchStartX - event.touches[0].screenX;
+            this.trigger.touch.y = this.touchStartY - event.touches[0].screenY;
+            this.trigger.touch.x = this.touchStartX - event.touches[0].screenX;
 
             // test when the nextY trigger is reached.
-            if (this.triggerSettings.touch.nextY !== 0) {
-                if (this.triggerSettings.touch.nextY <= this.trigger.touchY) {
-                    this.callback.nextY(true);
-                    this.trigger.touchY = 0;
+            if (this.touchSettings.y.next.value !== 0) {
+                if (this.touchSettings.y.next.value <= this.trigger.touch.y) {
+                    this.touchSettings.y.next.callback();
+                    this.trigger.touch.y = 0;
                     this.allowScroll = false;
                 }
             }
 
             // test when the prevY trigger is reached.
-            if (this.triggerSettings.touch.prevY !== 0) {
-                if (this.triggerSettings.touch.prevY <= Math.abs(this.trigger.touchY) && this.trigger.touchY < 0) {
-                    this.callback.prevY(true);
-                    this.trigger.touchY = 0;
+            if (this.touchSettings.y.prev.value !== 0) {
+                if (this.touchSettings.y.prev.value <= Math.abs(this.trigger.touch.y) && this.trigger.touch.y < 0) {
+                    this.touchSettings.y.prev.callback(true);
+                    this.trigger.touch.y = 0;
                     this.allowScroll = false;
                 }
             }
 
             // test when the nextX trigger is reached.
-            if (this.triggerSettings.touch.nextX !== 0) {
-                if (this.triggerSettings.touch.nextX <= this.trigger.touchX) {
-                    this.callback.nextX(true);
-                    this.trigger.touchX = 0;
+            if (this.touchSettings.x.next.value !== 0) {
+                if (this.touchSettings.x.next.value <= this.trigger.touch.x) {
+                    this.touchSettings.x.next.callback(true);
+                    this.trigger.touch.x = 0;
                     this.allowScroll = false;
                 }
             }
 
             // test when the prevX trigger is reached.
-            if (this.triggerSettings.touch.prevX !== 0) {
-                if (this.triggerSettings.touch.prevX <= Math.abs(this.trigger.touchX) && this.trigger.touchX < 0) {
-                    this.callback.prevX(true);
-                    this.trigger.touchX = 0;
+            if (this.touchSettings.x.prev.value !== 0) {
+                if (this.touchSettings.x.prev.value <= Math.abs(this.trigger.touch.x) && this.trigger.touch.x < 0) {
+                    this.touchSettings.x.prev.callback(true);
+                    this.trigger.touch.x = 0;
                     this.allowScroll = false;
                 }
             }
@@ -362,8 +362,8 @@ export default function ScrollListener(settings) {
         // created a function that will be used when we end touch the screen
         this.handleEnd = () => {
             this.allowScroll = false;
-            this.trigger.touchY = 0;
-            this.trigger.touchX = 0;
+            this.trigger.touch.y = 0;
+            this.trigger.touch.x = 0;
         }
 
         // add functions to EventListener

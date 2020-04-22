@@ -323,19 +323,25 @@ export default function ScrollListener(settings) {
         if (typeof settings.scroll === 'object') {
             this.triggerSettings.scroll.nextY = (settings.scroll.nextY) ? settings.scroll.nextY : this.triggerSettings.scroll.nextY;
             this.triggerSettings.scroll.prevY = (settings.scroll.prevY) ? settings.scroll.prevY : this.triggerSettings.scroll.prevY;
+            this.triggerSettings.scroll.nextX = (settings.scroll.nextX) ? settings.scroll.nextX : this.triggerSettings.scroll.nextX;
+            this.triggerSettings.scroll.prevX = (settings.scroll.prevX) ? settings.scroll.prevX : this.triggerSettings.scroll.prevX;
         }
         if (typeof settings.scroll === 'number') {
             this.triggerSettings.scroll.nextY = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.nextY;
             this.triggerSettings.scroll.prevY = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.prevY;
+            this.triggerSettings.scroll.nextX = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.nextX;
+            this.triggerSettings.scroll.prevX = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.prevX;
         }
 
         if (typeof settings.touch === 'object') {
             this.triggerSettings.touch.nextY = (settings.touch.nextY) ? settings.touch.nextY : this.triggerSettings.touch.nextY;
             this.triggerSettings.touch.prevY = (settings.touch.prevY) ? settings.touch.prevY : this.triggerSettings.touch.prevY;
+            this.triggerSettings.touch.nextX = (settings.touch.nextX) ? settings.touch.nextX : this.triggerSettings.touch.nextX;
+            this.triggerSettings.touch.prevX = (settings.touch.prevX) ? settings.touch.prevX : this.triggerSettings.touch.prevX;
         }
         if (typeof settings.touch === 'number') {
-            this.triggerSettings.touch.nextY = (settings.touch) ? settings.touch : this.triggerSettings.touch.nextY;
-            this.triggerSettings.touch.prevY = (settings.touch) ? settings.touch : this.triggerSettings.touch.prevY;
+            this.triggerSettings.touch.nextX = (settings.touch) ? settings.touch : this.triggerSettings.touch.nextX;
+            this.triggerSettings.touch.prevX = (settings.touch) ? settings.touch : this.triggerSettings.touch.prevX;
         }
     }
 

@@ -1,16 +1,20 @@
 import ScrollListener from '../index.js';
 
-let yolo = new ScrollListener({
+new ScrollListener({
     container: '#scrollIn',
     cancelOnDirectionChange: true,
     trigger: {
         scroll: {
             nextY: 5,
             prevY: 5,
+            nextX: 0,
+            prevX: 0,
         },
         touch: {
             nextY: 200,
             prevY: 200,
+            nextX: 0,
+            prevX: 0,
         }
     },
     callback: {
@@ -20,4 +24,3 @@ let yolo = new ScrollListener({
         prevX() {console.log('prevX')},
     },
 })
-//window.setTimeout(yolo.removeScrollListener, 2000);

@@ -171,122 +171,52 @@ export default function ScrollListener(settings) {
         throw Error('your container is not available');
     }
 
-    this.scrollSettings = {
-        x: {
-            next: {
-                value: 2,
-                callback: () => {},
-            },
-            prev: {
-                value: 2,
-                callback: () => {},
-            },
-        },
-        y: {
-            next: {
-                value: 5,
-                callback: () => {},
-            },
-            prev: {
-                value: 5,
-                callback: () => {},
-            },
-        }
-    }
-
-    
-    this.touchSettings = {
-        x: {
-            next: {
-                value: 80,
-                callback: () => {},
-            },
-            prev: {
-                value: 80,
-                callback: () => {},
-            },
-        },
-        y: {
-            next: {
-                value: 200,
-                callback: () => {},
-            },
-            prev: {
-                value: 200,
-                callback: () => {},
-            },
-        }
-    }
-    // add the supplied callbacks or create empty functions if they are missing
-    if (typeof settings.callback === 'object') {
-        this.callback = {
-            nextY: (settings.callback.nextY) ? settings.callback.nextY : () => {},
-            prevY: (settings.callback.prevY) ? settings.callback.prevY : () => {},
-            nextX: (settings.callback.nextX) ? settings.callback.nextX : () => {},
-            prevX: (settings.callback.prevX) ? settings.callback.prevX : () => {},
-        }
-    } else if (typeof settings.callback === 'function') {
-        this.callback = {
-            nextY: settings.callback,
-            prevY: settings.callback,
-            nextX: settings.callback,
-            prevX: settings.callback,
-        }
-    }
-
     // check the cancelOnDirectionChange parameter or set it to true if it is not provided
     this.cancelOnDirectionChange = (settings.cancelOnDirectionChange) ? settings.cancelOnDirectionChange : true;
 
-    // add the supplied trigger scroll settings or set it by default if they are not provided
-    this.triggerSettings = {};
-    if (typeof settings.trigger.scroll !== 'undefined') {
-        if (typeof settings.trigger.scroll === 'object') {
-            this.triggerSettings.scroll = {
-                nextY: (settings.trigger.scroll.nextY) ? settings.trigger.scroll.nextY : 5,
-                prevY: (settings.trigger.scroll.prevY) ? settings.trigger.scroll.prevY : 5,
-                nextX: (settings.trigger.scroll.nextX) ? settings.trigger.scroll.nextX : 5,
-                prevX: (settings.trigger.scroll.prevX) ? settings.trigger.scroll.prevX : 5,
-            }
-        } else if (typeof settings.trigger.scroll === 'number') {
-            this.triggerSettings.scroll = {
-                nextY: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
-                prevY: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
-                nextX: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
-                prevX: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
-            }
-        }
-    } else {
-        this.triggerSettings.scroll = {
-            nextY: 5,
-            prevY: 5,
-            nextX: 5,
-            prevX: 5,
+    this.scrollSettings = {
+        x: {
+            next: {
+                value: (settings.scroll.x.next.value) ? (settings.scroll.x.next.value) : 2,
+                callback: (settings.scroll.x.next.callback) ? (settings.scroll.x.next.callback) : () => {},
+            },
+            prev: {
+                value: (settings.scroll.x.prev.value) ? (settings.scroll.x.prev.value) : 2,
+                callback: (settings.scroll.x.prev.callback) ? (settings.scroll.x.prev.callback) : () => {},
+            },
+        },
+        y: {
+            next: {
+                value: (settings.scroll.y.next.value) ? (settings.scroll.y.next.value) : 5,
+                callback: (settings.scroll.y.next.callback) ? (settings.scroll.y.next.callback) : () => {},
+            },
+            prev: {
+                value: (settings.scroll.y.prev.value) ? (settings.scroll.y.prev.value) : 5,
+                callback: (settings.scroll.y.prev.callback) ? (settings.scroll.y.prev.callback) : () => {},
+            },
         }
     }
 
-    // add the supplied trigger touch settings or set it by default if they are not provided
-    if (typeof settings.trigger.touch !== 'undefined') {
-        if (typeof settings.trigger.touch === 'object') {
-            this.triggerSettings.touch = {
-                nextY: (settings.trigger.touch.nextY) ? settings.trigger.touch.nextY : 200,
-                prevY: (settings.trigger.touch.prevY) ? settings.trigger.touch.prevY : 200,
-                nextX: (settings.trigger.touch.nextX) ? settings.trigger.touch.nextX : 80,
-                prevX: (settings.trigger.touch.prevX) ? settings.trigger.touch.prevX : 80,
-            }
-        } else if (typeof settings.trigger.touch === 'number') {
-            this.triggerSettings.touch = {
-                nextY: (settings.trigger.touch) ? settings.trigger.touch : 200,
-                prevY: (settings.trigger.touch) ? settings.trigger.touch : 200,
-                nextX: (settings.trigger.touch) ? settings.trigger.touch : 80,
-                prevX: (settings.trigger.touch) ? settings.trigger.touch : 80,
-            }
-        }
-    } else {
-        this.triggerSettings.touch = {
-            nextY: 200,
-            prevY: 200,
-            nextX: 80,
-            prevX: 80,
+    this.touchSettings = {
+        x: {
+            next: {
+                value: (settings.touch.x.next.value) ? (settings.touch.x.next.value) : 80,
+                callback: (settings.touch.x.next.callback) ? (settings.touch.x.next.callback) : () => {},
+            },
+            prev: {
+                value: (settings.touch.x.prev.value) ? (settings.touch.x.prev.value) : 80,
+                callback: (settings.touch.x.prev.callback) ? (settings.touch.x.prev.callback) : () => {},
+            },
+        },
+        y: {
+            next: {
+                value: (settings.touch.y.next.value) ? (settings.touch.y.next.value) : 200,
+                callback: (settings.touch.y.next.callback) ? (settings.touch.y.next.callback) : () => {},
+            },
+            prev: {
+                value: (settings.touch.y.prev.value) ? (settings.touch.y.prev.value) : 200,
+                callback: (settings.touch.y.prev.callback) ? (settings.touch.y.prev.callback) : () => {},
+            },
         }
     }
 

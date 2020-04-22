@@ -53,23 +53,23 @@ export default function ScrollListener(settings) {
             this.triggerSettings.touch = {
                 nextY: (settings.trigger.touch.nextY) ? settings.trigger.touch.nextY : 200,
                 prevY: (settings.trigger.touch.prevY) ? settings.trigger.touch.prevY : 200,
-                nextX: (settings.trigger.touch.nextX) ? settings.trigger.touch.nextX : 200,
-                prevX: (settings.trigger.touch.prevX) ? settings.trigger.touch.prevX : 200,
+                nextX: (settings.trigger.touch.nextX) ? settings.trigger.touch.nextX : 80,
+                prevX: (settings.trigger.touch.prevX) ? settings.trigger.touch.prevX : 80,
             }
         } else if (typeof settings.trigger.touch === 'number') {
             this.triggerSettings.touch = {
                 nextY: (settings.trigger.touch) ? settings.trigger.touch : 200,
                 prevY: (settings.trigger.touch) ? settings.trigger.touch : 200,
-                nextX: (settings.trigger.touch) ? settings.trigger.touch : 200,
-                prevX: (settings.trigger.touch) ? settings.trigger.touch : 200,
+                nextX: (settings.trigger.touch) ? settings.trigger.touch : 80,
+                prevX: (settings.trigger.touch) ? settings.trigger.touch : 80,
             }
         }
     } else {
         this.triggerSettings.touch = {
             nextY: 200,
             prevY: 200,
-            nextX: 200,
-            prevX: 200,
+            nextX: 80,
+            prevX: 80,
         }
     }
 

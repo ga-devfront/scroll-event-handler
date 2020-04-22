@@ -171,6 +171,52 @@ export default function ScrollListener(settings) {
         throw Error('your container is not available');
     }
 
+    this.scrollSettings = {
+        x: {
+            next: {
+                value: 2,
+                callback: () => {},
+            },
+            prev: {
+                value: 2,
+                callback: () => {},
+            },
+        },
+        y: {
+            next: {
+                value: 5,
+                callback: () => {},
+            },
+            prev: {
+                value: 5,
+                callback: () => {},
+            },
+        }
+    }
+
+    
+    this.touchSettings = {
+        x: {
+            next: {
+                value: 80,
+                callback: () => {},
+            },
+            prev: {
+                value: 80,
+                callback: () => {},
+            },
+        },
+        y: {
+            next: {
+                value: 200,
+                callback: () => {},
+            },
+            prev: {
+                value: 200,
+                callback: () => {},
+            },
+        }
+    }
     // add the supplied callbacks or create empty functions if they are missing
     if (typeof settings.callback === 'object') {
         this.callback = {

@@ -5,22 +5,38 @@
  * 
  * @param {String} container
  * @param {Bolean} cancelOnDirectionChange
- * @param {Object} trigger  (need scroll or touch element)
- *   @param {Number || Object} scroll
- *      @param {Number} nextY
- *      @param {Number} prevY
- *      @param {Number} nextX
- *      @param {Number} prevY
- *   @param {Number || Object} touch
- *      @param {Number} nextY
- *      @param {Number} prevY
- *      @param {Number} nextX
- *      @param {Number} prevY
- *@param {Function || Object} callback
- *   @param {Function} nextY
- *   @param {Function} prevY
- *   @param {Function} nextX
- *   @param {Function} prevY
+ * 
+ * @param {Object} scroll
+ *   @param {Object} x
+ *     @param {Object} next
+ *       @param {Number} value
+ *       @param {Function} callback
+ *     @param {Object} prev
+ *       @param {Number} value
+ *       @param {Function} callback
+ *   @param {Object} y
+ *     @param {Object} next
+ *       @param {Number} value
+ *       @param {Function} callback
+ *     @param {Object} prev
+ *       @param {Number} value
+ *       @param {Function} callback
+ * 
+ * @param {Object} touch
+ *   @param {Object} x
+ *     @param {Object} next
+ *       @param {Number} value
+ *       @param {Function} callback
+ *     @param {Object} prev
+ *       @param {Number} value
+ *       @param {Function} callback
+ *   @param {Object} y
+ *     @param {Object} next
+ *       @param {Number} value
+ *       @param {Function} callback
+ *     @param {Object} prev
+ *       @param {Number} value
+ *       @param {Function} callback
  * 
  * Refer to the documentation for more information.
  */
@@ -104,10 +120,10 @@ export default function ScrollListener(settings) {
         }
     }
 
+    // set browser to null before testing
     this.currentNavigator = null;
 
     // desktop navigators tests
-
     if (navigators.chrome.desktop.regex.test(userAgent) && !navigators.opera.desktop.regex.test(userAgent) && !navigators.edge.desktop.regex.test(userAgent) && !navigators.chrome.mobile.regex.test(userAgent)) {
         this.currentNavigator = navigators.chrome.desktop;
     }
@@ -137,7 +153,6 @@ export default function ScrollListener(settings) {
     }
 
     // mobile navigators tests
-
     if (navigators.chrome.desktop.regex.test(userAgent) && !navigators.opera.desktop.regex.test(userAgent) && navigators.chrome.mobile.regex.test(userAgent)) {
         this.currentNavigator = navigators.chrome.mobile;
     }
@@ -171,84 +186,66 @@ export default function ScrollListener(settings) {
         throw Error('your container is not available');
     }
 
-    // add the supplied callbacks or create empty functions if they are missing
-    if (typeof settings.callback === 'object') {
-        this.callback = {
-            nextY: (settings.callback.nextY) ? settings.callback.nextY : () => {},
-            prevY: (settings.callback.prevY) ? settings.callback.prevY : () => {},
-            nextX: (settings.callback.nextX) ? settings.callback.nextX : () => {},
-            prevX: (settings.callback.prevX) ? settings.callback.prevX : () => {},
-        }
-    } else if (typeof settings.callback === 'function') {
-        this.callback = {
-            nextY: settings.callback,
-            prevY: settings.callback,
-            nextX: settings.callback,
-            prevX: settings.callback,
-        }
-    }
-
     // check the cancelOnDirectionChange parameter or set it to true if it is not provided
     this.cancelOnDirectionChange = (settings.cancelOnDirectionChange) ? settings.cancelOnDirectionChange : true;
 
-    // add the supplied trigger scroll settings or set it by default if they are not provided
-    this.triggerSettings = {};
-    if (typeof settings.trigger.scroll !== 'undefined') {
-        if (typeof settings.trigger.scroll === 'object') {
-            this.triggerSettings.scroll = {
-                nextY: (settings.trigger.scroll.nextY) ? settings.trigger.scroll.nextY : 5,
-                prevY: (settings.trigger.scroll.prevY) ? settings.trigger.scroll.prevY : 5,
-                nextX: (settings.trigger.scroll.nextX) ? settings.trigger.scroll.nextX : 5,
-                prevX: (settings.trigger.scroll.prevX) ? settings.trigger.scroll.prevX : 5,
-            }
-        } else if (typeof settings.trigger.scroll === 'number') {
-            this.triggerSettings.scroll = {
-                nextY: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
-                prevY: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
-                nextX: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
-                prevX: (settings.trigger.scroll) ? settings.trigger.scroll : 5,
-            }
-        }
-    } else {
-        this.triggerSettings.scroll = {
-            nextY: 5,
-            prevY: 5,
-            nextX: 5,
-            prevX: 5,
+    // update the settings with the information provided or leave the default settings for scroll.
+    this.scrollSettings = {
+        x: {
+            next: {
+                value: (settings.scroll.x.next.value) ? (settings.scroll.x.next.value) : 2,
+                callback: (settings.scroll.x.next.callback) ? (settings.scroll.x.next.callback) : () => {},
+            },
+            prev: {
+                value: (settings.scroll.x.prev.value) ? (settings.scroll.x.prev.value) : 2,
+                callback: (settings.scroll.x.prev.callback) ? (settings.scroll.x.prev.callback) : () => {},
+            },
+        },
+        y: {
+            next: {
+                value: (settings.scroll.y.next.value) ? (settings.scroll.y.next.value) : 5,
+                callback: (settings.scroll.y.next.callback) ? (settings.scroll.y.next.callback) : () => {},
+            },
+            prev: {
+                value: (settings.scroll.y.prev.value) ? (settings.scroll.y.prev.value) : 5,
+                callback: (settings.scroll.y.prev.callback) ? (settings.scroll.y.prev.callback) : () => {},
+            },
         }
     }
 
-    // add the supplied trigger touch settings or set it by default if they are not provided
-    if (typeof settings.trigger.touch !== 'undefined') {
-        if (typeof settings.trigger.touch === 'object') {
-            this.triggerSettings.touch = {
-                nextY: (settings.trigger.touch.nextY) ? settings.trigger.touch.nextY : 200,
-                prevY: (settings.trigger.touch.prevY) ? settings.trigger.touch.prevY : 200,
-                nextX: (settings.trigger.touch.nextX) ? settings.trigger.touch.nextX : 80,
-                prevX: (settings.trigger.touch.prevX) ? settings.trigger.touch.prevX : 80,
-            }
-        } else if (typeof settings.trigger.touch === 'number') {
-            this.triggerSettings.touch = {
-                nextY: (settings.trigger.touch) ? settings.trigger.touch : 200,
-                prevY: (settings.trigger.touch) ? settings.trigger.touch : 200,
-                nextX: (settings.trigger.touch) ? settings.trigger.touch : 80,
-                prevX: (settings.trigger.touch) ? settings.trigger.touch : 80,
-            }
-        }
-    } else {
-        this.triggerSettings.touch = {
-            nextY: 200,
-            prevY: 200,
-            nextX: 80,
-            prevX: 80,
+    // update the settings with the information provided or leave the default settings for touch.
+    this.touchSettings = {
+        x: {
+            next: {
+                value: (settings.touch.x.next.value) ? (settings.touch.x.next.value) : 80,
+                callback: (settings.touch.x.next.callback) ? (settings.touch.x.next.callback) : () => {},
+            },
+            prev: {
+                value: (settings.touch.x.prev.value) ? (settings.touch.x.prev.value) : 80,
+                callback: (settings.touch.x.prev.callback) ? (settings.touch.x.prev.callback) : () => {},
+            },
+        },
+        y: {
+            next: {
+                value: (settings.touch.y.next.value) ? (settings.touch.y.next.value) : 200,
+                callback: (settings.touch.y.next.callback) ? (settings.touch.y.next.callback) : () => {},
+            },
+            prev: {
+                value: (settings.touch.y.prev.value) ? (settings.touch.y.prev.value) : 200,
+                callback: (settings.touch.y.prev.callback) ? (settings.touch.y.prev.callback) : () => {},
+            },
         }
     }
 
     this.trigger = {
-        scrollY: 0,
-        scrollX: 0,
-        touchY: 0,
-        touchX: 0,
+        scroll: {
+            x: 0,
+            y: 0,
+        },
+        touch: {
+            x: 0,
+            y: 0,
+        },
     };
 
     // check if the browser is used on desktop
@@ -263,51 +260,51 @@ export default function ScrollListener(settings) {
 
             // resets the data to 0 when the user changes direction. If the option is activated.
             if (this.cancelOnDirectionChange) {
-                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scrollY)) {
-                    this.trigger.scrollY = 0;
+                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scroll.y)) {
+                    this.trigger.scroll.y = 0;
                 }
-                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scrollX)) {
-                    this.trigger.scrollX = 0;
+                if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scroll.x)) {
+                    this.trigger.scroll.x = 0;
                 }
             }
 
             // check if we are scrolling vertically or horizontally
             if (event.shiftKey === false) {
-                this.trigger.scrollY += calcForOneScroll;
+                this.trigger.scroll.y += calcForOneScroll;
             }
             if (event.shiftKey === true) {
-                this.trigger.scrollX += calcForOneScroll;
+                this.trigger.scroll.x += calcForOneScroll;
             }
 
-            // test when the nextY trigger is reached.
-            if (this.triggerSettings.scroll.nextY !== 0) {
-                if (this.triggerSettings.scroll.nextY === this.trigger.scrollY) {
-                    this.callback.nextY(true);
-                    this.trigger.scrollY = 0;
+            // test when the y next trigger is reached.
+            if (this.scrollSettings.y.next.value !== 0) {
+                if (this.scrollSettings.y.next.value === this.trigger.scroll.y) {
+                    this.scrollSettings.y.next.callback();
+                    this.trigger.scroll.y = 0;
                 }
             }
 
-            // test when the prevY trigger is reached.
-            if (this.triggerSettings.scroll.prevY !== 0) {
-                if (this.triggerSettings.scroll.prevY === Math.abs(this.trigger.scrollY) && this.trigger.scrollY < 0) {
-                    this.callback.prevY(false);
-                    this.trigger.scrollY = 0;
+            // test when the y prev trigger is reached.
+            if (this.scrollSettings.y.prev.value !== 0) {
+                if (this.scrollSettings.y.prev.value === Math.abs(this.trigger.scroll.y) && this.trigger.scroll.y < 0) {
+                    this.scrollSettings.y.prev.callback();
+                    this.trigger.scroll.y = 0;
                 }
             }
 
-            // test when the nextX trigger is reached.
-            if (this.triggerSettings.scroll.nextX !== 0) {
-                if (this.triggerSettings.scroll.nextX === this.trigger.scrollX) {
-                    this.callback.nextX(true);
-                    this.trigger.scrollX = 0;
+            // test when the x next trigger is reached.
+            if (this.scrollSettings.x.next.value !== 0) {
+                if (this.scrollSettings.x.next.value === this.trigger.scroll.x) {
+                    this.scrollSettings.x.next.callback();
+                    this.trigger.scroll.x = 0;
                 }
             }
 
-            // test when the prevX trigger is reached.
-            if (this.triggerSettings.scroll.prevX !== 0) {
-                if (this.triggerSettings.scroll.prevX === Math.abs(this.trigger.scrollX) && this.trigger.scrollX < 0) {
-                    this.callback.prevX(false);
-                    this.trigger.scrollX = 0;
+            // test when the x prev trigger is reached.
+            if (this.scrollSettings.x.prev.value !== 0) {
+                if (this.scrollSettings.x.prev.value === Math.abs(this.trigger.scroll.x) && this.trigger.scroll.x < 0) {
+                    this.scrollSettings.x.prev.callback();
+                    this.trigger.scroll.x = 0;
                 }
             }
         };
@@ -339,41 +336,41 @@ export default function ScrollListener(settings) {
             if (!this.allowScroll) return;
 
             // calculates the distance from the starting point to the current location
-            this.trigger.touchY = this.touchStartY - event.touches[0].screenY;
-            this.trigger.touchX = this.touchStartX - event.touches[0].screenX;
+            this.trigger.touch.y = this.touchStartY - event.touches[0].screenY;
+            this.trigger.touch.x = this.touchStartX - event.touches[0].screenX;
 
-            // test when the nextY trigger is reached.
-            if (this.triggerSettings.touch.nextY !== 0) {
-                if (this.triggerSettings.touch.nextY <= this.trigger.touchY) {
-                    this.callback.nextY(true);
-                    this.trigger.touchY = 0;
+            // test when the y next trigger is reached.
+            if (this.touchSettings.y.next.value !== 0) {
+                if (this.touchSettings.y.next.value <= this.trigger.touch.y) {
+                    this.touchSettings.y.next.callback();
+                    this.trigger.touch.y = 0;
                     this.allowScroll = false;
                 }
             }
 
-            // test when the prevY trigger is reached.
-            if (this.triggerSettings.touch.prevY !== 0) {
-                if (this.triggerSettings.touch.prevY <= Math.abs(this.trigger.touchY) && this.trigger.touchY < 0) {
-                    this.callback.prevY(true);
-                    this.trigger.touchY = 0;
+            // test when the y prev trigger is reached.
+            if (this.touchSettings.y.prev.value !== 0) {
+                if (this.touchSettings.y.prev.value <= Math.abs(this.trigger.touch.y) && this.trigger.touch.y < 0) {
+                    this.touchSettings.y.prev.callback(true);
+                    this.trigger.touch.y = 0;
                     this.allowScroll = false;
                 }
             }
 
-            // test when the nextX trigger is reached.
-            if (this.triggerSettings.touch.nextX !== 0) {
-                if (this.triggerSettings.touch.nextX <= this.trigger.touchX) {
-                    this.callback.nextX(true);
-                    this.trigger.touchX = 0;
+            // test when the x next trigger is reached.
+            if (this.touchSettings.x.next.value !== 0) {
+                if (this.touchSettings.x.next.value <= this.trigger.touch.x) {
+                    this.touchSettings.x.next.callback(true);
+                    this.trigger.touch.x = 0;
                     this.allowScroll = false;
                 }
             }
 
-            // test when the prevX trigger is reached.
-            if (this.triggerSettings.touch.prevX !== 0) {
-                if (this.triggerSettings.touch.prevX <= Math.abs(this.trigger.touchX) && this.trigger.touchX < 0) {
-                    this.callback.prevX(true);
-                    this.trigger.touchX = 0;
+            // test when the x prev trigger is reached.
+            if (this.touchSettings.x.prev.value !== 0) {
+                if (this.touchSettings.x.prev.value <= Math.abs(this.trigger.touch.x) && this.trigger.touch.x < 0) {
+                    this.touchSettings.x.prev.callback(true);
+                    this.trigger.touch.x = 0;
                     this.allowScroll = false;
                 }
             }
@@ -382,8 +379,8 @@ export default function ScrollListener(settings) {
         // created a function that will be used when we end touch the screen
         this.handleEnd = () => {
             this.allowScroll = false;
-            this.trigger.touchY = 0;
-            this.trigger.touchX = 0;
+            this.trigger.touch.y = 0;
+            this.trigger.touch.x = 0;
         }
 
         // add functions to EventListener
@@ -398,38 +395,57 @@ export default function ScrollListener(settings) {
         this.container.removeEventListener('wheel', this.eventListener)
     }
 
-    // method to change trigger, the settings options are the same as our main function
-    this.changeTrigger = (settings) => {
-        if (typeof settings !== 'object') return
-
-        if (typeof settings.scroll === 'object') {
-            this.triggerSettings.scroll.nextY = (settings.scroll.nextY) ? settings.scroll.nextY : this.triggerSettings.scroll.nextY;
-            this.triggerSettings.scroll.prevY = (settings.scroll.prevY) ? settings.scroll.prevY : this.triggerSettings.scroll.prevY;
-            this.triggerSettings.scroll.nextX = (settings.scroll.nextX) ? settings.scroll.nextX : this.triggerSettings.scroll.nextX;
-            this.triggerSettings.scroll.prevX = (settings.scroll.prevX) ? settings.scroll.prevX : this.triggerSettings.scroll.prevX;
-        }
-        if (typeof settings.scroll === 'number') {
-            this.triggerSettings.scroll.nextY = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.nextY;
-            this.triggerSettings.scroll.prevY = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.prevY;
-            this.triggerSettings.scroll.nextX = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.nextX;
-            this.triggerSettings.scroll.prevX = (settings.scroll) ? settings.scroll : this.triggerSettings.scroll.prevX;
-        }
-
-        if (typeof settings.touch === 'object') {
-            this.triggerSettings.touch.nextY = (settings.touch.nextY) ? settings.touch.nextY : this.triggerSettings.touch.nextY;
-            this.triggerSettings.touch.prevY = (settings.touch.prevY) ? settings.touch.prevY : this.triggerSettings.touch.prevY;
-            this.triggerSettings.touch.nextX = (settings.touch.nextX) ? settings.touch.nextX : this.triggerSettings.touch.nextX;
-            this.triggerSettings.touch.prevX = (settings.touch.prevX) ? settings.touch.prevX : this.triggerSettings.touch.prevX;
-        }
-        if (typeof settings.touch === 'number') {
-            this.triggerSettings.touch.nextX = (settings.touch) ? settings.touch : this.triggerSettings.touch.nextX;
-            this.triggerSettings.touch.prevX = (settings.touch) ? settings.touch : this.triggerSettings.touch.prevX;
-        }
-    }
-
     // method to switch cancelOnDirectionChange
     this.switchcancelOnDirectionChange = () => {
         this.cancelOnDirectionChange = !this.cancelOnDirectionChange;
+    }
+
+    // method to change settings, the settings options are the same as our main function
+    this.changeSettings = (newSettings) => {
+        this.scrollSettings = {
+            x: {
+                next: {
+                    value: (newSettings.scroll.x.next.value) ? (newSettings.scroll.x.next.value) : this.scrollSettings.x.next.value,
+                    callback: (newSettings.scroll.x.next.callback) ? (newSettings.scroll.x.next.callback) : this.scrollSettings.x.next.callback,
+                },
+                prev: {
+                    value: (newSettings.scroll.x.prev.value) ? (newSettings.scroll.x.prev.value) : this.scrollSettings.x.prev.value,
+                    callback: (newSettings.scroll.x.prev.callback) ? (newSettings.scroll.x.prev.callback) : this.scrollSettings.x.prev.callback,
+                },
+            },
+            y: {
+                next: {
+                    value: (newSettings.scroll.y.next.value) ? (newSettings.scroll.y.next.value) : this.scrollSettings.y.next.value,
+                    callback: (newSettings.scroll.y.next.callback) ? (newSettings.scroll.y.next.callback) : this.scrollSettings.y.next.callback,
+                },
+                prev: {
+                    value: (newSettings.scroll.y.prev.value) ? (newSettings.scroll.y.prev.value) : this.scrollSettings.y.prev.value,
+                    callback: (newSettings.scroll.y.prev.callback) ? (newSettings.scroll.y.prev.callback) : this.scrollSettings.y.prev.callback,
+                },
+            }
+        }
+        this.touchSettings = {
+            x: {
+                next: {
+                    value: (newSettings.touch.x.next.value) ? (newSettings.touch.x.next.value) : this.touchSettings.x.next.value,
+                    callback: (newSettings.touch.x.next.callback) ? (newSettings.touch.x.next.callback) : this.touchSettings.x.next.callback,
+                },
+                prev: {
+                    value: (newSettings.touch.x.prev.value) ? (newSettings.touch.x.prev.value) : this.touchSettings.x.prev.value,
+                    callback: (newSettings.touch.x.prev.callback) ? (newSettings.touch.x.prev.callback) : this.touchSettings.x.prev.callback,
+                },
+            },
+            y: {
+                next: {
+                    value: (newSettings.touch.y.next.value) ? (newSettings.touch.y.next.value) : this.touchSettings.y.next.value,
+                    callback: (newSettings.touch.y.next.callback) ? (newSettings.touch.y.next.callback) : this.touchSettings.y.next.callback,
+                },
+                prev: {
+                    value: (newSettings.touch.y.prev.value) ? (newSettings.touch.y.prev.value) : this.touchSettings.y.prev.value,
+                    callback: (newSettings.touch.y.prev.callback) ? (newSettings.touch.y.prev.callback) : this.touchSettings.y.prev.callback,
+                },
+            }
+        }
     }
 
     return this;

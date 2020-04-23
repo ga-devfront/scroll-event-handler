@@ -5,22 +5,38 @@
  * 
  * @param {String} container
  * @param {Bolean} cancelOnDirectionChange
- * @param {Object} trigger  (need scroll or touch element)
- *   @param {Number || Object} scroll
- *      @param {Number} nextY
- *      @param {Number} prevY
- *      @param {Number} nextX
- *      @param {Number} prevY
- *   @param {Number || Object} touch
- *      @param {Number} nextY
- *      @param {Number} prevY
- *      @param {Number} nextX
- *      @param {Number} prevY
- *@param {Function || Object} callback
- *   @param {Function} nextY
- *   @param {Function} prevY
- *   @param {Function} nextX
- *   @param {Function} prevY
+ * 
+ * @param {Object} scroll
+ *   @param {Object} x
+ *     @param {Object} next
+ *       @param {Number} value
+ *       @param {Function} callback
+ *     @param {Object} prev
+ *       @param {Number} value
+ *       @param {Function} callback
+ *   @param {Object} y
+ *     @param {Object} next
+ *       @param {Number} value
+ *       @param {Function} callback
+ *     @param {Object} prev
+ *       @param {Number} value
+ *       @param {Function} callback
+ * 
+ * @param {Object} touch
+ *   @param {Object} x
+ *     @param {Object} next
+ *       @param {Number} value
+ *       @param {Function} callback
+ *     @param {Object} prev
+ *       @param {Number} value
+ *       @param {Function} callback
+ *   @param {Object} y
+ *     @param {Object} next
+ *       @param {Number} value
+ *       @param {Function} callback
+ *     @param {Object} prev
+ *       @param {Number} value
+ *       @param {Function} callback
  * 
  * Refer to the documentation for more information.
  */
@@ -104,10 +120,10 @@ export default function ScrollListener(settings) {
         }
     }
 
+    // set browser to null before testing
     this.currentNavigator = null;
 
     // desktop navigators tests
-
     if (navigators.chrome.desktop.regex.test(userAgent) && !navigators.opera.desktop.regex.test(userAgent) && !navigators.edge.desktop.regex.test(userAgent) && !navigators.chrome.mobile.regex.test(userAgent)) {
         this.currentNavigator = navigators.chrome.desktop;
     }
@@ -137,7 +153,6 @@ export default function ScrollListener(settings) {
     }
 
     // mobile navigators tests
-
     if (navigators.chrome.desktop.regex.test(userAgent) && !navigators.opera.desktop.regex.test(userAgent) && navigators.chrome.mobile.regex.test(userAgent)) {
         this.currentNavigator = navigators.chrome.mobile;
     }
@@ -174,6 +189,7 @@ export default function ScrollListener(settings) {
     // check the cancelOnDirectionChange parameter or set it to true if it is not provided
     this.cancelOnDirectionChange = (settings.cancelOnDirectionChange) ? settings.cancelOnDirectionChange : true;
 
+    // update the settings with the information provided or leave the default settings for scroll.
     this.scrollSettings = {
         x: {
             next: {
@@ -197,6 +213,7 @@ export default function ScrollListener(settings) {
         }
     }
 
+    // update the settings with the information provided or leave the default settings for touch.
     this.touchSettings = {
         x: {
             next: {
@@ -275,7 +292,7 @@ export default function ScrollListener(settings) {
                 }
             }
 
-            // test when the nextX trigger is reached.
+            // test when the x next trigger is reached.
             if (this.scrollSettings.x.next.value !== 0) {
                 if (this.scrollSettings.x.next.value === this.trigger.scroll.x) {
                     this.scrollSettings.x.next.callback();
@@ -283,7 +300,7 @@ export default function ScrollListener(settings) {
                 }
             }
 
-            // test when the prevX trigger is reached.
+            // test when the x prev trigger is reached.
             if (this.scrollSettings.x.prev.value !== 0) {
                 if (this.scrollSettings.x.prev.value === Math.abs(this.trigger.scroll.x) && this.trigger.scroll.x < 0) {
                     this.scrollSettings.x.prev.callback();
@@ -322,7 +339,7 @@ export default function ScrollListener(settings) {
             this.trigger.touch.y = this.touchStartY - event.touches[0].screenY;
             this.trigger.touch.x = this.touchStartX - event.touches[0].screenX;
 
-            // test when the nextY trigger is reached.
+            // test when the y next trigger is reached.
             if (this.touchSettings.y.next.value !== 0) {
                 if (this.touchSettings.y.next.value <= this.trigger.touch.y) {
                     this.touchSettings.y.next.callback();
@@ -331,7 +348,7 @@ export default function ScrollListener(settings) {
                 }
             }
 
-            // test when the prevY trigger is reached.
+            // test when the y prev trigger is reached.
             if (this.touchSettings.y.prev.value !== 0) {
                 if (this.touchSettings.y.prev.value <= Math.abs(this.trigger.touch.y) && this.trigger.touch.y < 0) {
                     this.touchSettings.y.prev.callback(true);
@@ -340,7 +357,7 @@ export default function ScrollListener(settings) {
                 }
             }
 
-            // test when the nextX trigger is reached.
+            // test when the x next trigger is reached.
             if (this.touchSettings.x.next.value !== 0) {
                 if (this.touchSettings.x.next.value <= this.trigger.touch.x) {
                     this.touchSettings.x.next.callback(true);
@@ -349,7 +366,7 @@ export default function ScrollListener(settings) {
                 }
             }
 
-            // test when the prevX trigger is reached.
+            // test when the x prev trigger is reached.
             if (this.touchSettings.x.prev.value !== 0) {
                 if (this.touchSettings.x.prev.value <= Math.abs(this.trigger.touch.x) && this.trigger.touch.x < 0) {
                     this.touchSettings.x.prev.callback(true);
@@ -383,7 +400,7 @@ export default function ScrollListener(settings) {
         this.cancelOnDirectionChange = !this.cancelOnDirectionChange;
     }
 
-    // method to change trigger, the settings options are the same as our main function
+    // method to change settings, the settings options are the same as our main function
     this.changeSettings = (newSettings) => {
         this.scrollSettings = {
             x: {

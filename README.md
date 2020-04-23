@@ -14,8 +14,13 @@ Scroll listener is a npm package for listen scroll (desktop) or touch (mobile) e
 [![time tracker](https://wakatime.com/badge/github/ga-devfront/scroll-listener.svg)](https://wakatime.com/badge/github/ga-devfront/scroll-listener)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fag-dev.fr%2Fprivate%2Fscroll-listener%2F)
 
+## Demo
+The [online demo](https://ag-dev.fr/private/scroll-listener/demo/) gives you an overview of what can be done with this package.
+
+You can also see the use of this package on my [portfolio](https://ag-dev.fr/).
+
 ## Linter
-For this NPM ESLint is used with the basic parameters to have a clean code.
+For this npm ESLint is used with the basic parameters to have a clean code.
 
 ## Installation
 It can be installed from npm.

@@ -1,5 +1,5 @@
 # scroll listener
-Scroll listener is a npm package for listen scroll (desktop) or touch (mobile) event with some options.
+Scroll listener est un package permettant de lire les événéments de scroll (desktop) ou de touch (mobile) et de leur assigné un callback.
 
 ## Badges
 ![npm](https://img.shields.io/npm/v/scroll-listener-for-all-device)
@@ -30,38 +30,62 @@ $ npm install scroll-listener-for-all-device
 
 ## Usage
 ### Create a new scroll listener
-We can create a new scroll listener without option :
+We can create a new scroll listener without option but it is **not recommended** because you do not assign a callback :
 ```javascript
 import ScrollListener from 'scroll-listener-for-all-device';
 
 let newScrollListener = new ScrollListener();
 ```
-or with options :
+prefer create a new scroll listener with options :
 ```javascript
 import ScrollListener from 'scrollListener';
 
 let newScrollListener = new ScrollListener({
-    container: '#myContainer',
+    container: '#scrollIn',
     cancelOnDirectionChange: true,
-    trigger: {
-        scroll: {
-            nextY: 5,
-            prevY: 5,
-            nextX: 5,
-            prevX: 5,
+    scroll: {
+        x: {
+            next: {
+                value: 2,
+                callback: () => {console.log ('x next is called')},
+            },
+            prev: {
+                value: 2,
+                callback: () => {console.log ('x prev is called')},
+            },
         },
-        touch: {
-            nextY: 200,
-            prevY: 200,
-            nextX: 100,
-            prevX: 100,
+        y: {
+            next: {
+                value: 5,
+                callback: () => {console.log ('y next is called')},
+            },
+            prev: {
+                value: 5,
+                callback: () => {console.log ('y next is called')},
+            },
         }
     },
-    callback: {
-        nextY() {console.log('nextY')},
-        prevY() {console.log('prevY')},
-        nextX() {console.log('nextX')},
-        prevX() {console.log('prevX')},
+    touch: {
+        x: {
+            next: {
+                value: 80,
+                callback: () => {console.log ('x next is called')},
+            },
+            prev: {
+                value: 80,
+                callback: () => {console.log ('x prev is called')},
+            },
+        },
+        y: {
+            next: {
+                value: 200,
+                callback: () => {console.log ('y next is called')},
+            },
+            prev: {
+                value: 200,
+                callback: () => {console.log ('y prev is called')},
+            },
+        }
     },
 })
 ```

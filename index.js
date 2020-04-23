@@ -384,37 +384,50 @@ export default function ScrollListener(settings) {
     }
 
     // method to change trigger, the settings options are the same as our main function
-    this.changeTrigger = (newTrigger) => {
-        if (typeof newTrigger !== 'object') return
-
-        if (typeof newTrigger.scroll === 'object') {
-            this.scrollSettings.y.next.value = (newTrigger.scroll.y.next) ? newTrigger.scroll.y.next : this.scrollSettings.y.next.value;
-            this.scrollSettings.y.prev.value = (newTrigger.scroll.y.prev) ? newTrigger.scroll.y.prev : this.scrollSettings.y.prev.value;
-            this.scrollSettings.x.next.value = (newTrigger.scroll.x.next) ? newTrigger.scroll.x.next : this.scrollSettings.x.next.value;
-            this.scrollSettings.x.prev.value = (newTrigger.scroll.x.prev) ? newTrigger.scroll.x.prev : this.scrollSettings.x.prev.value;
+    this.changeSettings = (newSettings) => {
+        this.scrollSettings = {
+            x: {
+                next: {
+                    value: (newSettings.scroll.x.next.value) ? (newSettings.scroll.x.next.value) : this.scrollSettings.x.next.value,
+                    callback: (newSettings.scroll.x.next.callback) ? (newSettings.scroll.x.next.callback) : this.scrollSettings.x.next.callback,
+                },
+                prev: {
+                    value: (newSettings.scroll.x.prev.value) ? (newSettings.scroll.x.prev.value) : this.scrollSettings.x.prev.value,
+                    callback: (newSettings.scroll.x.prev.callback) ? (newSettings.scroll.x.prev.callback) : this.scrollSettings.x.prev.callback,
+                },
+            },
+            y: {
+                next: {
+                    value: (newSettings.scroll.y.next.value) ? (newSettings.scroll.y.next.value) : this.scrollSettings.y.next.value,
+                    callback: (newSettings.scroll.y.next.callback) ? (newSettings.scroll.y.next.callback) : this.scrollSettings.y.next.callback,
+                },
+                prev: {
+                    value: (newSettings.scroll.y.prev.value) ? (newSettings.scroll.y.prev.value) : this.scrollSettings.y.prev.value,
+                    callback: (newSettings.scroll.y.prev.callback) ? (newSettings.scroll.y.prev.callback) : this.scrollSettings.y.prev.callback,
+                },
+            }
         }
-        if (typeof newTrigger.scroll.x === 'number') {
-            this.scrollSettings.x.next.value = (newTrigger.scroll.x) ? newTrigger.scroll.x : this.scrollSettings.x.next.value;
-            this.scrollSettings.x.prev.value = (newTrigger.scroll.x) ? newTrigger.scroll.x : this.scrollSettings.x.prev.value;
-        }
-        if (typeof newTrigger.scroll.y === 'number') {
-            this.scrollSettings.y.next.value = (newTrigger.scroll.y) ? newTrigger.scroll.y : this.scrollSettings.y.next.value;
-            this.scrollSettings.y.prev.value = (newTrigger.scroll.y) ? newTrigger.scroll.y : this.scrollSettings.y.prev.value;
-        }
-
-        if (typeof newTrigger.touch === 'object') {
-            this.touchSettings.y.next.value = (newTrigger.touch.y.next) ? newTrigger.touch.y.next : this.touchSettings.y.next.value;
-            this.touchSettings.y.prev.value = (newTrigger.touch.y.prev) ? newTrigger.touch.y.prev : this.touchSettings.y.prev.value;
-            this.touchSettings.x.next.value = (newTrigger.touch.x.next) ? newTrigger.touch.x.next : this.touchSettings.x.next.value;
-            this.touchSettings.x.prev.value = (newTrigger.touch.x.prev) ? newTrigger.touch.x.prev : this.touchSettings.x.prev.value;
-        }
-        if (typeof newTrigger.touch.x === 'number') {
-            this.touchSettings.x.next.value = (newTrigger.touch.x) ? newTrigger.touch.x : this.touchSettings.x.next.value;
-            this.touchSettings.x.prev.value = (newTrigger.touch.x) ? newTrigger.touch.x : this.touchSettings.x.prev.value;
-        }
-        if (typeof newTrigger.touch.y === 'number') {
-            this.touchSettings.y.next.value = (newTrigger.touch.y) ? newTrigger.touch.y : this.touchSettings.y.next.value;
-            this.touchSettings.y.prev.value = (newTrigger.touch.y) ? newTrigger.touch.y : this.touchSettings.y.prev.value;
+        this.touchSettings = {
+            x: {
+                next: {
+                    value: (newSettings.touch.x.next.value) ? (newSettings.touch.x.next.value) : this.touchSettings.x.next.value,
+                    callback: (newSettings.touch.x.next.callback) ? (newSettings.touch.x.next.callback) : this.touchSettings.x.next.callback,
+                },
+                prev: {
+                    value: (newSettings.touch.x.prev.value) ? (newSettings.touch.x.prev.value) : this.touchSettings.x.prev.value,
+                    callback: (newSettings.touch.x.prev.callback) ? (newSettings.touch.x.prev.callback) : this.touchSettings.x.prev.callback,
+                },
+            },
+            y: {
+                next: {
+                    value: (newSettings.touch.y.next.value) ? (newSettings.touch.y.next.value) : this.touchSettings.y.next.value,
+                    callback: (newSettings.touch.y.next.callback) ? (newSettings.touch.y.next.callback) : this.touchSettings.y.next.callback,
+                },
+                prev: {
+                    value: (newSettings.touch.y.prev.value) ? (newSettings.touch.y.prev.value) : this.touchSettings.y.prev.value,
+                    callback: (newSettings.touch.y.prev.callback) ? (newSettings.touch.y.prev.callback) : this.touchSettings.y.prev.callback,
+                },
+            }
         }
     }
 

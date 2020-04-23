@@ -1,14 +1,10 @@
 # scroll listener
-Scroll listener is a npm package for listen scroll (desktop) or touch (mobile) event with some options. The npm is now run on :
-- Chrome desktop / mobile
-- Edge
-- Edge chromium
-- Firefox desktop / mobile
-- Opera desktop/ mobile
-- Safari desktop / mobile
-- Samsung Internet
+Scroll listener is a npm package for listen scroll (desktop) or touch (mobile) event with some options.
 
 ## Badges
+![npm](https://img.shields.io/npm/v/scroll-listener-for-all-device)
+![npm bundle size](https://img.shields.io/bundlephobia/min/scroll-listener-for-all-device)
+![npm](https://img.shields.io/npm/dm/scroll-listener-for-all-device)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/ga-devfront/scroll-listener)
 ![GitHub top language](https://img.shields.io/github/languages/top/ga-devfront/scroll-listener)
@@ -18,17 +14,20 @@ Scroll listener is a npm package for listen scroll (desktop) or touch (mobile) e
 [![time tracker](https://wakatime.com/badge/github/ga-devfront/scroll-listener.svg)](https://wakatime.com/badge/github/ga-devfront/scroll-listener)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fag-dev.fr%2Fprivate%2Fscroll-listener%2F)
 
+## Linter
+For this NPM ESLint is used with the basic parameters to have a clean code.
+
 ## Installation
 It can be installed from npm.
 ```bash
-$ npm install
+$ npm install scroll-listener-for-all-device
 ```
 
 ## Usage
 ### Create a new scroll listener
 We can create a new scroll listener without option :
 ```javascript
-import ScrollListener from 'scrollListener';
+import ScrollListener from 'scroll-listener-for-all-device';
 
 let newScrollListener = new ScrollListener();
 ```
@@ -119,6 +118,20 @@ newScrollListener.switchcancelOnDirectionChange();
     - `prevY()` :
     - `nextX()` :
     - `prevY()` :
+
+## Compatible Browsers
+The npm is now run on :
+- Chrome desktop / mobile
+- Edge
+- Edge chromium
+- Firefox desktop / mobile
+- Opera desktop/ mobile
+- Safari desktop / mobile
+- Samsung Internet
+
+The tests were carried out thanks to Browserstack which offers us its services since our npm is opensource.
+
+![Browserstack](https://d2ogrdw2mh0rsl.cloudfront.net/production/images/static/header/header-logo.svg)
 
 ## Contributors
 

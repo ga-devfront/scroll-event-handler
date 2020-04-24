@@ -504,90 +504,166 @@ You can find the way to call them in the [examples](#examples) section.
 ### Listen scroll on element
 ```javascript
 let newScrollListener = new ScrollListener({
-container: '#myListenedElement',
+  container: '#myListenedElement',
 });
+// newScrollListener listen the scroll and touch event in your #myListenedElement.
 ```
 ### Listen vertical scroll/touch
 ```javascript
 let newScrollListener = new ScrollListener({
-container: '#myListenedElement',
-scroll: {
-y: {
-value: 5,
-callback: () => console.log('Hello world'),
-},
-},
-touch: {
-y: {
-value: 200,
-callback: () => console.log('Hello world'),
-},
-},
+  container: '#myListenedElement',
+  scroll: {
+    y: {
+      value: 5,
+      callback: () => console.log('Hello scroll world'),
+    },
+  },
+  touch: {
+    y: {
+      value: 200,
+      callback: () => console.log('Hello touch world'),
+    },
+  },
 });
+// now you console.log a string if user verticaly scroll/touch.
 ```
 ### Listen horizontal scroll with direction
 ```javascript
 let newScrollListener = new ScrollListener({
-container: '#myListenedElement',
-scroll: {
-x: {
-prev: {
-value: 5,
-callback: () => console.log('prev scroll'),
-},
-next: {
-value: 2,
-callback: () => console.log('next scroll'),
-},
-},
-},
-touch: {
-x: {
-prev: {
-value: 200,
-callback: () => console.log('prev touch'),
-},
-next: {
-value: 150,
-callback: () => console.log('next touch'),
-},
-},
-},
+  container: '#myListenedElement',
+  scroll: {
+    x: {
+      prev: {
+        value: 5,
+        callback: () => console.log('prev scroll'),
+      },
+      next: {
+        value: 2,
+        callback: () => console.log('next scroll'),
+      },
+    },
+  },
+  touch: {
+    x: {
+      prev: {
+        value: 200,
+        callback: () => console.log('prev touch'),
+      },
+      next: {
+        value: 150,
+        callback: () => console.log('next touch'),
+      },
+    },
+  },
 });
+// sent you a different console.log depending on whether the user scrolls forward or backward on the horizontal axis
 ```
 ### Setup global callback
 ```javascript
 let newScrollListener = new ScrollListener({
-container: '#myListenedElement',
-callback: () => console.log('my global callback'),
-scroll: {
-x: {
-prev: {
-value: 5,
-callback: () => console.log('prev scroll'),
-},
-next: {
-value: 2,
-callback: () => console.log('next scroll'),
-},
-},
-},
-touch: {
-x: {
-prev: {
-value: 200,
-callback: () => console.log('prev touch'),
-},
-next: {
-value: 150,
-callback: () => console.log('next touch'),
-},
-},
-},
+  container: '#myListenedElement',
+  callback: () => console.log('my global callback'),
+  scroll: {
+    x: {
+      prev: {
+        value: 5,
+        callback: () => console.log('prev scroll'),
+      },
+      next: {
+        value: 2,
+        callback: () => console.log('next scroll'),
+      },
+    },
+  },
+  touch: {
+    x: {
+      prev: {
+        value: 200,
+        callback: () => console.log('prev touch'),
+      },
+      next: {
+        value: 150,
+        callback: () => console.log('next touch'),
+      },
+    },
+  },
 });
+// during each scroll listened to, your global callback function will be called before the others.
+```
+### Remove a listener
+```javascript
+let newScrollListener = new ScrollListener({
+  container: '#myListenedElement',
+});
+
+newScrollListener.removeScrollListener();
+//the listener is now removed.
+```
+### Switch
+```javascript
+let newScrollListener = new ScrollListener({
+  container: '#myListenedElement',
+  cancelOnDirectionChange: true
+});
+
+newScrollListener.switchCancelOnDirectionChange();
+// now the cancelOnDirectionChange is false.
+```
+### Change vertical previous scroll/touch settings
+```javascript
+let newScrollListener = new ScrollListener({
+  container: '#myListenedElement',
+  scroll: {
+    x: {
+      prev: {
+        value: 5,
+        callback: () => console.log('prev scroll'),
+      },
+      next: {
+        value: 2,
+        callback: () => console.log('next scroll'),
+      },
+    },
+  },
+  touch: {
+    x: {
+      prev: {
+        value: 200,
+        callback: () => console.log('prev touch'),
+      },
+      next: {
+        value: 150,
+        callback: () => console.log('next touch'),
+      },
+    },
+  },
+});
+
+newScrollListener.changeSettings({
+  scroll: {
+    x: {
+      prev: {
+        value: 10,
+      },
+    },
+  },
+  touch: {
+    x: {
+      prev: {
+        value: 300,
+      },
+    },
+  },
+});
+// now scroll.x.prev value is 10 and the touch.x.prev.value is 300.
 ```
 
+
 ## Compatible Browsers
+[![Browserstack](https://d2ogrdw2mh0rsl.cloudfront.net/production/images/static/header/header-logo.svg)](https://live.browserstack.com/)
+
+The tests were carried out thanks to Browserstack which offers us its services since our npm is opensource.
+
 The npm is now run on :
 - Chrome desktop / mobile
 - Edge
@@ -596,10 +672,6 @@ The npm is now run on :
 - Opera desktop/ mobile
 - Safari desktop / mobile
 - Samsung Internet
-
-The tests were carried out thanks to Browserstack which offers us its services since our npm is opensource.
-
-[![Browserstack](https://d2ogrdw2mh0rsl.cloudfront.net/production/images/static/header/header-logo.svg)](https://live.browserstack.com/)
 
 ## Contributors
 

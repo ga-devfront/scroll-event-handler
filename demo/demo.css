@@ -12,21 +12,35 @@ body {
     width: 100%;
     padding: 0px;
     margin: 0px;
+    -webkit-box-align: center;
+    align-items: center;
 }
 
 header {
+    height: 8%;
     text-align: center;
+}
+
+h1 {
+    margin: 5px;
 }
 
 main {
     background: #202020;;
-    display: -webkit-box;
-    display: flex;
-    justify-content: space-around;
-    height: 80%;
-    width: 100%;
-    padding: 0px;
-    margin: 0px;
+    height: 75%;
+    width: 80%;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    border: 2px solid #a80000;
+}
+
+p {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 50%;
 }
 
 form {
@@ -42,8 +56,13 @@ input {
 }
 
 footer {
+    height: 10%;
     text-align: center;
     height: 20px;
+}
+
+a {
+    margin: 5px;
 }
 
 #apply, #reset {
@@ -53,4 +72,59 @@ footer {
     margin: 10px 20px;
     background: none;
     color: #ffffff;
+}
+
+.container {
+    display: -webkit-box;
+    display: flex;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 945px) {
+    p {
+        font-size: 0.9em;
+        width: 90%;
+    }
+
+    header {
+        height: 5%;
+    }
+
+    main {
+        padding-top: 5px;
+        margin-bottom: 5px;
+        width: 95%;
+        height: 85%;
+    }
+
+    img {
+        -webkit-transform: scale(0.8);
+                transform: scale(0.8);
+    }
+
+    a {
+        margin: 2px;
+    }
+
+    h1 {
+        font-size: 1.4em;
+        margin: 3px;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    h3 {
+        font-size: 1.1em;
+    }
+
+    form {
+        margin: 3px;
+    }
+
+    label {
+        margin: 2px;
+    }
+
 }

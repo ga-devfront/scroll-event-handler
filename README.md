@@ -30,13 +30,13 @@ For this npm ESLint is used with the basic parameters to have a clean code.
 ## Installation
 It can be installed from npm.
 ```bash
-$ npm install scroll-listener-for-all-device
+$ npm install scroll-event-handler
 ```
 
 ## Usage
 The minimal configuration for scroll listener is this bellow :
 ```javascript
-import ScrollListener from 'scroll-listener-for-all-device';
+import ScrollListener from 'scroll-event-handler';
 
 let newScrollListener = new ScrollListener({callback: () => console.log('scroll')});
 ```

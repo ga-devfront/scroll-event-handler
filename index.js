@@ -396,7 +396,7 @@ export default function ScrollListener(settings) {
     }
 
     // method to switch cancelOnDirectionChange
-    this.switchcancelOnDirectionChange = () => {
+    this.switchCancelOnDirectionChange = () => {
         this.cancelOnDirectionChange = !this.cancelOnDirectionChange;
     }
 

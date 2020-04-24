@@ -24,10 +24,7 @@
   "author": "Guyomar Alexis",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ga-devfront/scroll-listener/issues"
+    "url": "https://github.com/ga-devfront/scroll-event-handler/issues"
   },
-  "homepage": "https://github.com/ga-devfront/scroll-listener#readme",
-  "devDependencies": {
-    "eslint": "^6.8.0"
-  }
+  "homepage": "https://github.com/ga-devfront/scroll-event-handler#readme"
 }

@@ -3,19 +3,17 @@ Scroll listener est un package permettant de lire les événéments de scroll (d
 assigné un callback.
 
 ## Badges
-![npm](https://img.shields.io/npm/v/scroll-listener-for-all-device)
-![npm bundle size](https://img.shields.io/bundlephobia/min/scroll-listener-for-all-device)
-![npm](https://img.shields.io/npm/dm/scroll-listener-for-all-device)
+![npm](https://img.shields.io/npm/v/scroll-event-handler)
+![npm bundle size](https://img.shields.io/bundlephobia/min/scroll-event-handler)
+![npm](https://img.shields.io/npm/dm/scroll-event-handler)
 
 [![GitHub last
 commit](https://img.shields.io/github/last-commit/ga-devfront/scroll-event-handler/develop)](https://github.com/ga-devfront/scroll-event-handler/commits/develop)
 ![GitHub top language](https://img.shields.io/github/languages/top/ga-devfront/scroll-event-handler)
 [![HitCount](http://hits.dwyl.com/ga-devfront/scroll-listener.svg)](http://hits.dwyl.com/ga-devfront/scroll-event-handler)
 
-[![Codacy
-Badge](https://api.codacy.com/project/badge/Grade/e5ddea0228d7470393909a2b6c1d2d77)](https://www.codacy.com/manual/ga-devfront/scroll-listener?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ga-devfront/scroll-listener&amp;utm_campaign=Badge_Grade)
-[![time
-tracker](https://wakatime.com/badge/github/ga-devfront/scroll-listener.svg)](https://wakatime.com/badge/github/ga-devfront/scroll-listener)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5ddea0228d7470393909a2b6c1d2d77)](https://www.codacy.com/manual/ga-devfront/scroll-listener?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ga-devfront/scroll-event-handler&amp;utm_campaign=Badge_Grade)
+[![time tracker](https://wakatime.com/badge/github/ga-devfront/scroll-event-handler.svg)](https://wakatime.com/badge/github/ga-devfront/scroll-event-handler)
 [![Demo](https://img.shields.io/website?label=demo%20website&url=https%3A%2F%2Fag-dev.fr%2Fprivate%2Fscroll-listener%2F)](https://ag-dev.fr/private/scroll-listener/demo/)
 
 [![NPM](https://nodei.co/npm/scroll-event-handler.png)](https://nodei.co/npm/scroll-event-handler/)

@@ -179,7 +179,7 @@ export default function ScrollListener(settings) {
     }
 
     // get the container
-    this.container = settings.container ? document.querySelector(settings.container) : document.querySelector('main');
+    this.container = (settings.container) ? document.querySelector(settings.container) : document.querySelector('main');
 
     // generates an error if the container is null
     if (this.container === null) {
@@ -189,26 +189,29 @@ export default function ScrollListener(settings) {
     // check the cancelOnDirectionChange parameter or set it to true if it is not provided
     this.cancelOnDirectionChange = (settings.cancelOnDirectionChange) ? settings.cancelOnDirectionChange : true;
 
+    // check the globalCallback parameter or call nothing.
+    this.globalCallback = (settings.callback) ? settings.callback : () => {};
+
     // update the settings with the information provided or leave the default settings for scroll.
     this.scrollSettings = {
         x: {
             next: {
-                value: (settings.scroll.x.next.value) ? (settings.scroll.x.next.value) : 2,
-                callback: (settings.scroll.x.next.callback) ? (settings.scroll.x.next.callback) : () => {},
+                value: (settings.scroll.x.next.value) ? settings.scroll.x.next.value : 2,
+                callback: (settings.scroll.x.next.callback) ? settings.scroll.x.next.callback : () => {},
             },
             prev: {
-                value: (settings.scroll.x.prev.value) ? (settings.scroll.x.prev.value) : 2,
-                callback: (settings.scroll.x.prev.callback) ? (settings.scroll.x.prev.callback) : () => {},
+                value: (settings.scroll.x.prev.value) ? settings.scroll.x.prev.value : 2,
+                callback: (settings.scroll.x.prev.callback) ? settings.scroll.x.prev.callback : () => {},
             },
         },
         y: {
             next: {
-                value: (settings.scroll.y.next.value) ? (settings.scroll.y.next.value) : 5,
-                callback: (settings.scroll.y.next.callback) ? (settings.scroll.y.next.callback) : () => {},
+                value: (settings.scroll.y.next.value) ? settings.scroll.y.next.value : 5,
+                callback: (settings.scroll.y.next.callback) ? settings.scroll.y.next.callback : () => {},
             },
             prev: {
-                value: (settings.scroll.y.prev.value) ? (settings.scroll.y.prev.value) : 5,
-                callback: (settings.scroll.y.prev.callback) ? (settings.scroll.y.prev.callback) : () => {},
+                value: (settings.scroll.y.prev.value) ? settings.scroll.y.prev.value : 5,
+                callback: (settings.scroll.y.prev.callback) ? settings.scroll.y.prev.callback : () => {},
             },
         }
     }
@@ -217,25 +220,125 @@ export default function ScrollListener(settings) {
     this.touchSettings = {
         x: {
             next: {
-                value: (settings.touch.x.next.value) ? (settings.touch.x.next.value) : 80,
-                callback: (settings.touch.x.next.callback) ? (settings.touch.x.next.callback) : () => {},
+                value: (settings.touch.x.next.value) ? settings.touch.x.next.value : 80,
+                callback: (settings.touch.x.next.callback) ? settings.touch.x.next.callback : () => {},
             },
             prev: {
-                value: (settings.touch.x.prev.value) ? (settings.touch.x.prev.value) : 80,
-                callback: (settings.touch.x.prev.callback) ? (settings.touch.x.prev.callback) : () => {},
+                value: (settings.touch.x.prev.value) ? settings.touch.x.prev.value : 80,
+                callback: (settings.touch.x.prev.callback) ? settings.touch.x.prev.callback : () => {},
             },
         },
         y: {
             next: {
-                value: (settings.touch.y.next.value) ? (settings.touch.y.next.value) : 200,
-                callback: (settings.touch.y.next.callback) ? (settings.touch.y.next.callback) : () => {},
+                value: (settings.touch.y.next.value) ? settings.touch.y.next.value : 200,
+                callback: (settings.touch.y.next.callback) ? settings.touch.y.next.callback : () => {},
             },
             prev: {
-                value: (settings.touch.y.prev.value) ? (settings.touch.y.prev.value) : 200,
-                callback: (settings.touch.y.prev.callback) ? (settings.touch.y.prev.callback) : () => {},
+                value: (settings.touch.y.prev.value) ? settings.touch.y.prev.value : 200,
+                callback: (settings.touch.y.prev.callback) ? settings.touch.y.prev.callback : () => {},
             },
         }
     }
+
+    // method to change settings.
+    this.changeSettings = (newSettings) => {
+        this.globalCallback = (newSettings.callback) ? newSettings.callback : this.globalCallback;
+
+        this.scrollSettings.x.next.value = (newSettings.scroll.x.next.value) ? (newSettings.scroll.y.next.value) : this.scrollSettings.y.next.value;
+        this.scrollSettings.x.next.callback = (newSettings.scroll.x.next.callback) ? (newSettings.scroll.y.next.callback) : this.scrollSettings.y.next.callback;
+
+        this.scrollSettings.x.prev.value = (newSettings.scroll.x.prev.value) ? (newSettings.scroll.y.prev.value) : this.scrollSettings.y.prev.value;
+        this.scrollSettings.x.prev.callback = (newSettings.scroll.x.prev.callback) ? (newSettings.scroll.y.prev.callback) : this.scrollSettings.y.prev.callback;
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.scroll.x, 'value')) {
+            this.scrollSettings.x.next.value = newSettings.scroll.x.value;
+            this.scrollSettings.x.prev.value = newSettings.scroll.x.value;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.scroll.x, 'callback')) {
+            this.scrollSettings.x.next.callback = newSettings.scroll.x.callback;
+            this.scrollSettings.x.prev.callback = newSettings.scroll.x.callback;
+        }
+
+        this.scrollSettings.y.next.value = (newSettings.scroll.y.next.value) ? (newSettings.scroll.y.next.value) : this.scrollSettings.y.next.value;
+        this.scrollSettings.y.next.callback = (newSettings.scroll.y.next.callback) ? (newSettings.scroll.y.next.callback) : this.scrollSettings.y.next.callback;
+
+        this.scrollSettings.y.prev.value = (newSettings.scroll.y.prev.value) ? (newSettings.scroll.y.prev.value) : this.scrollSettings.y.prev.value;
+        this.scrollSettings.y.prev.callback = (newSettings.scroll.y.prev.callback) ? (newSettings.scroll.y.prev.callback) : this.scrollSettings.y.prev.callback;
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.scroll.y, 'value')) {
+            this.scrollSettings.y.next.value = newSettings.scroll.y.value;
+            this.scrollSettings.y.prev.value = newSettings.scroll.y.value;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.scroll.y, 'callback')) {
+            this.scrollSettings.y.next.callback = newSettings.scroll.y.callback;
+            this.scrollSettings.y.prev.callback = newSettings.scroll.y.callback;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.scroll, 'value')) {
+            this.scrollSettings.x.next.value = newSettings.scroll.value;
+            this.scrollSettings.x.prev.value = newSettings.scroll.value;
+            this.scrollSettings.y.next.value = newSettings.scroll.value;
+            this.scrollSettings.y.prev.value = newSettings.scroll.value;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.scroll, 'callback')) {
+            this.scrollSettings.x.next.callback = newSettings.scroll.callback;
+            this.scrollSettings.x.prev.callback = newSettings.scroll.callback;
+            this.scrollSettings.y.next.callback = newSettings.scroll.callback;
+            this.scrollSettings.y.prev.callback = newSettings.scroll.callback;
+        }
+
+        this.touchSettings.x.next.value = (newSettings.touch.x.next.value) ? (newSettings.touch.y.next.value) : this.touchSettings.y.next.value;
+        this.touchSettings.x.next.callback = (newSettings.touch.x.next.callback) ? (newSettings.touch.y.next.callback) : this.touchSettings.y.next.callback;
+
+        this.touchSettings.x.prev.value = (newSettings.touch.x.prev.value) ? (newSettings.touch.y.prev.value) : this.touchSettings.y.prev.value;
+        this.touchSettings.x.prev.callback = (newSettings.touch.x.prev.callback) ? (newSettings.touch.y.prev.callback) : this.touchSettings.y.prev.callback;
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.touch.x, 'value')) {
+            this.touchSettings.x.next.value = newSettings.touch.x.value;
+            this.touchSettings.x.prev.value = newSettings.touch.x.value;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.touch.x, 'callback')) {
+            this.touchSettings.x.next.callback = newSettings.touch.x.callback;
+            this.touchSettings.x.prev.callback = newSettings.touch.x.callback;
+        }
+
+        this.touchSettings.y.next.value = (newSettings.touch.y.next.value) ? (newSettings.touch.y.next.value) : this.touchSettings.y.next.value;
+        this.touchSettings.y.next.callback = (newSettings.touch.y.next.callback) ? (newSettings.touch.y.next.callback) : this.touchSettings.y.next.callback;
+
+        this.touchSettings.y.prev.value = (newSettings.touch.y.prev.value) ? (newSettings.touch.y.prev.value) : this.touchSettings.y.prev.value;
+        this.touchSettings.y.prev.callback = (newSettings.touch.y.prev.callback) ? (newSettings.touch.y.prev.callback) : this.touchSettings.y.prev.callback;
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.touch.y, 'value')) {
+            this.touchSettings.y.next.value = newSettings.touch.y.value;
+            this.touchSettings.y.prev.value = newSettings.touch.y.value;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.touch.y, 'callback')) {
+            this.touchSettings.y.next.callback = newSettings.touch.y.callback;
+            this.touchSettings.y.prev.callback = newSettings.touch.y.callback;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.touch, 'value')) {
+            this.touchSettings.x.next.value = newSettings.touch.value;
+            this.touchSettings.x.prev.value = newSettings.touch.value;
+            this.touchSettings.y.next.value = newSettings.touch.value;
+            this.touchSettings.y.prev.value = newSettings.touch.value;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(newSettings.touch, 'callback')) {
+            this.touchSettings.x.next.callback = newSettings.touch.callback;
+            this.touchSettings.x.prev.callback = newSettings.touch.callback;
+            this.touchSettings.y.next.callback = newSettings.touch.callback;
+            this.touchSettings.y.prev.callback = newSettings.touch.callback;
+        }
+    }
+
+    // call the changeSettings method to define own parameters.
+    this.changeSettings(settings);
 
     this.trigger = {
         scroll: {
@@ -398,54 +501,6 @@ export default function ScrollListener(settings) {
     // method to switch cancelOnDirectionChange
     this.switchCancelOnDirectionChange = () => {
         this.cancelOnDirectionChange = !this.cancelOnDirectionChange;
-    }
-
-    // method to change settings, the settings options are the same as our main function
-    this.changeSettings = (newSettings) => {
-        this.scrollSettings = {
-            x: {
-                next: {
-                    value: (newSettings.scroll.x.next.value) ? (newSettings.scroll.x.next.value) : this.scrollSettings.x.next.value,
-                    callback: (newSettings.scroll.x.next.callback) ? (newSettings.scroll.x.next.callback) : this.scrollSettings.x.next.callback,
-                },
-                prev: {
-                    value: (newSettings.scroll.x.prev.value) ? (newSettings.scroll.x.prev.value) : this.scrollSettings.x.prev.value,
-                    callback: (newSettings.scroll.x.prev.callback) ? (newSettings.scroll.x.prev.callback) : this.scrollSettings.x.prev.callback,
-                },
-            },
-            y: {
-                next: {
-                    value: (newSettings.scroll.y.next.value) ? (newSettings.scroll.y.next.value) : this.scrollSettings.y.next.value,
-                    callback: (newSettings.scroll.y.next.callback) ? (newSettings.scroll.y.next.callback) : this.scrollSettings.y.next.callback,
-                },
-                prev: {
-                    value: (newSettings.scroll.y.prev.value) ? (newSettings.scroll.y.prev.value) : this.scrollSettings.y.prev.value,
-                    callback: (newSettings.scroll.y.prev.callback) ? (newSettings.scroll.y.prev.callback) : this.scrollSettings.y.prev.callback,
-                },
-            }
-        }
-        this.touchSettings = {
-            x: {
-                next: {
-                    value: (newSettings.touch.x.next.value) ? (newSettings.touch.x.next.value) : this.touchSettings.x.next.value,
-                    callback: (newSettings.touch.x.next.callback) ? (newSettings.touch.x.next.callback) : this.touchSettings.x.next.callback,
-                },
-                prev: {
-                    value: (newSettings.touch.x.prev.value) ? (newSettings.touch.x.prev.value) : this.touchSettings.x.prev.value,
-                    callback: (newSettings.touch.x.prev.callback) ? (newSettings.touch.x.prev.callback) : this.touchSettings.x.prev.callback,
-                },
-            },
-            y: {
-                next: {
-                    value: (newSettings.touch.y.next.value) ? (newSettings.touch.y.next.value) : this.touchSettings.y.next.value,
-                    callback: (newSettings.touch.y.next.callback) ? (newSettings.touch.y.next.callback) : this.touchSettings.y.next.callback,
-                },
-                prev: {
-                    value: (newSettings.touch.y.prev.value) ? (newSettings.touch.y.prev.value) : this.touchSettings.y.prev.value,
-                    callback: (newSettings.touch.y.prev.callback) ? (newSettings.touch.y.prev.callback) : this.touchSettings.y.prev.callback,
-                },
-            }
-        }
     }
 
     return this;

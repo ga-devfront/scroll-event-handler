@@ -46,7 +46,7 @@ footer {
     height: 20px;
 }
 
-#apply {
+#apply, #reset {
     cursor: pointer;
     border: #ffffff solid 2px;
     border-radius: 5px;

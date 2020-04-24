@@ -244,11 +244,11 @@ export default function ScrollListener(settings) {
     this.changeSettings = (newSettings) => {
         this.globalCallback = (newSettings.callback) ? newSettings.callback : this.globalCallback;
 
-        this.scrollSettings.x.next.value = (newSettings.scroll.x.next.value) ? (newSettings.scroll.y.next.value) : this.scrollSettings.y.next.value;
-        this.scrollSettings.x.next.callback = (newSettings.scroll.x.next.callback) ? (newSettings.scroll.y.next.callback) : this.scrollSettings.y.next.callback;
+        this.scrollSettings.x.next.value = (newSettings.scroll.x.next.value) ? newSettings.scroll.y.next.value : this.scrollSettings.y.next.value;
+        this.scrollSettings.x.next.callback = (newSettings.scroll.x.next.callback) ? newSettings.scroll.y.next.callback : this.scrollSettings.y.next.callback;
 
-        this.scrollSettings.x.prev.value = (newSettings.scroll.x.prev.value) ? (newSettings.scroll.y.prev.value) : this.scrollSettings.y.prev.value;
-        this.scrollSettings.x.prev.callback = (newSettings.scroll.x.prev.callback) ? (newSettings.scroll.y.prev.callback) : this.scrollSettings.y.prev.callback;
+        this.scrollSettings.x.prev.value = (newSettings.scroll.x.prev.value) ? newSettings.scroll.y.prev.value : this.scrollSettings.y.prev.value;
+        this.scrollSettings.x.prev.callback = (newSettings.scroll.x.prev.callback) ? newSettings.scroll.y.prev.callback : this.scrollSettings.y.prev.callback;
 
         if (Object.prototype.hasOwnProperty.call(newSettings.scroll.x, 'value')) {
             this.scrollSettings.x.next.value = newSettings.scroll.x.value;
@@ -260,11 +260,11 @@ export default function ScrollListener(settings) {
             this.scrollSettings.x.prev.callback = newSettings.scroll.x.callback;
         }
 
-        this.scrollSettings.y.next.value = (newSettings.scroll.y.next.value) ? (newSettings.scroll.y.next.value) : this.scrollSettings.y.next.value;
-        this.scrollSettings.y.next.callback = (newSettings.scroll.y.next.callback) ? (newSettings.scroll.y.next.callback) : this.scrollSettings.y.next.callback;
+        this.scrollSettings.y.next.value = (newSettings.scroll.y.next.value) ? newSettings.scroll.y.next.value : this.scrollSettings.y.next.value;
+        this.scrollSettings.y.next.callback = (newSettings.scroll.y.next.callback) ? newSettings.scroll.y.next.callback : this.scrollSettings.y.next.callback;
 
-        this.scrollSettings.y.prev.value = (newSettings.scroll.y.prev.value) ? (newSettings.scroll.y.prev.value) : this.scrollSettings.y.prev.value;
-        this.scrollSettings.y.prev.callback = (newSettings.scroll.y.prev.callback) ? (newSettings.scroll.y.prev.callback) : this.scrollSettings.y.prev.callback;
+        this.scrollSettings.y.prev.value = (newSettings.scroll.y.prev.value) ? newSettings.scroll.y.prev.value : this.scrollSettings.y.prev.value;
+        this.scrollSettings.y.prev.callback = (newSettings.scroll.y.prev.callback) ? newSettings.scroll.y.prev.callback : this.scrollSettings.y.prev.callback;
 
         if (Object.prototype.hasOwnProperty.call(newSettings.scroll.y, 'value')) {
             this.scrollSettings.y.next.value = newSettings.scroll.y.value;
@@ -290,11 +290,11 @@ export default function ScrollListener(settings) {
             this.scrollSettings.y.prev.callback = newSettings.scroll.callback;
         }
 
-        this.touchSettings.x.next.value = (newSettings.touch.x.next.value) ? (newSettings.touch.y.next.value) : this.touchSettings.y.next.value;
-        this.touchSettings.x.next.callback = (newSettings.touch.x.next.callback) ? (newSettings.touch.y.next.callback) : this.touchSettings.y.next.callback;
+        this.touchSettings.x.next.value = (newSettings.touch.x.next.value) ? newSettings.touch.y.next.value : this.touchSettings.y.next.value;
+        this.touchSettings.x.next.callback = (newSettings.touch.x.next.callback) ? newSettings.touch.y.next.callback : this.touchSettings.y.next.callback;
 
-        this.touchSettings.x.prev.value = (newSettings.touch.x.prev.value) ? (newSettings.touch.y.prev.value) : this.touchSettings.y.prev.value;
-        this.touchSettings.x.prev.callback = (newSettings.touch.x.prev.callback) ? (newSettings.touch.y.prev.callback) : this.touchSettings.y.prev.callback;
+        this.touchSettings.x.prev.value = (newSettings.touch.x.prev.value) ? newSettings.touch.y.prev.value : this.touchSettings.y.prev.value;
+        this.touchSettings.x.prev.callback = (newSettings.touch.x.prev.callback) ? newSettings.touch.y.prev.callback : this.touchSettings.y.prev.callback;
 
         if (Object.prototype.hasOwnProperty.call(newSettings.touch.x, 'value')) {
             this.touchSettings.x.next.value = newSettings.touch.x.value;
@@ -306,11 +306,11 @@ export default function ScrollListener(settings) {
             this.touchSettings.x.prev.callback = newSettings.touch.x.callback;
         }
 
-        this.touchSettings.y.next.value = (newSettings.touch.y.next.value) ? (newSettings.touch.y.next.value) : this.touchSettings.y.next.value;
-        this.touchSettings.y.next.callback = (newSettings.touch.y.next.callback) ? (newSettings.touch.y.next.callback) : this.touchSettings.y.next.callback;
+        this.touchSettings.y.next.value = (newSettings.touch.y.next.value) ? newSettings.touch.y.next.value : this.touchSettings.y.next.value;
+        this.touchSettings.y.next.callback = (newSettings.touch.y.next.callback) ? newSettings.touch.y.next.callback : this.touchSettings.y.next.callback;
 
-        this.touchSettings.y.prev.value = (newSettings.touch.y.prev.value) ? (newSettings.touch.y.prev.value) : this.touchSettings.y.prev.value;
-        this.touchSettings.y.prev.callback = (newSettings.touch.y.prev.callback) ? (newSettings.touch.y.prev.callback) : this.touchSettings.y.prev.callback;
+        this.touchSettings.y.prev.value = (newSettings.touch.y.prev.value) ? newSettings.touch.y.prev.value : this.touchSettings.y.prev.value;
+        this.touchSettings.y.prev.callback = (newSettings.touch.y.prev.callback) ? newSettings.touch.y.prev.callback : this.touchSettings.y.prev.callback;
 
         if (Object.prototype.hasOwnProperty.call(newSettings.touch.y, 'value')) {
             this.touchSettings.y.next.value = newSettings.touch.y.value;

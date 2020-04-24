@@ -63,14 +63,14 @@ let demoListener = new ScrollListener({
     touch: {
         x: {
             next: {
-                value: 5,
+                value: 40,
                 callback: () => {
                     triggers.touch.x.next += 1;
                     document.querySelector('#trigger-touch-x-next').value = triggers.touch.x.next;
                 },
             },
             prev: {
-                value: 5,
+                value: 40,
                 callback: () => {
                     triggers.touch.x.prev += 1;
                     document.querySelector('#trigger-touch-x-prev').value = triggers.touch.x.prev;
@@ -79,14 +79,14 @@ let demoListener = new ScrollListener({
         },
         y: {
             next: {
-                value: 5,
+                value: 150,
                 callback: () => {
                     triggers.touch.y.next += 1;
                     document.querySelector('#trigger-touch-y-next').value = triggers.touch.y.next;
                 },
             },
             prev: {
-                value: 5,
+                value: 150,
                 callback: () => {
                     triggers.touch.y.prev += 1;
                     document.querySelector('#trigger-touch-y-prev').value = triggers.touch.y.prev;

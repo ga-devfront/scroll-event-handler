@@ -72,9 +72,8 @@ for further use an example are [available below]().
   <tr>
     <td><code>scroll</code></td>
     <td>object</td>
-    <td>Either:
-      <ul>
-        <li>An object encapsulating the various configuration parameters for all possible scrolls (X / Y - next / prev).
+    <td>Either:<br>
+      An object encapsulating the various configuration parameters for all possible scrolls (X / Y - next / prev).
           <table>
             <tr>
               <td><b>Name</b></td>
@@ -92,8 +91,7 @@ for further use an example are [available below]().
               <td>Defines the function to be called when the number of scrolls is reached.</td>
             </tr>
           </table>
-        </li>
-        <li>An object encapsulating the different scroll axes.
+        An object encapsulating the different scroll axes.
           <table>
             <tr>
               <td><b>Name</b></td>
@@ -103,9 +101,8 @@ for further use an example are [available below]().
             <tr>
               <td><code><var>x</var></code></td>
               <td>object</td>
-              <td>Either:
-                <ul>
-                  <li>An object encapsulating the various configuration parameters for all horizontal scrolls.
+              <td>Either:<br>
+                  An object encapsulating the various configuration parameters for all horizontal scrolls.
                     <table>
                       <tr>
                         <td><b>Name</b></td>
@@ -123,8 +120,7 @@ for further use an example are [available below]().
                         <td>Defines the function to be called when the number of scrolls is reached.</td>
                       </tr>
                     </table>
-                  </li>
-                  <li>An object encapsulating the different directions of the scroll.
+                  An object encapsulating the different directions of the scroll.
                     <table>
                       <tr>
                         <td><b>Name</b></td>
@@ -154,7 +150,6 @@ for further use an example are [available below]().
                                 the number of scrolls is reached.</td>
                             </tr>
                           </table>
-                  </li>
               </td>
             </tr>
             <tr>
@@ -180,20 +175,16 @@ for further use an example are [available below]().
                       number of scrolls is reached.</td>
                   </tr>
                 </table>
-        </li>
     </td>
   </tr>
 </table>
-</li>
-</ul>
 </td>
 </tr>
 <tr>
   <td><code><var>y</var></code></td>
   <td>object</td>
-  <td>Either:
-    <ul>
-      <li>An object encapsulating the various configuration parameters for all vertical scrolls.
+  <td>Either:<br>
+      An object encapsulating the various configuration parameters for all vertical scrolls.
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -211,8 +202,7 @@ for further use an example are [available below]().
             <td>Defines the function to be called when the number of scrolls is reached.</td>
           </tr>
         </table>
-      </li>
-      <li>An object encapsulating the different directions of the scroll.
+      An object encapsulating the different directions of the scroll.
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -242,7 +232,6 @@ for further use an example are [available below]().
                     of scrolls is reached.</td>
                 </tr>
               </table>
-      </li>
   </td>
 </tr>
 <tr>
@@ -268,21 +257,17 @@ for further use an example are [available below]().
           is reached.</td>
       </tr>
     </table>
-    </li>
   </td>
 </tr>
 </table>
-</li>
-</ul>
 </td>
 </tr>
 </table>
 <tr>
   <td><code>touch</code></td>
   <td>object</td>
-  <td>Either:
-    <ul>
-      <li>An object encapsulating the various configuration parameters for all possible touch (X / Y - next / prev).
+  <td>Either:<br>
+      An object encapsulating the various configuration parameters for all possible touch (X / Y - next / prev).
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -300,8 +285,7 @@ for further use an example are [available below]().
             <td>Defines the function to be called when the trigger is reached.</td>
           </tr>
         </table>
-      </li>
-      <li>An object encapsulating the different touch axes.
+      An object encapsulating the different touch axes.
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -311,9 +295,8 @@ for further use an example are [available below]().
           <tr>
             <td><code><var>x</var></code></td>
             <td>object</td>
-            <td>Either:
-              <ul>
-                <li>An object encapsulating the various configuration parameters for all horizontal touches.
+            <td>Either:<br>
+                An object encapsulating the various configuration parameters for all horizontal touches.
                   <table>
                     <tr>
                       <td><b>Name</b></td>
@@ -331,8 +314,7 @@ for further use an example are [available below]().
                       <td>Defines the function to be called when the trigger is reached.</td>
                     </tr>
                   </table>
-                </li>
-                <li>An object encapsulating the different directions of the touch.
+                An object encapsulating the different directions of the touch.
                   <table>
                     <tr>
                       <td><b>Name</b></td>
@@ -362,7 +344,6 @@ for further use an example are [available below]().
                               the trigger is reached.</td>
                           </tr>
                         </table>
-                </li>
             </td>
           </tr>
           <tr>
@@ -388,20 +369,16 @@ for further use an example are [available below]().
                     is reached.</td>
                 </tr>
               </table>
-      </li>
   </td>
 </tr>
 </table>
-</li>
-</ul>
 </td>
 </tr>
 <tr>
   <td><code><var>y</var></code></td>
   <td>object</td>
-  <td>Either:
-    <ul>
-      <li>An object encapsulating the various configuration parameters for all vertical touches.
+  <td>Either:<br>
+      An object encapsulating the various configuration parameters for all vertical touches.
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -419,8 +396,7 @@ for further use an example are [available below]().
             <td>Defines the function to be called when the trigger is reached.</td>
           </tr>
         </table>
-      </li>
-      <li>An object encapsulating the different directions of the touch.
+      An object encapsulating the different directions of the touch.
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -450,7 +426,6 @@ for further use an example are [available below]().
                     is reached.</td>
                 </tr>
               </table>
-      </li>
   </td>
 </tr>
 <tr>
@@ -476,12 +451,9 @@ for further use an example are [available below]().
           reached.</td>
       </tr>
     </table>
-    </li>
   </td>
 </tr>
 </table>
-</li>
-</ul>
 </td>
 </tr>
 </table>

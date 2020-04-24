@@ -69,12 +69,27 @@ for further use an example are [available below]().
 <table>
   <tbody>
     <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
       <td>boolean</td>
       <td><i>Default value : <code>true</code></i>
         <br>Defined if the scroll counter should be reset if the direction of the scroll changes.</td>
     </tr>
+  </tbody>
+</table>
+
+### Callback
+
+```callback``` description :
+<table>
+  <tbody>
     <tr>
-      <td><code>callback</code></td>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
       <td>function</td>
       <td><i>Default value : <code>() =&gt; {}</code></i>
         <br>Allows you to define a global callback which will be called at each trigger before the other callbacks.</td>
@@ -87,6 +102,10 @@ for further use an example are [available below]().
 ```scroll``` description :
 <table>
   <tbody>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
     <tr>
       <td>object</td>
       <td>Either:
@@ -313,6 +332,10 @@ for further use an example are [available below]().
 ```touch``` description :
 <table>
   <tbody>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
     <tr>
       <td>object</td>
       <td>Either:

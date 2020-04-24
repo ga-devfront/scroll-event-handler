@@ -14,12 +14,12 @@ commit](https://img.shields.io/github/last-commit/ga-devfront/scroll-event-handl
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5ddea0228d7470393909a2b6c1d2d77)](https://www.codacy.com/manual/ga-devfront/scroll-listener?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ga-devfront/scroll-event-handler&amp;utm_campaign=Badge_Grade)
 [![time tracker](https://wakatime.com/badge/github/ga-devfront/scroll-event-handler.svg)](https://wakatime.com/badge/github/ga-devfront/scroll-event-handler)
-[![Demo](https://img.shields.io/website?label=demo%20website&url=https%3A%2F%2Fag-dev.fr%2Fprivate%2Fscroll-listener%2F)](https://ag-dev.fr/private/scroll-listener/demo/)
+[![Demo](https://img.shields.io/website?label=demo%20website&url=https%3A%2F%2Fag-dev.fr%2Fprivate%2Fscroll-listener%2F)](https://ag-dev.fr/private/scroll-event-handler/demo/)
 
 [![NPM](https://nodei.co/npm/scroll-event-handler.png)](https://nodei.co/npm/scroll-event-handler/)
 
 ## Demo
-The [online demo](https://ag-dev.fr/private/scroll-listener/demo/) gives you an overview of what can be done with this
+The [online demo](https://ag-dev.fr/private/scroll-event-handler/demo/) gives you an overview of what can be done with this
 package.
 
 You can also see the use of this package on my [portfolio](https://ag-dev.fr/).

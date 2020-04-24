@@ -1,5 +1,5 @@
 {
-  "name": "scroll-listener",
+  "name": "scroll-event-handler",
   "version": "1.0.0",
   "description": "a complet scrolling event listener on all device.",
   "main": "index.js",

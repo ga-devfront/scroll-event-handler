@@ -45,21 +45,30 @@ settings](#options).
 for further use an example are [available below]().
 
 ## Options
+
+### Container
+
+```container``` description :
 <table>
   <tbody>
     <tr>
-      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
     </tr>
     <tr>
-      <td><code>container</code></td>
       <td>string</td>
       <td><i>Default value : <code>'main'</code></i><br>Using a <code>querySelector</code> you will have to indicate the
         container to listen to with the appropriate string.</td>
     </tr>
+  </tbody>
+</table>
+
+### CancelOnDirectionChange
+
+```cancelOnDirectionChange``` description :
+<table>
+  <tbody>
     <tr>
-      <td><code>cancelOnDirectionChange</code></td>
       <td>boolean</td>
       <td><i>Default value : <code>true</code></i>
         <br>Defined if the scroll counter should be reset if the direction of the scroll changes.</td>
@@ -70,8 +79,15 @@ for further use an example are [available below]().
       <td><i>Default value : <code>() =&gt; {}</code></i>
         <br>Allows you to define a global callback which will be called at each trigger before the other callbacks.</td>
     </tr>
+  </tbody>
+</table>
+
+### Scroll
+
+```scroll``` description :
+<table>
+  <tbody>
     <tr>
-      <td><code>scroll</code></td>
       <td>object</td>
       <td>Either:
         <span>An object encapsulating the various configuration parameters for all possible scrolls (X / Y - next / prev).</span>
@@ -289,8 +305,15 @@ for further use an example are [available below]().
         </table>
       </td>
     </tr>
+  </tbody>
+</table>
+
+### Touch
+
+```touch``` description :
+<table>
+  <tbody>
     <tr>
-      <td><code>touch</code></td>
       <td>object</td>
       <td>Either:
         <span>An object encapsulating the various configuration parameters for all possible touch (X / Y - next / prev).</span>

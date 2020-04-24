@@ -4,16 +4,58 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Tests Scroll Listener</title>
+    <link rel="stylesheet" href="demo.css">
+    <title>Demo Scroll event handler</title>
   </head>
-  <body style="width: 100vh; height: 100vh; background-color: black;">
-    <main>
-    <div id='scrollIn' style="width: 100vh; height: 100vh; background-color: blue;">
-    userAgent: <p style="color: #ffffff" id="userAgent"></p>
-    browser: <p style="color: #ffffff" id="browser"></p>
-    deltaY: <p style="color: #ffffff" id="deltaY"></p>
+  <body>
+    <header>
+      <h1>Scroll event handler</h1>
+    </header>
+    <main id='scrollIn'>
+    <div>
+      <h2>Settings :</h2>
+      <section>
+        <h3>scroll :</h3>
+        <div><form><label for="scroll-x-next">x next</label><input type="number" name="scroll-x-next" id="scroll-x-next" value="1"></form>
+          <form><label for="scroll-x-prev">x prev</label><input type="number" name="scroll-x-prev" id="scroll-x-prev" value="1"></form>
+          <form><label for="scroll-y-next">y next</label><input type="number" name="scroll-y-next" id="scroll-y-next" value="1"></form>
+          <form><label for="scroll-y-prev">y prev</label><input type="number" name="scroll-y-prev" id="scroll-y-prev" value="1"></form>
+        </div>
+      </section>
+      <section>
+        <h3>touch :</h3>
+        <div><form><label for="touch-x-next">x next</label><input type="number" name="touch-x-next" id="touch-x-next" value="5"></form>
+          <form><label for="touch-x-prev">x prev</label><input type="number" name="touch-x-prev" id="touch-x-prev" value="5"></form>
+          <form><label for="touch-y-next">y next</label><input type="number" name="touch-y-next" id="touch-y-next" value="5"></form>
+          <form><label for="touch-y-prev">y prev</label><input type="number" name="touch-y-prev" id="touch-y-prev" value="5"></form>
+        </div>
+      </section>
+      <input type="submit" value="Apply" id="apply">
+    </div>
+    <div>
+      <h2>Number of callback :</h2>
+      <section>
+        <h3>scroll :</h3>
+        <div><form><label for="trigger-scroll-x-next">x next</label><input type="number" name="trigger-scroll-x-next" id="trigger-scroll-x-next" value="0" disabled="disabled"></form>
+          <form><label for="trigger-scroll-x-prev">x next</label><input type="number" name="trigger-scroll-x-prev" id="trigger-scroll-x-prev" value="0" disabled="disabled"></form>
+          <form><label for="trigger-scroll-y-next">x next</label><input type="number" name="trigger-scroll-y-next" id="trigger-scroll-y-next" value="0" disabled="disabled"></form>
+          <form><label for="trigger-scroll-y-prev">x next</label><input type="number" name="trigger-scroll-y-prev" id="trigger-scroll-y-prev" value="0" disabled="disabled"></form>
+        </div>
+      </section>
+      <section>
+        <h3>touch :</h3>
+        <div><form><label for="trigger-touch-x-next">x next</label><input type="number" name="trigger-touch-x-next" id="trigger-touch-x-next" value="0" disabled="disabled"></form>
+          <form><label for="trigger-touch-x-prev">x next</label><input type="number" name="trigger-touch-x-prev" id="trigger-touch-x-prev" value="0" disabled="disabled"></form>
+          <form><label for="trigger-touch-y-next">x next</label><input type="number" name="trigger-touch-y-next" id="trigger-touch-y-next" value="0" disabled="disabled"></form>
+          <form><label for="trigger-touch-y-prev">x next</label><input type="number" name="trigger-touch-y-prev" id="trigger-touch-y-prev" value="0" disabled="disabled"></form>
+        </div>
+      </section>
     </div>
   </main>
+  <footer>
+    <a href="https://github.com/ga-devfront/scroll-event-handler/">NPM package GitHub doc</a>
+    <a href="https://www.npmjs.com/package/scroll-event-handler">NPM package link</a>
+  </footer>
   </body>
   <script type="module" src="demo.js"></script>
 </html>

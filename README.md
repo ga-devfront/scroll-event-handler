@@ -14,12 +14,12 @@ commit](https://img.shields.io/github/last-commit/ga-devfront/scroll-event-handl
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5ddea0228d7470393909a2b6c1d2d77)](https://www.codacy.com/manual/ga-devfront/scroll-listener?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ga-devfront/scroll-event-handler&amp;utm_campaign=Badge_Grade)
 [![time tracker](https://wakatime.com/badge/github/ga-devfront/scroll-event-handler.svg)](https://wakatime.com/badge/github/ga-devfront/scroll-event-handler)
-[![Demo](https://img.shields.io/website?label=demo%20website&url=https%3A%2F%2Fag-dev.fr%2Fprivate%2Fscroll-listener%2F)](https://ag-dev.fr/private/scroll-listener/demo/)
+[![Demo](https://img.shields.io/website?label=demo%20website&url=https%3A%2F%2Fag-dev.fr%2Fprivate%2Fscroll-listener%2F)](https://ag-dev.fr/private/scroll-event-handler/demo/)
 
 [![NPM](https://nodei.co/npm/scroll-event-handler.png)](https://nodei.co/npm/scroll-event-handler/)
 
 ## Demo
-The [online demo](https://ag-dev.fr/private/scroll-listener/demo/) gives you an overview of what can be done with this
+The [online demo](https://ag-dev.fr/private/scroll-event-handler/demo/) gives you an overview of what can be done with this
 package.
 
 You can also see the use of this package on my [portfolio](https://ag-dev.fr/).
@@ -72,9 +72,8 @@ for further use an example are [available below]().
   <tr>
     <td><code>scroll</code></td>
     <td>object</td>
-    <td>Either:
-      <ul>
-        <li>An object encapsulating the various configuration parameters for all possible scrolls (X / Y - next / prev).
+    <td>Either:<br>
+      An object encapsulating the various configuration parameters for all possible scrolls (X / Y - next / prev).
           <table>
             <tr>
               <td><b>Name</b></td>
@@ -84,7 +83,8 @@ for further use an example are [available below]().
             <tr>
               <td><code><var>value</var></code></td>
               <td>number</td>
-              <td>Indicates the number of scrolls before the callback is triggered</td>
+              <td>Indicates the number of scrolls before the callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
             </tr>
             <tr>
               <td><code><var>callback</var></code></td>
@@ -92,8 +92,7 @@ for further use an example are [available below]().
               <td>Defines the function to be called when the number of scrolls is reached.</td>
             </tr>
           </table>
-        </li>
-        <li>An object encapsulating the different scroll axes.
+        An object encapsulating the different scroll axes.
           <table>
             <tr>
               <td><b>Name</b></td>
@@ -103,9 +102,8 @@ for further use an example are [available below]().
             <tr>
               <td><code><var>x</var></code></td>
               <td>object</td>
-              <td>Either:
-                <ul>
-                  <li>An object encapsulating the various configuration parameters for all horizontal scrolls.
+              <td>Either:<br>
+                  An object encapsulating the various configuration parameters for all horizontal scrolls.
                     <table>
                       <tr>
                         <td><b>Name</b></td>
@@ -115,7 +113,8 @@ for further use an example are [available below]().
                       <tr>
                         <td><code><var>value</var></code></td>
                         <td>number</td>
-                        <td>Indicates the number of scrolls before the callback is triggered</td>
+                        <td>Indicates the number of scrolls before the callback is triggered<br>
+                        <i>Warning if you use 0 as value, the function will not be called.</i></td>
                       </tr>
                       <tr>
                         <td><code><var>callback</var></code></td>
@@ -123,8 +122,7 @@ for further use an example are [available below]().
                         <td>Defines the function to be called when the number of scrolls is reached.</td>
                       </tr>
                     </table>
-                  </li>
-                  <li>An object encapsulating the different directions of the scroll.
+                  An object encapsulating the different directions of the scroll.
                     <table>
                       <tr>
                         <td><b>Name</b></td>
@@ -144,17 +142,16 @@ for further use an example are [available below]().
                             <tr>
                               <td><code><var>value</var></code></td>
                               <td>number</td>
-                              <td><i>Default value : <code>3</code></i><br>Indicates the number of scrolls before the
-                                callback is triggered</td>
+                              <td><i>Default value : <code>3</code></i><br>Indicates the number of scrolls before the callback is triggered<br>
+                              <i>Warning if you use 0 as value, the function will not be called.</i>
+                                </td>
                             </tr>
                             <tr>
                               <td><code><var>callback</var></code></td>
                               <td>function</td>
-                              <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when
-                                the number of scrolls is reached.</td>
+                              <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the number of scrolls is reached.</td>
                             </tr>
                           </table>
-                  </li>
               </td>
             </tr>
             <tr>
@@ -170,8 +167,8 @@ for further use an example are [available below]().
                   <tr>
                     <td><code><var>value</var></code></td>
                     <td>number</td>
-                    <td><i>Default value : <code>3</code></i><br>Indicates the number of scrolls before the callback is
-                      triggered</td>
+                    <td><i>Default value : <code>3</code></i><br>Indicates the number of scrolls before the callback is triggered<br>
+                    <i>Warning if you use 0 as value, the function will not be called.</i></td>
                   </tr>
                   <tr>
                     <td><code><var>callback</var></code></td>
@@ -180,20 +177,16 @@ for further use an example are [available below]().
                       number of scrolls is reached.</td>
                   </tr>
                 </table>
-        </li>
     </td>
   </tr>
 </table>
-</li>
-</ul>
 </td>
 </tr>
 <tr>
   <td><code><var>y</var></code></td>
   <td>object</td>
-  <td>Either:
-    <ul>
-      <li>An object encapsulating the various configuration parameters for all vertical scrolls.
+  <td>Either:<br>
+      An object encapsulating the various configuration parameters for all vertical scrolls.
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -203,7 +196,8 @@ for further use an example are [available below]().
           <tr>
             <td><code><var>value</var></code></td>
             <td>number</td>
-            <td>Indicates the number of scrolls before the callback is triggered</td>
+            <td>Indicates the number of scrolls before the callback is triggered<br>
+            <i>Warning if you use 0 as value, the function will not be called.</i></td>
           </tr>
           <tr>
             <td><code><var>callback</var></code></td>
@@ -211,8 +205,7 @@ for further use an example are [available below]().
             <td>Defines the function to be called when the number of scrolls is reached.</td>
           </tr>
         </table>
-      </li>
-      <li>An object encapsulating the different directions of the scroll.
+      An object encapsulating the different directions of the scroll.
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -232,17 +225,15 @@ for further use an example are [available below]().
                 <tr>
                   <td><code><var>value</var></code></td>
                   <td>number</td>
-                  <td><i>Default value : <code>5</code></i><br>Indicates the number of scrolls before the callback is
-                    triggered</td>
+                  <td><i>Default value : <code>5</code></i><br>Indicates the number of scrolls before the callback is triggered<br>
+                  <i>Warning if you use 0 as value, the function will not be called.</i></td>
                 </tr>
                 <tr>
                   <td><code><var>callback</var></code></td>
                   <td>function</td>
-                  <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the number
-                    of scrolls is reached.</td>
+                  <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the number of scrolls is reached.</td>
                 </tr>
               </table>
-      </li>
   </td>
 </tr>
 <tr>
@@ -258,8 +249,8 @@ for further use an example are [available below]().
       <tr>
         <td><code><var>value</var></code></td>
         <td>number</td>
-        <td><i>Default value : <code>5</code></i><br>Indicates the number of scrolls before the callback is triggered
-        </td>
+        <td><i>Default value : <code>5</code></i><br>Indicates the number of scrolls before the callback is triggered <br>
+        <i>Warning if you use 0 as value, the function will not be called.</i></td>
       </tr>
       <tr>
         <td><code><var>callback</var></code></td>
@@ -268,21 +259,17 @@ for further use an example are [available below]().
           is reached.</td>
       </tr>
     </table>
-    </li>
   </td>
 </tr>
 </table>
-</li>
-</ul>
 </td>
 </tr>
 </table>
 <tr>
   <td><code>touch</code></td>
   <td>object</td>
-  <td>Either:
-    <ul>
-      <li>An object encapsulating the various configuration parameters for all possible touch (X / Y - next / prev).
+  <td>Either:<br>
+      An object encapsulating the various configuration parameters for all possible touch (X / Y - next / prev).
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -292,7 +279,8 @@ for further use an example are [available below]().
           <tr>
             <td><code><var>value</var></code></td>
             <td>number</td>
-            <td>Indicates the number of distance covered when touched before the callback is triggered</td>
+            <td>Indicates the number of distance covered when touched before the callback is triggered <br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
           </tr>
           <tr>
             <td><code><var>callback</var></code></td>
@@ -300,8 +288,7 @@ for further use an example are [available below]().
             <td>Defines the function to be called when the trigger is reached.</td>
           </tr>
         </table>
-      </li>
-      <li>An object encapsulating the different touch axes.
+      An object encapsulating the different touch axes.
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -311,9 +298,8 @@ for further use an example are [available below]().
           <tr>
             <td><code><var>x</var></code></td>
             <td>object</td>
-            <td>Either:
-              <ul>
-                <li>An object encapsulating the various configuration parameters for all horizontal touches.
+            <td>Either:<br>
+                An object encapsulating the various configuration parameters for all horizontal touches.
                   <table>
                     <tr>
                       <td><b>Name</b></td>
@@ -323,7 +309,8 @@ for further use an example are [available below]().
                     <tr>
                       <td><code><var>value</var></code></td>
                       <td>number</td>
-                      <td>Indicates the number of distance covered when touched before the callback is triggered</td>
+                      <td>Indicates the number of distance covered when touched before the callback is triggered <br>
+                      <i>Warning if you use 0 as value, the function will not be called.</i></td>
                     </tr>
                     <tr>
                       <td><code><var>callback</var></code></td>
@@ -331,8 +318,7 @@ for further use an example are [available below]().
                       <td>Defines the function to be called when the trigger is reached.</td>
                     </tr>
                   </table>
-                </li>
-                <li>An object encapsulating the different directions of the touch.
+                An object encapsulating the different directions of the touch.
                   <table>
                     <tr>
                       <td><b>Name</b></td>
@@ -353,7 +339,8 @@ for further use an example are [available below]().
                             <td><code><var>value</var></code></td>
                             <td>number</td>
                             <td><i>Default value : <code>80</code></i><br>Indicates the number of distance covered when
-                              touched before the callback is triggered</td>
+                              touched before the callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
                           </tr>
                           <tr>
                             <td><code><var>callback</var></code></td>
@@ -362,7 +349,6 @@ for further use an example are [available below]().
                               the trigger is reached.</td>
                           </tr>
                         </table>
-                </li>
             </td>
           </tr>
           <tr>
@@ -379,7 +365,8 @@ for further use an example are [available below]().
                   <td><code><var>value</var></code></td>
                   <td>number</td>
                   <td><i>Default value : <code>80</code></i><br>Indicates the number of distance covered when touched
-                    before the callback is triggered</td>
+                    before the callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
                 </tr>
                 <tr>
                   <td><code><var>callback</var></code></td>
@@ -388,20 +375,16 @@ for further use an example are [available below]().
                     is reached.</td>
                 </tr>
               </table>
-      </li>
   </td>
 </tr>
 </table>
-</li>
-</ul>
 </td>
 </tr>
 <tr>
   <td><code><var>y</var></code></td>
   <td>object</td>
-  <td>Either:
-    <ul>
-      <li>An object encapsulating the various configuration parameters for all vertical touches.
+  <td>Either:<br>
+      An object encapsulating the various configuration parameters for all vertical touches.
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -411,7 +394,8 @@ for further use an example are [available below]().
           <tr>
             <td><code><var>value</var></code></td>
             <td>number</td>
-            <td>Indicates the number of distance covered when touched before the callback is triggered</td>
+            <td>Indicates the number of distance covered when touched before the callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
           </tr>
           <tr>
             <td><code><var>callback</var></code></td>
@@ -419,8 +403,7 @@ for further use an example are [available below]().
             <td>Defines the function to be called when the trigger is reached.</td>
           </tr>
         </table>
-      </li>
-      <li>An object encapsulating the different directions of the touch.
+      An object encapsulating the different directions of the touch.
         <table>
           <tr>
             <td><b>Name</b></td>
@@ -441,7 +424,8 @@ for further use an example are [available below]().
                   <td><code><var>value</var></code></td>
                   <td>number</td>
                   <td><i>Default value : <code>200</code></i><br>Indicates the number of distance covered when touched
-                    before the callback is triggered</td>
+                    before the callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
                 </tr>
                 <tr>
                   <td><code><var>callback</var></code></td>
@@ -450,7 +434,6 @@ for further use an example are [available below]().
                     is reached.</td>
                 </tr>
               </table>
-      </li>
   </td>
 </tr>
 <tr>
@@ -467,7 +450,8 @@ for further use an example are [available below]().
         <td><code><var>value</var></code></td>
         <td>number</td>
         <td><i>Default value : <code>200</code></i><br>Indicates the number of distance covered when touched before the
-          callback is triggered</td>
+          callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
       </tr>
       <tr>
         <td><code><var>callback</var></code></td>
@@ -476,12 +460,9 @@ for further use an example are [available below]().
           reached.</td>
       </tr>
     </table>
-    </li>
   </td>
 </tr>
 </table>
-</li>
-</ul>
 </td>
 </tr>
 </table>

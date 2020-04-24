@@ -83,7 +83,8 @@ for further use an example are [available below]().
             <tr>
               <td><code><var>value</var></code></td>
               <td>number</td>
-              <td>Indicates the number of scrolls before the callback is triggered</td>
+              <td>Indicates the number of scrolls before the callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
             </tr>
             <tr>
               <td><code><var>callback</var></code></td>
@@ -112,7 +113,8 @@ for further use an example are [available below]().
                       <tr>
                         <td><code><var>value</var></code></td>
                         <td>number</td>
-                        <td>Indicates the number of scrolls before the callback is triggered</td>
+                        <td>Indicates the number of scrolls before the callback is triggered<br>
+                        <i>Warning if you use 0 as value, the function will not be called.</i></td>
                       </tr>
                       <tr>
                         <td><code><var>callback</var></code></td>
@@ -140,14 +142,14 @@ for further use an example are [available below]().
                             <tr>
                               <td><code><var>value</var></code></td>
                               <td>number</td>
-                              <td><i>Default value : <code>3</code></i><br>Indicates the number of scrolls before the
-                                callback is triggered</td>
+                              <td><i>Default value : <code>3</code></i><br>Indicates the number of scrolls before the callback is triggered<br>
+                              <i>Warning if you use 0 as value, the function will not be called.</i>
+                                </td>
                             </tr>
                             <tr>
                               <td><code><var>callback</var></code></td>
                               <td>function</td>
-                              <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when
-                                the number of scrolls is reached.</td>
+                              <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the number of scrolls is reached.</td>
                             </tr>
                           </table>
               </td>
@@ -165,8 +167,8 @@ for further use an example are [available below]().
                   <tr>
                     <td><code><var>value</var></code></td>
                     <td>number</td>
-                    <td><i>Default value : <code>3</code></i><br>Indicates the number of scrolls before the callback is
-                      triggered</td>
+                    <td><i>Default value : <code>3</code></i><br>Indicates the number of scrolls before the callback is triggered<br>
+                    <i>Warning if you use 0 as value, the function will not be called.</i></td>
                   </tr>
                   <tr>
                     <td><code><var>callback</var></code></td>
@@ -194,7 +196,8 @@ for further use an example are [available below]().
           <tr>
             <td><code><var>value</var></code></td>
             <td>number</td>
-            <td>Indicates the number of scrolls before the callback is triggered</td>
+            <td>Indicates the number of scrolls before the callback is triggered<br>
+            <i>Warning if you use 0 as value, the function will not be called.</i></td>
           </tr>
           <tr>
             <td><code><var>callback</var></code></td>
@@ -222,14 +225,13 @@ for further use an example are [available below]().
                 <tr>
                   <td><code><var>value</var></code></td>
                   <td>number</td>
-                  <td><i>Default value : <code>5</code></i><br>Indicates the number of scrolls before the callback is
-                    triggered</td>
+                  <td><i>Default value : <code>5</code></i><br>Indicates the number of scrolls before the callback is triggered<br>
+                  <i>Warning if you use 0 as value, the function will not be called.</i></td>
                 </tr>
                 <tr>
                   <td><code><var>callback</var></code></td>
                   <td>function</td>
-                  <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the number
-                    of scrolls is reached.</td>
+                  <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the number of scrolls is reached.</td>
                 </tr>
               </table>
   </td>
@@ -247,8 +249,8 @@ for further use an example are [available below]().
       <tr>
         <td><code><var>value</var></code></td>
         <td>number</td>
-        <td><i>Default value : <code>5</code></i><br>Indicates the number of scrolls before the callback is triggered
-        </td>
+        <td><i>Default value : <code>5</code></i><br>Indicates the number of scrolls before the callback is triggered <br>
+        <i>Warning if you use 0 as value, the function will not be called.</i></td>
       </tr>
       <tr>
         <td><code><var>callback</var></code></td>
@@ -277,7 +279,8 @@ for further use an example are [available below]().
           <tr>
             <td><code><var>value</var></code></td>
             <td>number</td>
-            <td>Indicates the number of distance covered when touched before the callback is triggered</td>
+            <td>Indicates the number of distance covered when touched before the callback is triggered <br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
           </tr>
           <tr>
             <td><code><var>callback</var></code></td>
@@ -306,7 +309,8 @@ for further use an example are [available below]().
                     <tr>
                       <td><code><var>value</var></code></td>
                       <td>number</td>
-                      <td>Indicates the number of distance covered when touched before the callback is triggered</td>
+                      <td>Indicates the number of distance covered when touched before the callback is triggered <br>
+                      <i>Warning if you use 0 as value, the function will not be called.</i></td>
                     </tr>
                     <tr>
                       <td><code><var>callback</var></code></td>
@@ -335,7 +339,8 @@ for further use an example are [available below]().
                             <td><code><var>value</var></code></td>
                             <td>number</td>
                             <td><i>Default value : <code>80</code></i><br>Indicates the number of distance covered when
-                              touched before the callback is triggered</td>
+                              touched before the callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
                           </tr>
                           <tr>
                             <td><code><var>callback</var></code></td>
@@ -360,7 +365,8 @@ for further use an example are [available below]().
                   <td><code><var>value</var></code></td>
                   <td>number</td>
                   <td><i>Default value : <code>80</code></i><br>Indicates the number of distance covered when touched
-                    before the callback is triggered</td>
+                    before the callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
                 </tr>
                 <tr>
                   <td><code><var>callback</var></code></td>
@@ -388,7 +394,8 @@ for further use an example are [available below]().
           <tr>
             <td><code><var>value</var></code></td>
             <td>number</td>
-            <td>Indicates the number of distance covered when touched before the callback is triggered</td>
+            <td>Indicates the number of distance covered when touched before the callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
           </tr>
           <tr>
             <td><code><var>callback</var></code></td>
@@ -417,7 +424,8 @@ for further use an example are [available below]().
                   <td><code><var>value</var></code></td>
                   <td>number</td>
                   <td><i>Default value : <code>200</code></i><br>Indicates the number of distance covered when touched
-                    before the callback is triggered</td>
+                    before the callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
                 </tr>
                 <tr>
                   <td><code><var>callback</var></code></td>
@@ -442,7 +450,8 @@ for further use an example are [available below]().
         <td><code><var>value</var></code></td>
         <td>number</td>
         <td><i>Default value : <code>200</code></i><br>Indicates the number of distance covered when touched before the
-          callback is triggered</td>
+          callback is triggered<br>
+              <i>Warning if you use 0 as value, the function will not be called.</i></td>
       </tr>
       <tr>
         <td><code><var>callback</var></code></td>

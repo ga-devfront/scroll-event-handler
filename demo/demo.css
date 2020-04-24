@@ -27,7 +27,6 @@ h1 {
 
 main {
     background: #202020;;
-    height: 75%;
     width: 80%;
     margin-bottom: 20px;
     margin-left: auto;
@@ -94,7 +93,6 @@ a {
         padding-top: 5px;
         margin-bottom: 5px;
         width: 95%;
-        height: 85%;
     }
 
     img {

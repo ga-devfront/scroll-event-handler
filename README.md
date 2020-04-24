@@ -354,7 +354,7 @@ for further use an example are [available below]().
                           <tr>
                             <td><code><var>value</var></code></td>
                             <td>number</td>
-                            <td><i>Default value : <code>3</code></i><br>Indicates the number of distance covered when
+                            <td><i>Default value : <code>80</code></i><br>Indicates the number of distance covered when
                               touched before the callback is triggered</td>
                           </tr>
                           <tr>
@@ -380,7 +380,7 @@ for further use an example are [available below]().
                 <tr>
                   <td><code><var>value</var></code></td>
                   <td>number</td>
-                  <td><i>Default value : <code>3</code></i><br>Indicates the number of distance covered when touched
+                  <td><i>Default value : <code>80</code></i><br>Indicates the number of distance covered when touched
                     before the callback is triggered</td>
                 </tr>
                 <tr>
@@ -442,7 +442,7 @@ for further use an example are [available below]().
                 <tr>
                   <td><code><var>value</var></code></td>
                   <td>number</td>
-                  <td><i>Default value : <code>3</code></i><br>Indicates the number of distance covered when touched
+                  <td><i>Default value : <code>200</code></i><br>Indicates the number of distance covered when touched
                     before the callback is triggered</td>
                 </tr>
                 <tr>
@@ -468,7 +468,7 @@ for further use an example are [available below]().
       <tr>
         <td><code><var>value</var></code></td>
         <td>number</td>
-        <td><i>Default value : <code>3</code></i><br>Indicates the number of distance covered when touched before the
+        <td><i>Default value : <code>200</code></i><br>Indicates the number of distance covered when touched before the
           callback is triggered</td>
       </tr>
       <tr>
@@ -490,7 +490,15 @@ for further use an example are [available below]().
 </table>
 
 ## Methods
+Several methods can be called after creating the listener. You will find them below.
 
+- **```removeScrollListener()``` :** allows to suppress the listener.
+
+- **```switchCancelOnDirectionChange()``` :** allows to switch the bolean value of `cancelOnDirectionChange`.
+
+- **```changeSettings(Object)``` :** allows you to modify the parameters given when creating the listener. It takes the same [options](#options) as when creating the listener.
+
+You can find the way to call them in the [examples](#examples) section.
 
 ## Examples
 ### Listen scroll on element

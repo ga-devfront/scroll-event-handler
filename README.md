@@ -45,36 +45,73 @@ settings](#options).
 for further use an example are [available below]().
 
 ## Options
+
+### Container
+
+```container``` description :
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><code>container</code></td>
-    <td>string</td>
-    <td><i>Default value : <code>'main'</code><br>Using a <code>querySelector</code> you will have to indicate the
+  <tbody>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>string</td>
+      <td><i>Default value : <code>'main'</code></i><br>Using a <code>querySelector</code> you will have to indicate the
         container to listen to with the appropriate string.</td>
-  </tr>
-  <tr>
-    <td><code>cancelOnDirectionChange</code></td>
-    <td>boolean</td>
-    <td><i>Default value : <code>true</code></i><br>Defined if the scroll counter should be reset if the direction of
-      the scroll changes.</td>
-  </tr>
-  <tr>
-    <td><code>callback</code></td>
-    <td>function</td>
-    <td><i>Default value : <code>() => {}</code></i><br>Allows you to define a global callback which will be called at
-      each trigger before the other callbacks.</td>
-  </tr>
-  <tr>
-    <td><code>scroll</code></td>
-    <td>object</td>
-    <td>Either:<br>
-      An object encapsulating the various configuration parameters for all possible scrolls (X / Y - next / prev).
-          <table>
+    </tr>
+  </tbody>
+</table>
+
+### CancelOnDirectionChange
+
+```cancelOnDirectionChange``` description :
+<table>
+  <tbody>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>boolean</td>
+      <td><i>Default value : <code>true</code></i>
+        <br>Defined if the scroll counter should be reset if the direction of the scroll changes.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Callback
+
+```callback``` description :
+<table>
+  <tbody>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>function</td>
+      <td><i>Default value : <code>() =&gt; {}</code></i>
+        <br>Allows you to define a global callback which will be called at each trigger before the other callbacks.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Scroll
+
+```scroll``` description :
+<table>
+  <tbody>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>object</td>
+      <td>Either:
+        <span>An object encapsulating the various configuration parameters for all possible scrolls (X / Y - next / prev).</span>
+        <table>
+          <tbody>
             <tr>
               <td><b>Name</b></td>
               <td><b>Type</b></td>
@@ -83,17 +120,18 @@ for further use an example are [available below]().
             <tr>
               <td><code><var>value</var></code></td>
               <td>number</td>
-              <td>Indicates the number of scrolls before the callback is triggered<br>
-              <i>Warning if you use 0 as value, the function will not be called.</i></td>
+              <td>Indicates the number of scrolls before the callback is triggered</td>
             </tr>
             <tr>
               <td><code><var>callback</var></code></td>
               <td>function</td>
               <td>Defines the function to be called when the number of scrolls is reached.</td>
             </tr>
-          </table>
-        An object encapsulating the different scroll axes.
-          <table>
+          </tbody>
+        </table>
+        <span>An object encapsulating the different scroll axes.</span>
+        <table>
+          <tbody>
             <tr>
               <td><b>Name</b></td>
               <td><b>Type</b></td>
@@ -102,205 +140,10 @@ for further use an example are [available below]().
             <tr>
               <td><code><var>x</var></code></td>
               <td>object</td>
-              <td>Either:<br>
-                  An object encapsulating the various configuration parameters for all horizontal scrolls.
-                    <table>
-                      <tr>
-                        <td><b>Name</b></td>
-                        <td><b>Type</b></td>
-                        <td><b>Description</b></td>
-                      </tr>
-                      <tr>
-                        <td><code><var>value</var></code></td>
-                        <td>number</td>
-                        <td>Indicates the number of scrolls before the callback is triggered<br>
-                        <i>Warning if you use 0 as value, the function will not be called.</i></td>
-                      </tr>
-                      <tr>
-                        <td><code><var>callback</var></code></td>
-                        <td>function</td>
-                        <td>Defines the function to be called when the number of scrolls is reached.</td>
-                      </tr>
-                    </table>
-                  An object encapsulating the different directions of the scroll.
-                    <table>
-                      <tr>
-                        <td><b>Name</b></td>
-                        <td><b>Type</b></td>
-                        <td><b>Description</b></td>
-                      </tr>
-                      <tr>
-                        <td><code><var>next</var></code></td>
-                        <td>object</td>
-                        <td>An object contain the various configuration parameters for horizontal next scrolls.
-                          <table>
-                            <tr>
-                              <td><b>Name</b></td>
-                              <td><b>Type</b></td>
-                              <td><b>Description</b></td>
-                            </tr>
-                            <tr>
-                              <td><code><var>value</var></code></td>
-                              <td>number</td>
-                              <td><i>Default value : <code>3</code></i><br>Indicates the number of scrolls before the callback is triggered<br>
-                              <i>Warning if you use 0 as value, the function will not be called.</i>
-                                </td>
-                            </tr>
-                            <tr>
-                              <td><code><var>callback</var></code></td>
-                              <td>function</td>
-                              <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the number of scrolls is reached.</td>
-                            </tr>
-                          </table>
-              </td>
-            </tr>
-            <tr>
-              <td><code><var>prev</var></code></td>
-              <td>object</td>
-              <td>An object contain the various configuration parameters for horizontal previous scrolls.
+              <td>Either:
+                <span>An object encapsulating the various configuration parameters for all horizontal scrolls.</span>
                 <table>
-                  <tr>
-                    <td><b>Name</b></td>
-                    <td><b>Type</b></td>
-                    <td><b>Description</b></td>
-                  </tr>
-                  <tr>
-                    <td><code><var>value</var></code></td>
-                    <td>number</td>
-                    <td><i>Default value : <code>3</code></i><br>Indicates the number of scrolls before the callback is triggered<br>
-                    <i>Warning if you use 0 as value, the function will not be called.</i></td>
-                  </tr>
-                  <tr>
-                    <td><code><var>callback</var></code></td>
-                    <td>function</td>
-                    <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the
-                      number of scrolls is reached.</td>
-                  </tr>
-                </table>
-    </td>
-  </tr>
-</table>
-</td>
-</tr>
-<tr>
-  <td><code><var>y</var></code></td>
-  <td>object</td>
-  <td>Either:<br>
-      An object encapsulating the various configuration parameters for all vertical scrolls.
-        <table>
-          <tr>
-            <td><b>Name</b></td>
-            <td><b>Type</b></td>
-            <td><b>Description</b></td>
-          </tr>
-          <tr>
-            <td><code><var>value</var></code></td>
-            <td>number</td>
-            <td>Indicates the number of scrolls before the callback is triggered<br>
-            <i>Warning if you use 0 as value, the function will not be called.</i></td>
-          </tr>
-          <tr>
-            <td><code><var>callback</var></code></td>
-            <td>function</td>
-            <td>Defines the function to be called when the number of scrolls is reached.</td>
-          </tr>
-        </table>
-      An object encapsulating the different directions of the scroll.
-        <table>
-          <tr>
-            <td><b>Name</b></td>
-            <td><b>Type</b></td>
-            <td><b>Description</b></td>
-          </tr>
-          <tr>
-            <td><code><var>next</var></code></td>
-            <td>object</td>
-            <td>An object contain the various configuration parameters for vertical next scrolls.
-              <table>
-                <tr>
-                  <td><b>Name</b></td>
-                  <td><b>Type</b></td>
-                  <td><b>Description</b></td>
-                </tr>
-                <tr>
-                  <td><code><var>value</var></code></td>
-                  <td>number</td>
-                  <td><i>Default value : <code>5</code></i><br>Indicates the number of scrolls before the callback is triggered<br>
-                  <i>Warning if you use 0 as value, the function will not be called.</i></td>
-                </tr>
-                <tr>
-                  <td><code><var>callback</var></code></td>
-                  <td>function</td>
-                  <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the number of scrolls is reached.</td>
-                </tr>
-              </table>
-  </td>
-</tr>
-<tr>
-  <td><code><var>prev</var></code></td>
-  <td>object</td>
-  <td>An object contain the various configuration parameters for vertical previous scrolls.
-    <table>
-      <tr>
-        <td><b>Name</b></td>
-        <td><b>Type</b></td>
-        <td><b>Description</b></td>
-      </tr>
-      <tr>
-        <td><code><var>value</var></code></td>
-        <td>number</td>
-        <td><i>Default value : <code>5</code></i><br>Indicates the number of scrolls before the callback is triggered <br>
-        <i>Warning if you use 0 as value, the function will not be called.</i></td>
-      </tr>
-      <tr>
-        <td><code><var>callback</var></code></td>
-        <td>function</td>
-        <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the number of scrolls
-          is reached.</td>
-      </tr>
-    </table>
-  </td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<tr>
-  <td><code>touch</code></td>
-  <td>object</td>
-  <td>Either:<br>
-      An object encapsulating the various configuration parameters for all possible touch (X / Y - next / prev).
-        <table>
-          <tr>
-            <td><b>Name</b></td>
-            <td><b>Type</b></td>
-            <td><b>Description</b></td>
-          </tr>
-          <tr>
-            <td><code><var>value</var></code></td>
-            <td>number</td>
-            <td>Indicates the number of distance covered when touched before the callback is triggered <br>
-              <i>Warning if you use 0 as value, the function will not be called.</i></td>
-          </tr>
-          <tr>
-            <td><code><var>callback</var></code></td>
-            <td>function</td>
-            <td>Defines the function to be called when the trigger is reached.</td>
-          </tr>
-        </table>
-      An object encapsulating the different touch axes.
-        <table>
-          <tr>
-            <td><b>Name</b></td>
-            <td><b>Type</b></td>
-            <td><b>Description</b></td>
-          </tr>
-          <tr>
-            <td><code><var>x</var></code></td>
-            <td>object</td>
-            <td>Either:<br>
-                An object encapsulating the various configuration parameters for all horizontal touches.
-                  <table>
+                  <tbody>
                     <tr>
                       <td><b>Name</b></td>
                       <td><b>Type</b></td>
@@ -309,17 +152,248 @@ for further use an example are [available below]().
                     <tr>
                       <td><code><var>value</var></code></td>
                       <td>number</td>
-                      <td>Indicates the number of distance covered when touched before the callback is triggered <br>
-                      <i>Warning if you use 0 as value, the function will not be called.</i></td>
+                      <td>Indicates the number of scrolls before the callback is triggered</td>
+                    </tr>
+                    <tr>
+                      <td><code><var>callback</var></code></td>
+                      <td>function</td>
+                      <td>Defines the function to be called when the number of scrolls is reached.</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <span>An object encapsulating the different directions of the scroll.</span>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><b>Name</b></td>
+                      <td><b>Type</b></td>
+                      <td><b>Description</b></td>
+                    </tr>
+                    <tr>
+                      <td><code><var>next</var></code></td>
+                      <td>object</td>
+                      <td>An object contain the various configuration parameters for horizontal next scrolls.
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td><b>Name</b></td>
+                              <td><b>Type</b></td>
+                              <td><b>Description</b></td>
+                            </tr>
+                            <tr>
+                              <td><code><var>value</var></code></td>
+                              <td>number</td>
+                              <td><i>Default value : <code>3</code></i>
+                                <br>Indicates the number of scrolls before the callback is triggered</td>
+                            </tr>
+                            <tr>
+                              <td><code><var>callback</var></code></td>
+                              <td>function</td>
+                              <td><i>Default value : <code>() =&gt; {}</code></i>
+                                <br>Defines the function to be called when the number of scrolls is reached.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code><var>prev</var></code></td>
+                      <td>object</td>
+                      <td>An object contain the various configuration parameters for horizontal previous scrolls.
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td><b>Name</b></td>
+                              <td><b>Type</b></td>
+                              <td><b>Description</b></td>
+                            </tr>
+                            <tr>
+                              <td><code><var>value</var></code></td>
+                              <td>number</td>
+                              <td><i>Default value : <code>3</code></i>
+                                <br>Indicates the number of scrolls before the callback is triggered
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code><var>callback</var></code></td>
+                              <td>function</td>
+                              <td><i>Default value : <code>() =&gt; {}</code></i>
+                                <br>Defines the function to be called when the number of scrolls is reached.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td><code><var>y</var></code></td>
+              <td>object</td>
+              <td>Either:
+                <span>An object encapsulating the various configuration parameters for all vertical scrolls.</span>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><b>Name</b></td>
+                      <td><b>Type</b></td>
+                      <td><b>Description</b></td>
+                    </tr>
+                    <tr>
+                      <td><code><var>value</var></code></td>
+                      <td>number</td>
+                      <td>Indicates the number of scrolls before the callback is triggered</td>
+                    </tr>
+                    <tr>
+                      <td><code><var>callback</var></code></td>
+                      <td>function</td>
+                      <td>Defines the function to be called when the number of scrolls is reached.</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <span>An object encapsulating the different directions of the scroll.</span>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><b>Name</b></td>
+                      <td><b>Type</b></td>
+                      <td><b>Description</b></td>
+                    </tr>
+                    <tr>
+                      <td><code><var>next</var></code></td>
+                      <td>object</td>
+                      <td>An object contain the various configuration parameters for vertical next scrolls.
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td><b>Name</b></td>
+                              <td><b>Type</b></td>
+                              <td><b>Description</b></td>
+                            </tr>
+                            <tr>
+                              <td><code><var>value</var></code></td>
+                              <td>number</td>
+                              <td><i>Default value : <code>5</code></i>
+                                <br>Indicates the number of scrolls before the callback is triggered
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code><var>callback</var></code></td>
+                              <td>function</td>
+                              <td><i>Default value : <code>() =&gt; {}</code></i>
+                                <br>Defines the function to be called when the number of scrolls is reached.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code><var>prev</var></code></td>
+                      <td>object</td>
+                      <td>An object contain the various configuration parameters for vertical previous scrolls.
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td><b>Name</b></td>
+                              <td><b>Type</b></td>
+                              <td><b>Description</b></td>
+                            </tr>
+                            <tr>
+                              <td><code><var>value</var></code></td>
+                              <td>number</td>
+                              <td><i>Default value : <code>5</code></i>
+                                <br>Indicates the number of scrolls before the callback is triggered
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><code><var>callback</var></code></td>
+                              <td>function</td>
+                              <td><i>Default value : <code>() =&gt; {}</code></i>
+                                <br>Defines the function to be called when the number of scrolls is reached.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Touch
+
+```touch``` description :
+<table>
+  <tbody>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>object</td>
+      <td>Either:
+        <span>An object encapsulating the various configuration parameters for all possible touch (X / Y - next / prev).</span>
+        <table>
+          <tbody>
+            <tr>
+              <td><b>Name</b></td>
+              <td><b>Type</b></td>
+              <td><b>Description</b></td>
+            </tr>
+            <tr>
+              <td><code><var>value</var></code></td>
+              <td>number</td>
+              <td>Indicates the number of distance covered when touched before the callback is triggered</td>
+            </tr>
+            <tr>
+              <td><code><var>callback</var></code></td>
+              <td>function</td>
+              <td>Defines the function to be called when the trigger is reached.</td>
+            </tr>
+          </tbody>
+        </table>
+        <span>An object encapsulating the different touch axes.</span>
+        <table>
+          <tbody>
+            <tr>
+              <td><b>Name</b></td>
+              <td><b>Type</b></td>
+              <td><b>Description</b></td>
+            </tr>
+            <tr>
+              <td><code><var>x</var></code></td>
+              <td>object</td>
+              <td>Either:
+                <span>An object encapsulating the various configuration parameters for all horizontal touches.</span>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><b>Name</b></td>
+                      <td><b>Type</b></td>
+                      <td><b>Description</b></td>
+                    </tr>
+                    <tr>
+                      <td><code><var>value</var></code></td>
+                      <td>number</td>
+                      <td>Indicates the number of distance covered when touched before the callback is triggered</td>
                     </tr>
                     <tr>
                       <td><code><var>callback</var></code></td>
                       <td>function</td>
                       <td>Defines the function to be called when the trigger is reached.</td>
                     </tr>
-                  </table>
-                An object encapsulating the different directions of the touch.
-                  <table>
+                  </tbody>
+                </table>
+                <span>An object encapsulating the different directions of the touch.</span>
+                <table>
+                  <tbody>
                     <tr>
                       <td><b>Name</b></td>
                       <td><b>Type</b></td>
@@ -330,142 +404,155 @@ for further use an example are [available below]().
                       <td>object</td>
                       <td>An object contain the various configuration parameters for horizontal next touches.
                         <table>
-                          <tr>
-                            <td><b>Name</b></td>
-                            <td><b>Type</b></td>
-                            <td><b>Description</b></td>
-                          </tr>
-                          <tr>
-                            <td><code><var>value</var></code></td>
-                            <td>number</td>
-                            <td><i>Default value : <code>80</code></i><br>Indicates the number of distance covered when
-                              touched before the callback is triggered<br>
-              <i>Warning if you use 0 as value, the function will not be called.</i></td>
-                          </tr>
-                          <tr>
-                            <td><code><var>callback</var></code></td>
-                            <td>function</td>
-                            <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when
-                              the trigger is reached.</td>
-                          </tr>
+                          <tbody>
+                            <tr>
+                              <td><b>Name</b></td>
+                              <td><b>Type</b></td>
+                              <td><b>Description</b></td>
+                            </tr>
+                            <tr>
+                              <td><code><var>value</var></code></td>
+                              <td>number</td>
+                              <td><i>Default value : <code>80</code></i>
+                                <br>Indicates the number of distance covered when touched before the callback is triggered</td>
+                            </tr>
+                            <tr>
+                              <td><code><var>callback</var></code></td>
+                              <td>function</td>
+                              <td><i>Default value : <code>() =&gt; {}</code></i>
+                                <br>Defines the function to be called when the trigger is reached.</td>
+                            </tr>
+                          </tbody>
                         </table>
-            </td>
-          </tr>
-          <tr>
-            <td><code><var>prev</var></code></td>
-            <td>object</td>
-            <td>An object contain the various configuration parameters for horizontal previous touches.
-              <table>
-                <tr>
-                  <td><b>Name</b></td>
-                  <td><b>Type</b></td>
-                  <td><b>Description</b></td>
-                </tr>
-                <tr>
-                  <td><code><var>value</var></code></td>
-                  <td>number</td>
-                  <td><i>Default value : <code>80</code></i><br>Indicates the number of distance covered when touched
-                    before the callback is triggered<br>
-              <i>Warning if you use 0 as value, the function will not be called.</i></td>
-                </tr>
-                <tr>
-                  <td><code><var>callback</var></code></td>
-                  <td>function</td>
-                  <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the trigger
-                    is reached.</td>
-                </tr>
-              </table>
-  </td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-  <td><code><var>y</var></code></td>
-  <td>object</td>
-  <td>Either:<br>
-      An object encapsulating the various configuration parameters for all vertical touches.
-        <table>
-          <tr>
-            <td><b>Name</b></td>
-            <td><b>Type</b></td>
-            <td><b>Description</b></td>
-          </tr>
-          <tr>
-            <td><code><var>value</var></code></td>
-            <td>number</td>
-            <td>Indicates the number of distance covered when touched before the callback is triggered<br>
-              <i>Warning if you use 0 as value, the function will not be called.</i></td>
-          </tr>
-          <tr>
-            <td><code><var>callback</var></code></td>
-            <td>function</td>
-            <td>Defines the function to be called when the trigger is reached.</td>
-          </tr>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code><var>prev</var></code></td>
+                      <td>object</td>
+                      <td>An object contain the various configuration parameters for horizontal previous touches.
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td><b>Name</b></td>
+                              <td><b>Type</b></td>
+                              <td><b>Description</b></td>
+                            </tr>
+                            <tr>
+                              <td><code><var>value</var></code></td>
+                              <td>number</td>
+                              <td><i>Default value : <code>80</code></i>
+                                <br>Indicates the number of distance covered when touched before the callback is triggered</td>
+                            </tr>
+                            <tr>
+                              <td><code><var>callback</var></code></td>
+                              <td>function</td>
+                              <td><i>Default value : <code>() =&gt; {}</code></i>
+                                <br>Defines the function to be called when the trigger is reached.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td><code><var>y</var></code></td>
+              <td>object</td>
+              <td>Either:
+                <span>An object encapsulating the various configuration parameters for all vertical touches.</span>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><b>Name</b></td>
+                      <td><b>Type</b></td>
+                      <td><b>Description</b></td>
+                    </tr>
+                    <tr>
+                      <td><code><var>value</var></code></td>
+                      <td>number</td>
+                      <td>Indicates the number of distance covered when touched before the callback is triggered</td>
+                    </tr>
+                    <tr>
+                      <td><code><var>callback</var></code></td>
+                      <td>function</td>
+                      <td>Defines the function to be called when the trigger is reached.</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <span>An object encapsulating the different directions of the touch.</span>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><b>Name</b></td>
+                      <td><b>Type</b></td>
+                      <td><b>Description</b></td>
+                    </tr>
+                    <tr>
+                      <td><code><var>next</var></code></td>
+                      <td>object</td>
+                      <td>An object contain the various configuration parameters for vertical next touches.
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td><b>Name</b></td>
+                              <td><b>Type</b></td>
+                              <td><b>Description</b></td>
+                            </tr>
+                            <tr>
+                              <td><code><var>value</var></code></td>
+                              <td>number</td>
+                              <td><i>Default value : <code>200</code></i>
+                                <br>Indicates the number of distance covered when touched before the callback is triggered</td>
+                            </tr>
+                            <tr>
+                              <td><code><var>callback</var></code></td>
+                              <td>function</td>
+                              <td><i>Default value : <code>() =&gt; {}</code></i>
+                                <br>Defines the function to be called when the trigger is reached.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code><var>prev</var></code></td>
+                      <td>object</td>
+                      <td>An object contain the various configuration parameters for vertical previous touches.
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td><b>Name</b></td>
+                              <td><b>Type</b></td>
+                              <td><b>Description</b></td>
+                            </tr>
+                            <tr>
+                              <td><code><var>value</var></code></td>
+                              <td>number</td>
+                              <td><i>Default value : <code>200</code></i>
+                                <br>Indicates the number of distance covered when touched before the callback is triggered</td>
+                            </tr>
+                            <tr>
+                              <td><code><var>callback</var></code></td>
+                              <td>function</td>
+                              <td><i>Default value : <code>() =&gt; {}</code></i>
+                                <br>Defines the function to be called when the trigger is reached.
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
         </table>
-      An object encapsulating the different directions of the touch.
-        <table>
-          <tr>
-            <td><b>Name</b></td>
-            <td><b>Type</b></td>
-            <td><b>Description</b></td>
-          </tr>
-          <tr>
-            <td><code><var>next</var></code></td>
-            <td>object</td>
-            <td>An object contain the various configuration parameters for vertical next touches.
-              <table>
-                <tr>
-                  <td><b>Name</b></td>
-                  <td><b>Type</b></td>
-                  <td><b>Description</b></td>
-                </tr>
-                <tr>
-                  <td><code><var>value</var></code></td>
-                  <td>number</td>
-                  <td><i>Default value : <code>200</code></i><br>Indicates the number of distance covered when touched
-                    before the callback is triggered<br>
-              <i>Warning if you use 0 as value, the function will not be called.</i></td>
-                </tr>
-                <tr>
-                  <td><code><var>callback</var></code></td>
-                  <td>function</td>
-                  <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the trigger
-                    is reached.</td>
-                </tr>
-              </table>
-  </td>
-</tr>
-<tr>
-  <td><code><var>prev</var></code></td>
-  <td>object</td>
-  <td>An object contain the various configuration parameters for vertical previous touches.
-    <table>
-      <tr>
-        <td><b>Name</b></td>
-        <td><b>Type</b></td>
-        <td><b>Description</b></td>
-      </tr>
-      <tr>
-        <td><code><var>value</var></code></td>
-        <td>number</td>
-        <td><i>Default value : <code>200</code></i><br>Indicates the number of distance covered when touched before the
-          callback is triggered<br>
-              <i>Warning if you use 0 as value, the function will not be called.</i></td>
-      </tr>
-      <tr>
-        <td><code><var>callback</var></code></td>
-        <td>function</td>
-        <td><i>Default value : <code>() => {}</code></i><br>Defines the function to be called when the trigger is
-          reached.</td>
-      </tr>
-    </table>
-  </td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 ## Methods

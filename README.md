@@ -742,7 +742,7 @@ The npm is now run on :
 
 ## Bug or problem ?
 
-If you encounter a problem or a bug due to the NPM package do not hesitate to open an (issue)[https://github.com/ga-devfront/scroll-event-handler/issues] with the corresponding label and a detailed description of your problem.
+If you encounter a problem or a bug due to the NPM package do not hesitate to open an [issue](https://github.com/ga-devfront/scroll-event-handler/issues) with the corresponding label and a detailed description of your problem.
 
 
 ## Contributors

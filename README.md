@@ -1,4 +1,4 @@
-# scroll listener
+# scroll event handler
 Scroll listener est un package permettant de lire les événéments de scroll (desktop) ou de touch (mobile) et de leur
 assigné un callback.
 

@@ -1,6 +1,6 @@
-# scroll listener
-Scroll listener est un package permettant de lire les événéments de scroll (desktop) ou de touch (mobile) et de leur
-assigné un callback.
+# scroll event handler
+Scroll event handler is a NPM package est un package for reading scroll (desktop) or touch (mobile) events and their
+assigned a callback.
 
 ## Badges
 ![npm](https://img.shields.io/npm/v/scroll-event-handler)

@@ -1,6 +1,6 @@
 {
-  "name": "scroll-listener",
-  "version": "1.0.0",
+  "name": "scroll-event-handler",
+  "version": "1.0.1",
   "description": "a complet scrolling event listener on all device.",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "author": "Guyomar Alexis",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ga-devfront/scroll-listener/issues"
+    "url": "https://github.com/ga-devfront/scroll-event-handler/issues"
   },
-  "homepage": "https://github.com/ga-devfront/scroll-listener#readme"
+  "homepage": "https://github.com/ga-devfront/scroll-event-handler#readme"
 }

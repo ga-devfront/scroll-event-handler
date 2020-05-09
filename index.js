@@ -50,7 +50,7 @@ export default function ScrollListener(settings) {
       desktop: {
         name: 'ie',
         regex: /MSIE (\d+\.\d+);/,
-        deltaY: 0
+        deltaY: 100
       },
     },
     opera: {
@@ -68,7 +68,7 @@ export default function ScrollListener(settings) {
       desktop: {
         name: 'safari',
         regex: /AppleWebKit[/\s](\d+)/,
-        deltaY: 10,
+        deltaY: 20,
       },
       mobile: {
         name: 'safari mobile',
@@ -83,8 +83,8 @@ export default function ScrollListener(settings) {
     }
   }
 
-  // set browser to null before testing
-  this.currentNavigator = null;
+  // set browser to object with deltaY 100
+  this.currentNavigator = {deltaY: 100};
 
   // desktop navigators tests
   if (navigators.chrome.desktop.regex.test(userAgent) && !navigators.opera.desktop.regex.test(userAgent) && !navigators.edge.desktop.regex.test(userAgent) && !navigators.chrome.mobile.regex.test(userAgent)) {

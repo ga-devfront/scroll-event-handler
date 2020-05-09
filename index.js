@@ -50,7 +50,7 @@ export default function ScrollListener(settings) {
       desktop: {
         name: 'ie',
         regex: /MSIE (\d+\.\d+);/,
-        deltaY: 0
+        deltaY: 100
       },
     },
     opera: {
@@ -68,7 +68,7 @@ export default function ScrollListener(settings) {
       desktop: {
         name: 'safari',
         regex: /AppleWebKit[/\s](\d+)/,
-        deltaY: 10,
+        deltaY: 20,
       },
       mobile: {
         name: 'safari mobile',
@@ -83,8 +83,10 @@ export default function ScrollListener(settings) {
     }
   }
 
-  // set browser to null before testing
-  this.currentNavigator = null;
+  // set browser to object with deltaY 100
+  this.currentNavigator = {
+    deltaY: 100
+  };
 
   // desktop navigators tests
   if (navigators.chrome.desktop.regex.test(userAgent) && !navigators.opera.desktop.regex.test(userAgent) && !navigators.edge.desktop.regex.test(userAgent) && !navigators.chrome.mobile.regex.test(userAgent)) {
@@ -136,11 +138,6 @@ export default function ScrollListener(settings) {
     this.currentNavigator = navigators.samsungInternet.mobile;
   }
 
-  // generates an error if the browser is not available
-  if (this.currentNavigator === null) {
-    throw Error('sorry but scroll listener do not run on this navigator');
-  }
-
   // get the container
   this.container = (settings.container) ? document.querySelector(settings.container) : document.querySelector('main');
 
@@ -169,11 +166,11 @@ export default function ScrollListener(settings) {
     },
     y: {
       next: {
-        value: 5,
+        value: 4,
         callback: () => {},
       },
       prev: {
-        value: 5,
+        value: 4,
         callback: () => {},
       },
     }
@@ -183,21 +180,21 @@ export default function ScrollListener(settings) {
   this.touchSettings = {
     x: {
       next: {
-        value: 80,
+        value: 60,
         callback: () => {},
       },
       prev: {
-        value: 80,
+        value: 60,
         callback: () => {},
       },
     },
     y: {
       next: {
-        value: 200,
+        value: 150,
         callback: () => {},
       },
       prev: {
-        value: 200,
+        value: 150,
         callback: () => {},
       },
     }
@@ -341,155 +338,146 @@ export default function ScrollListener(settings) {
     },
   };
 
-  // check if the browser is used on desktop
-  // eslint-disable-next-line no-constant-condition
-  if (this.currentNavigator.name === 'chrome' || 'edge' || 'edge chromium' || 'firefox' || 'ie' || 'opera' || 'safari') {
-    // created our function to call when the eventListener snaps
-    this.eventListener = (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      // calculate the scroll according to the browser
-      const calcForOneScroll = event.deltaY / this.currentNavigator.deltaY;
+  // created our function to call when the eventListener snaps
+  this.eventListener = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    // calculate the scroll according to the browser
+    const calcForOneScroll = event.deltaY / this.currentNavigator.deltaY;
 
-      // resets the data to 0 when the user changes direction. If the option is activated.
-      if (this.cancelOnDirectionChange) {
-        if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scroll.y)) {
-          this.trigger.scroll.y = 0;
-        }
-        if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scroll.x)) {
-          this.trigger.scroll.x = 0;
-        }
+    // resets the data to 0 when the user changes direction. If the option is activated.
+    if (this.cancelOnDirectionChange) {
+      if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scroll.y)) {
+        this.trigger.scroll.y = 0;
       }
+      if (Math.sign(calcForOneScroll) !== Math.sign(this.trigger.scroll.x)) {
+        this.trigger.scroll.x = 0;
+      }
+    }
 
-      // check if we are scrolling vertically or horizontally
-      if (event.shiftKey === false) {
-        this.trigger.scroll.y += calcForOneScroll;
-      }
-      if (event.shiftKey === true) {
-        this.trigger.scroll.x += calcForOneScroll;
-      }
+    // check if we are scrolling vertically or horizontally
+    if (event.shiftKey === false) {
+      this.trigger.scroll.y += calcForOneScroll;
+    }
+    if (event.shiftKey === true) {
+      this.trigger.scroll.x += calcForOneScroll;
+    }
 
-      // test when the y next trigger is reached.
-      if (this.scrollSettings.y.next.value !== 0) {
-        if (this.scrollSettings.y.next.value === this.trigger.scroll.y) {
-          this.globalCallback();
-          this.scrollSettings.y.next.callback();
-          this.trigger.scroll.y = 0;
-        }
+    // test when the y next trigger is reached.
+    if (this.scrollSettings.y.next.value !== 0) {
+      if (this.scrollSettings.y.next.value <= this.trigger.scroll.y) {
+        this.globalCallback();
+        this.scrollSettings.y.next.callback();
+        this.trigger.scroll.y = 0;
       }
+    }
 
-      // test when the y prev trigger is reached.
-      if (this.scrollSettings.y.prev.value !== 0) {
-        if (this.scrollSettings.y.prev.value === Math.abs(this.trigger.scroll.y) && this.trigger.scroll.y < 0) {
-          this.globalCallback();
-          this.scrollSettings.y.prev.callback();
-          this.trigger.scroll.y = 0;
-        }
+    // test when the y prev trigger is reached.
+    if (this.scrollSettings.y.prev.value !== 0) {
+      if (this.scrollSettings.y.prev.value <= Math.abs(this.trigger.scroll.y) && this.trigger.scroll.y < 0) {
+        this.globalCallback();
+        this.scrollSettings.y.prev.callback();
+        this.trigger.scroll.y = 0;
       }
+    }
 
-      // test when the x next trigger is reached.
-      if (this.scrollSettings.x.next.value !== 0) {
-        if (this.scrollSettings.x.next.value === this.trigger.scroll.x) {
-          this.globalCallback();
-          this.scrollSettings.x.next.callback();
-          this.trigger.scroll.x = 0;
-        }
+    // test when the x next trigger is reached.
+    if (this.scrollSettings.x.next.value !== 0) {
+      if (this.scrollSettings.x.next.value <= this.trigger.scroll.x) {
+        this.globalCallback();
+        this.scrollSettings.x.next.callback();
+        this.trigger.scroll.x = 0;
       }
+    }
 
-      // test when the x prev trigger is reached.
-      if (this.scrollSettings.x.prev.value !== 0) {
-        if (this.scrollSettings.x.prev.value === Math.abs(this.trigger.scroll.x) && this.trigger.scroll.x < 0) {
-          this.globalCallback();
-          this.scrollSettings.x.prev.callback();
-          this.trigger.scroll.x = 0;
-        }
+    // test when the x prev trigger is reached.
+    if (this.scrollSettings.x.prev.value !== 0) {
+      if (this.scrollSettings.x.prev.value <= Math.abs(this.trigger.scroll.x) && this.trigger.scroll.x < 0) {
+        this.globalCallback();
+        this.scrollSettings.x.prev.callback();
+        this.trigger.scroll.x = 0;
       }
-    };
+    }
+  };
 
-    // add our EventListener to our container
-    this.container.addEventListener('wheel', this.eventListener);
+  // add our EventListener to our container
+  this.container.addEventListener('wheel', this.eventListener);
+
+  // defined if scrolling should continue to be calculated
+  this.allowScroll = false;
+
+  // create a function that activates when you start to touch the screen
+  this.handleStar = (event) => {
+    // indicates the starting points
+    this.touchStartY = event.touches[0].screenY;
+    this.touchStartX = event.touches[0].screenX;
+    // lets start calculating the scrolling
+    this.allowScroll = true;
   }
 
-  // check if the browser is used on mobile
-  // eslint-disable-next-line no-constant-condition
-  if (this.currentNavigator.name === 'chrome mobile' || 'firefox mobile' || 'opera mini' || 'safari mobile' || 'samsung internet') {
-    // defined if scrolling should continue to be calculated
+  // created a function that will be used when we move on the screen
+  this.handleMove = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    // verify that we have to calculate the move
+    if (!this.allowScroll) return;
+
+    // calculates the distance from the starting point to the current location
+    this.trigger.touch.y = this.touchStartY - event.touches[0].screenY;
+    this.trigger.touch.x = this.touchStartX - event.touches[0].screenX;
+
+    // test when the y next trigger is reached.
+    if (this.touchSettings.y.next.value !== 0) {
+      if (this.touchSettings.y.next.value <= this.trigger.touch.y) {
+        this.globalCallback();
+        this.touchSettings.y.next.callback();
+        this.trigger.touch.y = 0;
+        this.allowScroll = false;
+      }
+    }
+
+    // test when the y prev trigger is reached.
+    if (this.touchSettings.y.prev.value !== 0) {
+      if (this.touchSettings.y.prev.value <= Math.abs(this.trigger.touch.y) && this.trigger.touch.y < 0) {
+        this.globalCallback();
+        this.touchSettings.y.prev.callback(true);
+        this.trigger.touch.y = 0;
+        this.allowScroll = false;
+      }
+    }
+
+    // test when the x next trigger is reached.
+    if (this.touchSettings.x.next.value !== 0) {
+      if (this.touchSettings.x.next.value <= this.trigger.touch.x) {
+        this.globalCallback();
+        this.touchSettings.x.next.callback(true);
+        this.trigger.touch.x = 0;
+        this.allowScroll = false;
+      }
+    }
+
+    // test when the x prev trigger is reached.
+    if (this.touchSettings.x.prev.value !== 0) {
+      if (this.touchSettings.x.prev.value <= Math.abs(this.trigger.touch.x) && this.trigger.touch.x < 0) {
+        this.globalCallback();
+        this.touchSettings.x.prev.callback(true);
+        this.trigger.touch.x = 0;
+        this.allowScroll = false;
+      }
+    }
+  }
+
+  // created a function that will be used when we end touch the screen
+  this.handleEnd = () => {
     this.allowScroll = false;
-
-    // create a function that activates when you start to touch the screen
-    this.handleStar = (event) => {
-      // indicates the starting points
-      this.touchStartY = event.touches[0].screenY;
-      this.touchStartX = event.touches[0].screenX;
-      // lets start calculating the scrolling
-      this.allowScroll = true;
-    }
-
-    // created a function that will be used when we move on the screen
-    this.handleMove = (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      // verify that we have to calculate the move
-      if (!this.allowScroll) return;
-
-      // calculates the distance from the starting point to the current location
-      this.trigger.touch.y = this.touchStartY - event.touches[0].screenY;
-      this.trigger.touch.x = this.touchStartX - event.touches[0].screenX;
-
-      // test when the y next trigger is reached.
-      if (this.touchSettings.y.next.value !== 0) {
-        if (this.touchSettings.y.next.value <= this.trigger.touch.y) {
-          this.globalCallback();
-          this.touchSettings.y.next.callback();
-          this.trigger.touch.y = 0;
-          this.allowScroll = false;
-        }
-      }
-
-      // test when the y prev trigger is reached.
-      if (this.touchSettings.y.prev.value !== 0) {
-        if (this.touchSettings.y.prev.value <= Math.abs(this.trigger.touch.y) && this.trigger.touch.y < 0) {
-          this.globalCallback();
-          this.touchSettings.y.prev.callback(true);
-          this.trigger.touch.y = 0;
-          this.allowScroll = false;
-        }
-      }
-
-      // test when the x next trigger is reached.
-      if (this.touchSettings.x.next.value !== 0) {
-        if (this.touchSettings.x.next.value <= this.trigger.touch.x) {
-          this.globalCallback();
-          this.touchSettings.x.next.callback(true);
-          this.trigger.touch.x = 0;
-          this.allowScroll = false;
-        }
-      }
-
-      // test when the x prev trigger is reached.
-      if (this.touchSettings.x.prev.value !== 0) {
-        if (this.touchSettings.x.prev.value <= Math.abs(this.trigger.touch.x) && this.trigger.touch.x < 0) {
-          this.globalCallback();
-          this.touchSettings.x.prev.callback(true);
-          this.trigger.touch.x = 0;
-          this.allowScroll = false;
-        }
-      }
-    }
-
-    // created a function that will be used when we end touch the screen
-    this.handleEnd = () => {
-      this.allowScroll = false;
-      this.trigger.touch.y = 0;
-      this.trigger.touch.x = 0;
-    }
-
-    // add functions to EventListener
-    this.container.addEventListener('touchstart', this.handleStar);
-    this.container.addEventListener('touchmove', this.handleMove);
-    this.container.addEventListener('touchend', this.handleEnd);
-
+    this.trigger.touch.y = 0;
+    this.trigger.touch.x = 0;
   }
+
+  // add functions to EventListener
+  this.container.addEventListener('touchstart', this.handleStar);
+  this.container.addEventListener('touchmove', this.handleMove);
+  this.container.addEventListener('touchend', this.handleEnd);
 
   // method to remove the scroll listener
   this.removeScrollListener = () => {

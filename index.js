@@ -336,9 +336,6 @@ export default function ScrollListener(settings) {
     },
   };
 
-  // check if the browser is used on desktop
-  // eslint-disable-next-line no-constant-condition
-  if (this.currentNavigator.name === 'chrome' || 'edge' || 'edge chromium' || 'firefox' || 'ie' || 'opera' || 'safari') {
     // created our function to call when the eventListener snaps
     this.eventListener = (event) => {
       event.preventDefault();
@@ -403,11 +400,7 @@ export default function ScrollListener(settings) {
 
     // add our EventListener to our container
     this.container.addEventListener('wheel', this.eventListener);
-  }
 
-  // check if the browser is used on mobile
-  // eslint-disable-next-line no-constant-condition
-  if (this.currentNavigator.name === 'chrome mobile' || 'firefox mobile' || 'opera mini' || 'safari mobile' || 'samsung internet') {
     // defined if scrolling should continue to be calculated
     this.allowScroll = false;
 
@@ -483,8 +476,6 @@ export default function ScrollListener(settings) {
     this.container.addEventListener('touchstart', this.handleStar);
     this.container.addEventListener('touchmove', this.handleMove);
     this.container.addEventListener('touchend', this.handleEnd);
-
-  }
 
   // method to remove the scroll listener
   this.removeScrollListener = () => {

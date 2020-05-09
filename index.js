@@ -365,7 +365,7 @@ export default function ScrollListener(settings) {
 
     // test when the y next trigger is reached.
     if (this.scrollSettings.y.next.value !== 0) {
-      if (this.scrollSettings.y.next.value === this.trigger.scroll.y) {
+      if (this.scrollSettings.y.next.value <= this.trigger.scroll.y) {
         this.globalCallback();
         this.scrollSettings.y.next.callback();
         this.trigger.scroll.y = 0;
@@ -374,7 +374,7 @@ export default function ScrollListener(settings) {
 
     // test when the y prev trigger is reached.
     if (this.scrollSettings.y.prev.value !== 0) {
-      if (this.scrollSettings.y.prev.value === Math.abs(this.trigger.scroll.y) && this.trigger.scroll.y < 0) {
+      if (this.scrollSettings.y.prev.value <= Math.abs(this.trigger.scroll.y) && this.trigger.scroll.y < 0) {
         this.globalCallback();
         this.scrollSettings.y.prev.callback();
         this.trigger.scroll.y = 0;
@@ -383,7 +383,7 @@ export default function ScrollListener(settings) {
 
     // test when the x next trigger is reached.
     if (this.scrollSettings.x.next.value !== 0) {
-      if (this.scrollSettings.x.next.value === this.trigger.scroll.x) {
+      if (this.scrollSettings.x.next.value <= this.trigger.scroll.x) {
         this.globalCallback();
         this.scrollSettings.x.next.callback();
         this.trigger.scroll.x = 0;
@@ -392,7 +392,7 @@ export default function ScrollListener(settings) {
 
     // test when the x prev trigger is reached.
     if (this.scrollSettings.x.prev.value !== 0) {
-      if (this.scrollSettings.x.prev.value === Math.abs(this.trigger.scroll.x) && this.trigger.scroll.x < 0) {
+      if (this.scrollSettings.x.prev.value <= Math.abs(this.trigger.scroll.x) && this.trigger.scroll.x < 0) {
         this.globalCallback();
         this.scrollSettings.x.prev.callback();
         this.trigger.scroll.x = 0;

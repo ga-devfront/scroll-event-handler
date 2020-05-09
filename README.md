@@ -183,7 +183,7 @@ for further use an example are [available below]().
                             <tr>
                               <td><code><var>value</var></code></td>
                               <td>number</td>
-                              <td><i>Default value : <code>3</code></i>
+                              <td><i>Default value : <code>2</code></i>
                                 <br>Indicates the number of scrolls before the callback is triggered</td>
                             </tr>
                             <tr>
@@ -210,7 +210,7 @@ for further use an example are [available below]().
                             <tr>
                               <td><code><var>value</var></code></td>
                               <td>number</td>
-                              <td><i>Default value : <code>3</code></i>
+                              <td><i>Default value : <code>2</code></i>
                                 <br>Indicates the number of scrolls before the callback is triggered
                               </td>
                             </tr>
@@ -274,7 +274,7 @@ for further use an example are [available below]().
                             <tr>
                               <td><code><var>value</var></code></td>
                               <td>number</td>
-                              <td><i>Default value : <code>5</code></i>
+                              <td><i>Default value : <code>4</code></i>
                                 <br>Indicates the number of scrolls before the callback is triggered
                               </td>
                             </tr>
@@ -302,7 +302,7 @@ for further use an example are [available below]().
                             <tr>
                               <td><code><var>value</var></code></td>
                               <td>number</td>
-                              <td><i>Default value : <code>5</code></i>
+                              <td><i>Default value : <code>4</code></i>
                                 <br>Indicates the number of scrolls before the callback is triggered
                               </td>
                             </tr>
@@ -413,7 +413,7 @@ for further use an example are [available below]().
                             <tr>
                               <td><code><var>value</var></code></td>
                               <td>number</td>
-                              <td><i>Default value : <code>80</code></i>
+                              <td><i>Default value : <code>60</code></i>
                                 <br>Indicates the number of distance covered when touched before the callback is triggered</td>
                             </tr>
                             <tr>
@@ -440,7 +440,7 @@ for further use an example are [available below]().
                             <tr>
                               <td><code><var>value</var></code></td>
                               <td>number</td>
-                              <td><i>Default value : <code>80</code></i>
+                              <td><i>Default value : <code>60</code></i>
                                 <br>Indicates the number of distance covered when touched before the callback is triggered</td>
                             </tr>
                             <tr>
@@ -503,7 +503,7 @@ for further use an example are [available below]().
                             <tr>
                               <td><code><var>value</var></code></td>
                               <td>number</td>
-                              <td><i>Default value : <code>200</code></i>
+                              <td><i>Default value : <code>150</code></i>
                                 <br>Indicates the number of distance covered when touched before the callback is triggered</td>
                             </tr>
                             <tr>
@@ -530,7 +530,7 @@ for further use an example are [available below]().
                             <tr>
                               <td><code><var>value</var></code></td>
                               <td>number</td>
-                              <td><i>Default value : <code>200</code></i>
+                              <td><i>Default value : <code>150</code></i>
                                 <br>Indicates the number of distance covered when touched before the callback is triggered</td>
                             </tr>
                             <tr>
@@ -730,14 +730,7 @@ newScrollListener.changeSettings({
 
 The tests were carried out thanks to Browserstack which offers us its services since our npm is opensource.
 
-The npm is now run on :
-- Chrome desktop / mobile
-- Edge
-- Edge chromium
-- Firefox desktop / mobile
-- Opera desktop/ mobile
-- Safari desktop / mobile
-- Samsung Internet
+The npm is now run on all devices and browsers but it's possible that problems may be encountered on browsers that may be common. If this is the case, do not hesitate to open an issue.
 
 
 ## Bug or problem ?

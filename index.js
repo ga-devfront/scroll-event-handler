@@ -164,11 +164,11 @@ export default function ScrollListener(settings) {
     },
     y: {
       next: {
-        value: 5,
+        value: 4,
         callback: () => {},
       },
       prev: {
-        value: 5,
+        value: 4,
         callback: () => {},
       },
     }
@@ -178,21 +178,21 @@ export default function ScrollListener(settings) {
   this.touchSettings = {
     x: {
       next: {
-        value: 80,
+        value: 60,
         callback: () => {},
       },
       prev: {
-        value: 80,
+        value: 60,
         callback: () => {},
       },
     },
     y: {
       next: {
-        value: 200,
+        value: 150,
         callback: () => {},
       },
       prev: {
-        value: 200,
+        value: 150,
         callback: () => {},
       },
     }

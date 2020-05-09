@@ -136,11 +136,6 @@ export default function ScrollListener(settings) {
     this.currentNavigator = navigators.samsungInternet.mobile;
   }
 
-  // generates an error if the browser is not available
-  if (this.currentNavigator === null) {
-    throw Error('sorry but scroll listener do not run on this navigator');
-  }
-
   // get the container
   this.container = (settings.container) ? document.querySelector(settings.container) : document.querySelector('main');
 

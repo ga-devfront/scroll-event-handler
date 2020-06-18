@@ -401,7 +401,7 @@ export default function ScrollListener(settings) {
   };
 
   // add our EventListener to our container
-  this.container.addEventListener('wheel', this.eventListener, { passive:true });
+  this.container.addEventListener('wheel', this.eventListener, { passive:false });
 
   // defined if scrolling should continue to be calculated
   this.allowScroll = false;

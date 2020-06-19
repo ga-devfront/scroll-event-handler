@@ -746,6 +746,8 @@ If you encounter a problem or a bug due to the NPM package do not hesitate to op
 See also the list of [contributors](https://github.com/ga-devfront/scroll-listener/graphs/contributors) who participated
 in this project.
 
+Want to contribute to the project ? First read your document on how to [contribute effectively](CONTRIBUTING.md).
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

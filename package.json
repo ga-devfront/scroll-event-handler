@@ -1,7 +1,7 @@
 {
   "name": "scroll-event-handler",
-  "version": "1.0.3",
-  "description": "a complet scrolling event listener on all device.",
+  "version": "1.0.4",
+  "description": "Scroll event handler is a NPM package est un package for reading scroll (desktop) or touch (mobile) events and their assigned a callback.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

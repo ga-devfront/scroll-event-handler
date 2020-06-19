@@ -1,6 +1,6 @@
 /**
  * Export the main function
- * @param {Object} settings 
+ * @param {Object} settings
  * Refer to the documentation for more informations.
  */
 export default function ScrollListener(settings) {
@@ -401,7 +401,7 @@ export default function ScrollListener(settings) {
   };
 
   // add our EventListener to our container
-  this.container.addEventListener('wheel', this.eventListener);
+  this.container.addEventListener('wheel', this.eventListener, { passive:false });
 
   // defined if scrolling should continue to be calculated
   this.allowScroll = false;

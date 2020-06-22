@@ -475,9 +475,9 @@ export default function ScrollListener(settings) {
   }
 
   // add functions to EventListener
-  this.container.addEventListener('touchstart', this.handleStar);
-  this.container.addEventListener('touchmove', this.handleMove);
-  this.container.addEventListener('touchend', this.handleEnd);
+  this.container.addEventListener('touchstart', this.handleStar, { passive:false });
+  this.container.addEventListener('touchmove', this.handleMove, { passive:false });
+  this.container.addEventListener('touchend', this.handleEnd, { passive:false });
 
   // method to remove the scroll listener
   this.removeScrollListener = () => {

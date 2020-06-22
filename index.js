@@ -401,7 +401,7 @@ export default function ScrollListener(settings) {
   };
 
   // add our EventListener to our container
-  this.container.addEventListener('wheel', this.eventListener, { passive:true });
+  this.container.addEventListener('wheel', this.eventListener, { passive:false });
 
   // defined if scrolling should continue to be calculated
   this.allowScroll = false;
@@ -475,9 +475,9 @@ export default function ScrollListener(settings) {
   }
 
   // add functions to EventListener
-  this.container.addEventListener('touchstart', this.handleStar);
-  this.container.addEventListener('touchmove', this.handleMove);
-  this.container.addEventListener('touchend', this.handleEnd);
+  this.container.addEventListener('touchstart', this.handleStar, { passive:false });
+  this.container.addEventListener('touchmove', this.handleMove, { passive:false });
+  this.container.addEventListener('touchend', this.handleEnd, { passive:false });
 
   // method to remove the scroll listener
   this.removeScrollListener = () => {

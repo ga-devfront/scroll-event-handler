@@ -1,6 +1,6 @@
 {
   "name": "scroll-event-handler",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Scroll event handler is a NPM package est un package for reading scroll (desktop) or touch (mobile) events and their assigned a callback.",
   "main": "index.js",
   "scripts": {
